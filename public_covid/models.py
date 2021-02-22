@@ -47,7 +47,6 @@ class Player(BasePlayer):
     disclose = models.BooleanField(label="Do you want to reveal your multiplier to the other player?")
     multiplier = models.FloatField()
 
-
     def see_opponent_type(self):
         for p in self.get_others_in_group():
             return p.multiplier if p.disclose else None
