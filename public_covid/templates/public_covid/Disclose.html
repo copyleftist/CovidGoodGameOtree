@@ -1,0 +1,16 @@
+{% extends "./Base.html" %}
+{% load otree %}
+
+
+
+{% block content %}
+
+
+    <p>
+    Your multiplier is {{ player.multiplier }}.
+    </p>
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}
