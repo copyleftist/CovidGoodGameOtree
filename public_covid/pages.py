@@ -7,6 +7,8 @@ class Contribute(Page):
     form_model = 'player'
     form_fields = ['contribution']
 
+class Instruction1(Page):
+    pass
 
 class Disclose(Page):
     form_model = 'player'
@@ -25,4 +27,4 @@ class Results(Page):
     pass
 
 
-page_sequence = [Disclose, DiscloseWaitPage, Contribute, ResultsWaitPage, Results]
+page_sequence = [Instruction1, Disclose, DiscloseWaitPage, Contribute, ResultsWaitPage, Results]
