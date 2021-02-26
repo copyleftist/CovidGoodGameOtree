@@ -3,10 +3,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class Contribute(Page):
-    form_model = 'player'
-    form_fields = ['contribution']
-
 class Instruction1(Page):
     pass
 
@@ -16,7 +12,12 @@ class Disclose(Page):
 
 
 class DiscloseWaitPage(WaitPage):
-    pass
+    after_all_players_arrive = 'see_opponent_type'
+
+
+class Contribute(Page):
+    form_model = 'player'
+    form_fields = ['contribution']
 
 
 class ResultsWaitPage(WaitPage):
