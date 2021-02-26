@@ -6,6 +6,7 @@ from .models import Constants
 class Instruction1(Page):
     pass
 
+
 class Disclose(Page):
     form_model = 'player'
     form_fields = ['disclose']

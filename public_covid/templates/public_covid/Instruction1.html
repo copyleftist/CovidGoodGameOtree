@@ -2,10 +2,17 @@
 {% load otree %}
 
 {% block content %}
+    {% if group.treatment == '' %}
 
     <p>
-        Hello, here is our experiment.
+        Hello, here is our experiment treatment1.
     </p>
+    {% elif group.treatment == '' %}
+    <p>
+        Hello, here is our experiment treatment 2.
+    </p>
+    {% endif %}
+
 
     {% formfields %}
 
