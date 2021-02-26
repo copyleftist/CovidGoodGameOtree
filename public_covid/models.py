@@ -78,8 +78,5 @@ class Player(BasePlayer):
             else:
                 return p.multiplier
 
-            import logging
-            logger = logging.getLogger("mylogger")
-            logger.info(p.multiplier)
-
+            print('test')
 
