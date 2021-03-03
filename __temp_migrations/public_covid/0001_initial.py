@@ -51,10 +51,10 @@ class Migration(migrations.Migration):
                 ('round_number', otree.db.models.PositiveIntegerField(db_index=True, null=True)),
                 ('_role', otree.db.models.StringField(max_length=10000, null=True)),
                 ('contribution', otree.db.models.CurrencyField(null=True, verbose_name='How much will you contribute?')),
-                ('group', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='public_covid.Group')),
+                ('group', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='step1.Group')),
                 ('participant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='public_covid_player', to='otree.Participant')),
                 ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='public_covid_player', to='otree.Session')),
-                ('subsession', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public_covid.Subsession')),
+                ('subsession', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='step1.Subsession')),
             ],
             options={
                 'db_table': 'public_covid_player',
@@ -64,6 +64,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='group',
             name='subsession',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public_covid.Subsession'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='step1.Subsession'),
         ),
     ]

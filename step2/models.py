@@ -12,25 +12,20 @@ import numpy as np
 
 
 class Constants(BaseConstants):
-    name_in_url = 'public_covid'
+    name_in_url = 'step2'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 1
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = c(10)
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        n_players = len(self.get_players())
-
-        #equal repartition of types
-        multipliers = [Constants.multiplier_good, ] * (n_players//2)\
-                      + [Constants.multiplier_bad, ] * (n_players//2)
-        np.random.shuffle(multipliers)
-
-        for id, p in enumerate(self.get_players()):
-            p.multiplier = multipliers[id]
+    def matching(self):
+        print('Matching')
+        for p in self.get_players():
+            print('Participant id: ', p.participant.id_in_session)
+            print(p.participant.vars)
 
 
 class Group(BaseGroup):
@@ -44,6 +39,7 @@ class Group(BaseGroup):
         self.individual_share = self.total_contribution / Constants.players_per_group
         for p in players:
             p.payoff = Constants.endowment - p.contribution + self.individual_share
+
 
 
 class Player(BasePlayer):

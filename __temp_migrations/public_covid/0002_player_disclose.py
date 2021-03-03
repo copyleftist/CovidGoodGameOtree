@@ -7,7 +7,7 @@ import otree.db.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public_covid', '0001_initial'),
+        ('step1', '0001_initial'),
     ]
 
     operations = [

@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block app_styles %}
+<style>
+@font-face {
+	font-family: "FuturaHandwritten";
+	src: url(' {% static "font/FuturaHandwritten.ttf" %}');
+}
+
+body {
+	font-family: "FuturaHandwritten";
+}
+</style>
+{% endblock %}

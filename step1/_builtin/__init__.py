@@ -1,5 +1,5 @@
 # Don't change anything in this file.
-from .. import models
+from step2 import models
 import otree.api
 
 
