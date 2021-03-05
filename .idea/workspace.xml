@@ -2,37 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step1/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/templates/step2/Base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/templates/step2/Contribute.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/templates/step2/Disclose.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/templates/step2/Instruction1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/templates/step2/Results.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/step2/_builtin/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/__temp_migrations/public_covid/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0002_player_disclose.py" beforeDir="false" afterPath="$PROJECT_DIR$/__temp_migrations/public_covid/0002_player_disclose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0003_auto_20210220_2216.py" beforeDir="false" afterPath="$PROJECT_DIR$/__temp_migrations/public_covid/0003_auto_20210220_2216.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0004_player_multiplier.py" beforeDir="false" afterPath="$PROJECT_DIR$/__temp_migrations/public_covid/0004_player_multiplier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/_builtin/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/_builtin/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/pages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/templates/public_covid/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/templates/public_covid/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/templates/public_covid/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/templates/public_covid/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/templates/public_covid/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public_covid/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/auth/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/debug.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/contenttypes/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/contenttypes/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/guess_two_thirds/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/guess_two_thirds/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree-version.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/payment_info/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/payment_info/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0002_player_disclose.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0003_auto_20210220_2216.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0004_player_multiplier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_goods/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_goods/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/sessions/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/sessions/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/survey/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__temp_migrations/survey/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/img/players.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements_base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_base.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Contribute.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Disclose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Instruction1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step2/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -114,23 +142,29 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/step1/templates/step1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_templates/global" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_templates/global" />
+      <recent name="$PROJECT_DIR$/step1" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1\templates\step1" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/step2" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step2" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step2\templates\step2" />
     </key>
@@ -174,6 +208,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public_covid/__init__.py">

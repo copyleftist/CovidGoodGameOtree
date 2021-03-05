@@ -1,9 +1,9 @@
 from os import environ
 
-
+DEBUG = 1
 SESSION_CONFIGS = [
     dict(
-        name='theresa',
+        name='theresa_fernanda_base',
         display_name="Public Covid",
         num_demo_participants=2,
         app_sequence=['step1', 'step2'],
@@ -60,3 +60,5 @@ Here are some oTree games.
 SECRET_KEY = '7f%n61qy537uzmsb3$zsxjxlpeqzb=442lk_&t&)(!-xj%fn^h'
 
 INSTALLED_APPS = ['otree']
+
+PARTICIPANT_FIELDS = ['test', 'multiplier', 'disclose', 'contribution']

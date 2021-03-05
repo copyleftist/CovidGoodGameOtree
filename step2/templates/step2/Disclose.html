@@ -1,13 +1,14 @@
-{% extends "./Base.html" %}
+{% extends "global/Base.html" %}
 {% load otree %}
 
+
+{{ group.init_round }}
 
 
 {% block content %}
 
-
     <p>
-    Your multiplier is {{ player.multiplier }}.
+    Your multiplier is {{ player.participant.multiplier }}.
     </p>
     {% formfields %}
 

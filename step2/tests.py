@@ -1,6 +1,6 @@
 from otree.api import Currency as c
 from . import pages
-from step1._builtin import Bot
+from step2._builtin import Bot
 
 
 class PlayerBot(Bot):
