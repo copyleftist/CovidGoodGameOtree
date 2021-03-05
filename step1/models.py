@@ -39,6 +39,7 @@ class Group(BaseGroup):
         # equal repartition of types
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
                       + [Constants.multiplier_bad, ] * (n_participant // 2)
+        np.random.shuffle(multipliers)
 
         for p in self.get_players():
             # print(p.participant.id_in_session)

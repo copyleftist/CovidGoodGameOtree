@@ -2,58 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/step2/_builtin/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/js/tween.umd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/auth/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/debug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/contenttypes/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/contenttypes/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/guess_two_thirds/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/guess_two_thirds/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree-version.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/otree/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/payment_info/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/payment_info/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0002_player_disclose.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0003_auto_20210220_2216.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/0004_player_multiplier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_covid/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_goods/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/public_goods/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/sessions/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/sessions/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/survey/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__temp_migrations/survey/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_static/img/players.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements_base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_base.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_templates/global/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/pages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Contribute.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Disclose.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Instruction1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/templates/step2/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step2/templates/step2/Results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step2/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step2/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.amd.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.amd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.umd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/00_hello_world.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/00_hello_world.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/01_bars.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/01_bars.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/02_black_and_red.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/02_black_and_red.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/03_graphs.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/03_graphs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/04_simplest.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/04_simplest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/05_video_and_time.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/05_video_and_time.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/06_array_interpolation.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/06_array_interpolation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/07_dynamic_to.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/07_dynamic_to.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/08_repeat.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/08_repeat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/09_relative_values.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/09_relative_values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/10_yoyo.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/10_yoyo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/11_stop_all_chained_tweens.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/11_stop_all_chained_tweens.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/12_graphs_custom_functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/12_graphs_custom_functions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/13_relative_start_time.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/13_relative_start_time.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/14_pause_tween.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/14_pause_tween.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/15_complex_properties.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/15_complex_properties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/examples/16_animate_an_array_of_values.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/16_animate_an_array_of_values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tween.js/test/unit/nodeunit.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/test/unit/nodeunit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -83,6 +71,7 @@
     <option name="height" value="980" />
   </component>
   <component name="ProjectId" id="1pFXFVvnV94fPIcERn6KEscrqBq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -153,7 +142,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -163,10 +152,11 @@
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/_static/js" />
+      <recent name="$PROJECT_DIR$/_static" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/step2" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step2" />
-      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step2\templates\step2" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -181,6 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614005897651</updated>
       <workItem from="1614779709643" duration="5763000" />
+      <workItem from="1614964605231" duration="2742000" />
     </task>
     <servers />
   </component>
