@@ -2,38 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_static/js/tween.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_templates/global/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.amd.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.amd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.cjs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/dist/tween.esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/dist/tween.umd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/00_hello_world.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/00_hello_world.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/01_bars.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/01_bars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/02_black_and_red.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/02_black_and_red.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/03_graphs.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/03_graphs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/04_simplest.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/04_simplest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/05_video_and_time.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/05_video_and_time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/06_array_interpolation.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/06_array_interpolation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/07_dynamic_to.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/07_dynamic_to.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/08_repeat.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/08_repeat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/09_relative_values.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/09_relative_values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/10_yoyo.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/10_yoyo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/11_stop_all_chained_tweens.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/11_stop_all_chained_tweens.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/12_graphs_custom_functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/12_graphs_custom_functions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/13_relative_start_time.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/13_relative_start_time.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/14_pause_tween.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/14_pause_tween.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/15_complex_properties.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/15_complex_properties.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/examples/16_animate_an_array_of_values.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/examples/16_animate_an_array_of_values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tween.js/test/unit/nodeunit.html" beforeDir="false" afterPath="$PROJECT_DIR$/tween.js/test/unit/nodeunit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +108,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/_templates/global" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -171,7 +144,8 @@
       <option name="presentableId" value="Default" />
       <updated>1614005897651</updated>
       <workItem from="1614779709643" duration="5763000" />
-      <workItem from="1614964605231" duration="2742000" />
+      <workItem from="1614964605231" duration="4655000" />
+      <workItem from="1615814386724" duration="1357000" />
     </task>
     <servers />
   </component>

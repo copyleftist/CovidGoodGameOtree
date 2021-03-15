@@ -5,7 +5,7 @@ import settings
 import logging
 
 formatter = logging.Formatter(
-    "[%(levelname)s][%(filename)s:%(funcName)s():line %(lineno)s] %(asctime)s: %(message)s", "%H:%M:%S")
+    "[%(levelname)s][%(module)s:%(funcName)s():line %(lineno)s] %(asctime)s: %(message)s", "%H:%M:%S")
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

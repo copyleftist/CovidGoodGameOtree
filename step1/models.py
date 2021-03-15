@@ -34,16 +34,18 @@ class Group(BaseGroup):
         this method is called only once
         :return:
         """
+        logger.debug('Initialization of the first phase: attributing multipliers and participant labels.')
         n_participant = self.session.num_participants
 
         # equal repartition of types
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
-                      + [Constants.multiplier_bad, ] * (n_participant // 2)
+                    + [Constants.multiplier_bad, ] * (n_participant // 2)
         np.random.shuffle(multipliers)
 
         for p in self.get_players():
             # print(p.participant.id_in_session)
             p.participant.multiplier = multipliers[p.participant.id_in_session - 1]
+            p.participant.label = f'ID{p.participant.id_in_session}'
 
             # init data fields to use in next app
             p.participant.contribution = np.zeros(Constants.num_rounds)
