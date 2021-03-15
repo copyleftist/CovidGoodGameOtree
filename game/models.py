@@ -13,7 +13,7 @@ from utils.debug import logger
 
 
 class Constants(BaseConstants):
-    name_in_url = 'step1'
+    name_in_url = 'game'
     players_per_group = 2
     num_rounds = 3
     multiplier_bad = .8
@@ -35,7 +35,7 @@ class Group(BaseGroup):
         :return:
         """
         logger.debug(
-            'Initialization: attributing multipliers, participant labels, treatment.')
+            'Session Initialization: setting multipliers, participant labels, treatments, to participants.')
         n_participant = self.session.num_participants
 
         # equal repartition of types
@@ -59,10 +59,12 @@ class Group(BaseGroup):
         this method is called at the beginning of each round
         :return:
         """
+        logger.debug('Round initialization: setting multipliers to players')
         for p in self.get_players():
             p.multiplier = p.participant.multiplier
 
     def end_round(self):
+        logger.debug('Round ends: setting payoffs')
         self.set_payoffs()
         #self.record_round_data()
 

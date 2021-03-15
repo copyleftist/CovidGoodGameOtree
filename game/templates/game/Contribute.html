@@ -1,4 +1,4 @@
-{% extends "./Base.html" %}
+{% extends "global/Base.html" %}
 {% load otree %}
 
 {#{% block title %}#}
@@ -9,7 +9,7 @@
 
     <p>
         {% if player.see_opponent_multiplier %}
-            The other player multiplier is {{ player.see_opponent_type }}
+            The other player multiplier is {{ player.see_opponent_multiplier }}
         {% else %}
             The other player did not disclose its multiplier.
         {% endif %}

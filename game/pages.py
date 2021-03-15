@@ -1,7 +1,14 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
-from step1._builtin import Page, WaitPage
+from game._builtin import Page, WaitPage
 from .models import Constants
+
+
+class Init(WaitPage):
+    after_all_players_arrive = 'init'
+
+    def is_displayed(self):
+        return self.round_number == 1
 
 
 class Contribute(Page):
@@ -10,12 +17,14 @@ class Contribute(Page):
 
 
 class Instruction1(Page):
-    pass
+    def is_displayed(self):
+        return self.round_number == 1
 
 
 class Disclose(Page):
     form_model = 'player'
     form_fields = ['disclose']
+
     def is_displayed(self):
         return self.subsession.session.config['treatment'] != 2
 
@@ -25,11 +34,11 @@ class DiscloseWaitPage(WaitPage):
 
 
 class ResultsWaitPage(WaitPage):
-    after_all_players_arrive = 'set_payoffs'
+    after_all_players_arrive = 'end_round'
 
 
 class Results(Page):
     pass
 
 
-page_sequence = [Instruction1, Disclose, DiscloseWaitPage, Contribute, ResultsWaitPage, Results]
+page_sequence = [Init, Instruction1, Disclose, DiscloseWaitPage, Contribute, ResultsWaitPage, Results]
