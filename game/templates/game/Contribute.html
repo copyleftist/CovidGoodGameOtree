@@ -1,0 +1,22 @@
+{% extends "global/Base.html" %}
+{% load otree %}
+
+{#{% block title %}#}
+{#    Contribute#}
+{#{% endblock %}#}
+
+{% block content %}
+
+    <p>
+        {% if player.see_opponent_multiplier %}
+            The other player multiplier is {{ player.see_opponent_multiplier }}
+        {% else %}
+            The other player did not disclose its multiplier.
+        {% endif %}
+    </p>
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}
