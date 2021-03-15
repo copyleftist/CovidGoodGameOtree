@@ -3,12 +3,12 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-<<<<<<< Updated upstream
         name='public_covid',
         display_name="Public Covid",
         num_demo_participants=2,
         app_sequence=['public_covid', 'payment_info'],
-=======
+    ),
+    dict(
         name='fernanda_vol',
         display_name="Volontary",
         num_demo_participants=2,
@@ -35,7 +35,7 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         treatment=4,
         app_sequence=['step1'],
->>>>>>> Stashed changes
+
     ),
     dict(
         name='survey',
