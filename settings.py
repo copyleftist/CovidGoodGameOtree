@@ -3,12 +3,40 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
+<<<<<<< Updated upstream
         name='public_covid',
         display_name="Public Covid",
         num_demo_participants=2,
         app_sequence=['public_covid', 'payment_info'],
+=======
+        name='fernanda_vol',
+        display_name="Volontary",
+        num_demo_participants=2,
+        treatment=1,
+        app_sequence=['step1'],
     ),
-
+    dict(
+        name='fernanda_n_vol',
+        display_name="Non-Volontary",
+        num_demo_participants=2,
+        treatment=2,
+        app_sequence=['step1'],
+    ),
+    dict(
+        name='fernanda_ca_vol',
+        display_name="CA Volontary",
+        num_demo_participants=2,
+        treatment=3,
+        app_sequence=['step1'],
+    ),
+    dict(
+        name='fernanda_ca_n_vol',
+        display_name="CA Non-Volontary",
+        num_demo_participants=2,
+        treatment=4,
+        app_sequence=['step1'],
+>>>>>>> Stashed changes
+    ),
     dict(
         name='survey',
         display_name='survey',
@@ -60,3 +88,9 @@ Here are some oTree games.
 SECRET_KEY = '7f%n61qy537uzmsb3$zsxjxlpeqzb=442lk_&t&)(!-xj%fn^h'
 
 INSTALLED_APPS = ['otree']
+<<<<<<< Updated upstream
+=======
+
+PARTICIPANT_FIELDS = ['treatment', 'multiplier', 'disclose', 'contribution']
+SESSION_FIELDS = ['treatment']
+>>>>>>> Stashed changes

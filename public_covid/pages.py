@@ -1,5 +1,9 @@
 from otree.api import Currency as c, currency_range
+<<<<<<< Updated upstream:public_covid/pages.py
 from ._builtin import Page, WaitPage
+=======
+from step1._builtin import Page, WaitPage
+>>>>>>> Stashed changes:step1/pages.py
 from .models import Constants
 
 
@@ -13,6 +17,9 @@ class Instruction1(Page):
 class Disclose(Page):
     form_model = 'player'
     form_fields = ['disclose']
+
+    def is_displayed(self):
+        return self.subsession.session.config['treatment'] != 2
 
 
 class DiscloseWaitPage(WaitPage):
