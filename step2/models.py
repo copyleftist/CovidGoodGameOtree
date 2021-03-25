@@ -33,10 +33,12 @@ class Subsession(BaseSubsession):
         # ------------------------------------------------------------------ "
         n_participant = self.session.num_participants
         n_trial = Constants.num_rounds
+
         contribution = np.zeros((n_participant, n_trial))
         disclose = np.zeros((n_participant, n_trial))
         matching = np.zeros((n_participant, n_trial))
         multiplier = np.zeros((n_participant, n_trial))
+
         for p in self.get_players():
             n_trial = len(p.participant.contribution)
             pid = p.participant.id_in_session - 1
@@ -49,10 +51,11 @@ class Subsession(BaseSubsession):
         social_efficiency = np.zeros(n_participant)
         for p in self.get_players():
 
+            # temp array
             data = []
             n_trial = len(p.participant.contribution)
             pid = p.participant.id_in_session - 1
-            print(id)
+
             for t in range(n_trial):
 
                 opp_id = int(matching[pid, t])
