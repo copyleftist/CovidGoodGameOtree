@@ -9,6 +9,7 @@ from otree.api import (
     currency_range,
 )
 import numpy as np
+from utils.debug import logger
 
 
 class Constants(BaseConstants):
@@ -26,9 +27,49 @@ class Subsession(BaseSubsession):
         matching depending on results of step 1
         :return:
         """
+
+        # ------------------------------------------------------------------ "
+        # Compute social efficiency factor for each participant
+        # ------------------------------------------------------------------ "
+        n_participant = self.session.num_participants
+        n_trial = Constants.num_rounds
+        contribution = np.zeros((n_participant, n_trial))
+        disclose = np.zeros((n_participant, n_trial))
+        matching = np.zeros((n_participant, n_trial))
+        multiplier = np.zeros((n_participant, n_trial))
         for p in self.get_players():
-            print('Participant id=', p.participant.id_in_session)
-            print(p.participant.vars)
+            n_trial = len(p.participant.contribution)
+            pid = p.participant.id_in_session - 1
+            for t in range(n_trial):
+                contribution[pid, t] = p.participant.contribution[t]
+                disclose[pid, t] = p.participant.disclose[t]
+                matching[pid, t] = p.participant.opp_id[t] - 1
+                multiplier[pid, t] = p.participant.multiplier
+
+        social_efficiency = np.zeros(n_participant)
+        for p in self.get_players():
+
+            data = []
+            n_trial = len(p.participant.contribution)
+            pid = p.participant.id_in_session - 1
+            print(id)
+            for t in range(n_trial):
+
+                opp_id = int(matching[pid, t])
+                c1 = contribution[pid, t]
+                c2 = contribution[opp_id, t]
+
+                if p.participant.multiplier == Constants.multiplier_bad:
+                    if multiplier[opp_id, t] == Constants.multiplier_good:
+                        data.append(c1 > c2)
+                else:
+                    if multiplier[opp_id, t] == Constants.multiplier_bad:
+                        data.append(c1 < c2)
+
+            social_efficiency[pid] = np.mean(data)
+            logger.debug(f'Participant {pid}')
+            logger.debug(f'Social efficiency = {social_efficiency[pid]}')
+        # ------------------------------------------------------------------ "
 
 
 class Group(BaseGroup):

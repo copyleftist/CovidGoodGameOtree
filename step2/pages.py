@@ -10,6 +10,8 @@ from .models import Constants
 class Init(WaitPage):
     wait_for_all_groups = True
     after_all_players_arrive = 'init'
+    def is_displayed(self):
+        return self.round_number == 1
 
 
 class Contribute(Page):

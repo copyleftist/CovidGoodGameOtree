@@ -15,20 +15,13 @@ from utils.debug import logger
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 3
+    num_rounds = 2
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = c(10)
 
 
 class Subsession(BaseSubsession):
-    pass
-
-
-class Group(BaseGroup):
-    total_contribution = models.CurrencyField()
-    individual_share = models.CurrencyField()
-
     def init(self):
         """
         this method is called only once
@@ -36,6 +29,7 @@ class Group(BaseGroup):
         """
         logger.debug('Initialization of the first phase: attributing multipliers and participant labels.')
         n_participant = self.session.num_participants
+        logger.debug(f'N participants = {n_participant}')
 
         # equal repartition of types
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
@@ -45,21 +39,33 @@ class Group(BaseGroup):
         for p in self.get_players():
             # print(p.participant.id_in_session)
             p.participant.multiplier = multipliers[p.participant.id_in_session - 1]
-            p.participant.label = f'ID{p.participant.id_in_session}'
+            p.participant.label = str(p.participant.id_in_session)
 
             # init data fields to use in next app
             p.participant.contribution = np.zeros(Constants.num_rounds)
             p.participant.disclose = np.zeros(Constants.num_rounds)
+            # p.participant.opp_multiplier = np.zeros(Constants.num_rounds)
+            p.participant.opp_id = np.zeros(Constants.num_rounds)
+
+
+class Group(BaseGroup):
+    total_contribution = models.CurrencyField()
+    individual_share = models.CurrencyField()
 
     def init_round(self):
         """
         this method is called at the beginning of each round
         :return:
         """
+        logger.debug(f'Round {self.round_number}: attributing multipliers to players.')
         for p in self.get_players():
             p.multiplier = p.participant.multiplier
 
     def end_round(self):
+        """
+        this method is called at the end of each round
+        :return:
+        """
         self.set_payoffs()
         self.record_round_data()
 
@@ -73,9 +79,13 @@ class Group(BaseGroup):
 
     def record_round_data(self):
         players = self.get_players()
+        id_of_opp = {1: 2, 2: 1}
         for p in players:
             p.participant.disclose[self.round_number-1] = p.disclose
             p.participant.contribution[self.round_number-1] = p.contribution
+            opp = self.get_player_by_id(id_of_opp[p.id_in_group])
+            # p.participant.opp_multiplier[self.round_number-1] = opp.multiplier
+            p.participant.opp_id[self.round_number-1] = int(opp.participant.label)
 
 
 class Player(BasePlayer):
