@@ -27,7 +27,8 @@ class Subsession(BaseSubsession):
         this method is called only once
         :return:
         """
-        logger.debug('Initialization of the first phase: attributing multipliers and participant labels.')
+        logger.debug('Initialization of the first phase:'
+                     ' attributing multipliers and participant labels.')
         n_participant = self.session.num_participants
         logger.debug(f'N participants = {n_participant}')
 
@@ -38,8 +39,8 @@ class Subsession(BaseSubsession):
 
         for p in self.get_players():
             # print(p.participant.id_in_session)
-            p.participant.multiplier = multipliers[p.participant.id_in_session - 1]
-            p.participant.label = str(p.participant.id_in_session)
+            p.participant.idx = p.participant.id_in_session - 1
+            p.participant.multiplier = multipliers[p.participant.idx]
 
             # init data fields to use in next app
             p.participant.contribution = np.zeros(Constants.num_rounds)
@@ -57,15 +58,19 @@ class Group(BaseGroup):
         this method is called at the beginning of each round
         :return:
         """
-        logger.debug(f'Round {self.round_number}: attributing multipliers to players.')
-        for p in self.get_players():
-            p.multiplier = p.participant.multiplier
+        pass
+
+        # logger.debug(f'Round {self.round_number}: attributing multipliers to players.')
+        # players = self.get_players()
+        # for p in players:
+        #     p.multiplier = p.participant.multiplier
 
     def end_round(self):
         """
         this method is called at the end of each round
         :return:
         """
+        logger.debug(f'Round {self.round_number}: Setting payoffs and saving data.')
         self.set_payoffs()
         self.record_round_data()
 
@@ -85,7 +90,7 @@ class Group(BaseGroup):
             p.participant.contribution[self.round_number-1] = p.contribution
             opp = self.get_player_by_id(id_of_opp[p.id_in_group])
             # p.participant.opp_multiplier[self.round_number-1] = opp.multiplier
-            p.participant.opp_id[self.round_number-1] = int(opp.participant.label)
+            p.participant.opp_id[self.round_number-1] = opp.participant.idx
 
 
 class Player(BasePlayer):

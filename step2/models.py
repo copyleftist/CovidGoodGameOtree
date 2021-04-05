@@ -41,11 +41,11 @@ class Subsession(BaseSubsession):
 
         for p in self.get_players():
             n_trial = len(p.participant.contribution)
-            pid = p.participant.id_in_session - 1
+            pid = p.participant.idx
             for t in range(n_trial):
                 contribution[pid, t] = p.participant.contribution[t]
                 disclose[pid, t] = p.participant.disclose[t]
-                matching[pid, t] = p.participant.opp_id[t] - 1
+                matching[pid, t] = p.participant.opp_id[t]
                 multiplier[pid, t] = p.participant.multiplier
 
         social_efficiency = np.zeros(n_participant)
@@ -54,7 +54,7 @@ class Subsession(BaseSubsession):
             # temp array
             data = []
             n_trial = len(p.participant.contribution)
-            pid = p.participant.id_in_session - 1
+            pid = p.participant.idx
 
             for t in range(n_trial):
 
@@ -62,9 +62,11 @@ class Subsession(BaseSubsession):
                 c1 = contribution[pid, t]
                 c2 = contribution[opp_id, t]
 
+                # if participant type is bad
                 if p.participant.multiplier == Constants.multiplier_bad:
                     if multiplier[opp_id, t] == Constants.multiplier_good:
                         data.append(c1 > c2)
+                # if participant type is good
                 else:
                     if multiplier[opp_id, t] == Constants.multiplier_bad:
                         data.append(c1 < c2)
@@ -84,13 +86,14 @@ class Group(BaseGroup):
         this method is called at the beginning of each round
         :return:
         """
-        for p in self.get_players():
-            # set player multiplier in order to add it as column in data tables
-            p.multiplier = p.participant.multiplier
+        pass
+        # for p in self.get_players():
+        #     set player multiplier in order to add it as column in data tables
+            # p.multiplier = p.participant.multiplier
 
     def end_round(self):
         self.set_payoffs()
-        self.record_round_data()
+        # self.record_round_data()
 
     def set_payoffs(self):
         players = self.get_players()
@@ -100,11 +103,11 @@ class Group(BaseGroup):
         for p in players:
             p.payoff = Constants.endowment - p.contribution + self.individual_share
 
-    def record_round_data(self):
-        players = self.get_players()
-        for p in players:
-            p.participant.disclose[self.round_number-1] = p.disclose
-            p.participant.contribution[self.round_number-1] = p.contribution
+    # def record_round_data(self):
+    #     players = self.get_players()
+    #     for p in players:
+    #         p.participant.disclose[self.round_number-1] = p.disclose
+    #         p.participant.contribution[self.round_number-1] = p.contribution
 
 
 class Player(BasePlayer):
