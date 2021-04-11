@@ -15,8 +15,56 @@
         {% endif %}
     </p>
 
-    {% formfields %}
+    <div id="slider-div">
+    </div>
 
-    {% next_button %}
+{#    {% formfields %}#}
+
+    <input type="hidden" name="contribution" id="contribution" />
+
+{#    {% next_button %}#}
+    <script>
+        $(document).ready(function () {
+
+            // params
+            let min = 0;
+            let max = 10;
+            let step = 1;
+            //let question = 'What was the average value of this symbol?'
+            debugger
+            let initValue = range(2, 8, 1)[Math.floor(Math.random() * 10)];
+            let clickEnabled = true;
+
+            // generate html
+            let sliderHTML = SliderManager.generateSlider({ text: '',
+                min: min, max: max, step: step, initValue: initValue});
+
+            let buttonHTML = generateSubmitButton();
+            //let imgHTML = generateImg('img/index.png')
+            //let questionHTML = generateQuestion(question);
+
+            // insert in html
+        //    appendElement('Stage', questionHTML);
+            //appendElement('Stage', imgHTML);
+            appendElement('slider-div', sliderHTML);
+            appendElement('slider-div', buttonHTML);
+
+            // listen on events
+            SliderManager.listenOnSlider({}, function (event) {
+                if (clickEnabled) {
+                    // they can click only once
+                    // clickEnabled = false;
+                    let choice = event.data.slider.val();
+                    //SliderManager.clickEvent(choice);
+                    $('#contribution').val(choice);
+
+                }
+            });
+
+            // allows to change value using left and right arrows
+            SliderManager.listenOnArrowKeys();
+            })
+
+    </script>
 
 {% endblock %}

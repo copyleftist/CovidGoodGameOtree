@@ -2,9 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="db" uuid="4b3fa043-a1dc-431f-a34c-e769ee9a2a79">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
-      <secret-storage>forget</secret-storage>
-      <schema-mapping />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
     </data-source>
   </component>
 </project>
