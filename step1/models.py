@@ -15,7 +15,7 @@ from utils.debug import logger
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 10
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = c(10)
@@ -48,6 +48,57 @@ class Subsession(BaseSubsession):
             # p.participant.opp_multiplier = np.zeros(Constants.num_rounds)
             p.participant.opp_id = np.zeros(Constants.num_rounds)
 
+    def creating_session(self):
+        """
+        match according to deterministic good/bad, good/good, bad/bad
+        """
+        if self.round_number == 1:
+            self.init()
+
+        logger.debug(
+            f'Round {self.round_number}: '
+            'Set matching pairs with a fixed nb of GG, GB, BB.')
+        n_players = self.session.num_participants
+
+        ratio = [.33,  # GB
+                 .33,  # GG
+                 .33]  # BB
+
+        types = {
+            Constants.multiplier_bad: [],
+            Constants.multiplier_good: []
+        }
+
+        for p in self.get_players():
+            types[p.participant.multiplier]\
+                .append(p.participant.id_in_session)
+
+        np.random.shuffle(types[Constants.multiplier_good])
+        np.random.shuffle(types[Constants.multiplier_bad])
+
+        n_row_col = n_players//Constants.players_per_group
+        matrix = np.zeros((n_row_col, Constants.players_per_group), dtype=int)
+
+        begin = [0,
+            round(n_row_col*ratio[0]),
+            round(n_row_col*ratio[0]+n_row_col*ratio[1])
+        ]
+
+        end = [round(n_row_col*i) for i in ratio]
+        multipliers = [
+            (Constants.multiplier_good, Constants.multiplier_bad),
+            (Constants.multiplier_good, Constants.multiplier_good),
+            (Constants.multiplier_bad, Constants.multiplier_bad)
+        ]
+
+        for i, j, k in zip(begin, end, multipliers):
+            matrix[i:i+j, :] = [
+                [types[k[0]].pop(), types[k[1]].pop()]
+                for _ in range(j)
+            ]
+
+        self.set_group_matrix(matrix)
+
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -70,7 +121,8 @@ class Group(BaseGroup):
         this method is called at the end of each round
         :return:
         """
-        logger.debug(f'Round {self.round_number}: Setting payoffs and saving data.')
+        logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
+                     f' Setting payoffs and saving data.')
         self.set_payoffs()
         self.record_round_data()
 
