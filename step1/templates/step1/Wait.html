@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+
+
+{#{{ block title }}{{ title_text }}{{ endblock }}#}
+{% block content %}
+
+    <div>
+    <span>Waiting for the other player to respond</span><span id="wait">...</span>
+    </div>
+
+    <script>
+    var dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 3 )
+        wait.innerHTML = "";
+    else
+        wait.innerHTML += ".";
+
+    }, 100);
+    </script>
+
+
+{% endblock %}

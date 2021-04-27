@@ -1,18 +1,42 @@
-{% extends "global/Base.html" %}
-{% load otree %}
+{% extends "global/Page.html" %}
+{#{% load otree %}#}
 
 {#{% block title %}#}
 {#    Contribute#}
 {#{% endblock %}#}
 
 {% block content %}
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙ </div>
+                <div class="box" style="float: left">
+                    <img src="{% static player_character %}">
+                        <div class="text-centered">{{ player_multiplier }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div style="margin-left: 55%;color: gray;font-weight: bolder;">Other player<br> ↘ </div>
+                <div class="box" style="float: right">
+                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opponent_character %}">
+                        <div style="left: 6%" class="text-centered">{{ opponent_multiplier }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    </br>
+    </br>
     <p>
         {% if player.see_opponent_type %}
-            The other player multiplier is {{ player.see_opponent_type }}
+            The other player multiplier is {{ player.see_opponent_type }}.
         {% else %}
             The other player did not disclose its multiplier.
         {% endif %}
+    </p>
+    </br>
+        <b>How much money do you want to contribute to the public pot?</b>
     </p>
 
     <div id="slider-div">
@@ -20,7 +44,8 @@
 
 {#    {% formfields %}#}
 
-    <input style="display: none" type="submit" name="contribution" id="contribution" />
+    <input type="hidden" name="contribution" id="contribution" />
+{#    <p style="display: none">{{ form.contribution.errors }}</p>#}
 
 {#    {% next_button %}#}
     <script>
@@ -31,9 +56,7 @@
             let max = 10;
             let step = 1;
             //let question = 'What was the average value of this symbol?'
-            debugger
             let initValue = range(2, 8, 1)[Math.floor(Math.random() * 10)];
-            let clickEnabled = true;
 
             // generate html
             let sliderHTML = SliderManager.generateSlider({ text: '',
@@ -51,14 +74,8 @@
 
             // listen on events
             SliderManager.listenOnSlider({}, function (event) {
-                if (clickEnabled) {
-                    // they can click only once
-                    // clickEnabled = false;
                     let choice = event.data.slider.val();
-                    //SliderManager.clickEvent(choice);
                     $('#contribution').val(choice);
-
-                }
             });
 
             // allows to change value using left and right arrows

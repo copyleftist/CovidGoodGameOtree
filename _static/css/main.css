@@ -1,0 +1,36 @@
+.box{
+    position: relative;
+    display: inline-block; /* Make the width of box same as image */
+}
+.box .text-centered{
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    font-weight: bolder;
+    font-size: 30px;
+    left: 0;
+    right: 5%;
+    top: 53%; /* Adjust this value to move the positioned div up and down */
+    text-align: center;
+    width: 60%;
+    %; /* Set the width of the positioned div */
+}
+
+.drawn-button {
+    background: url("../img/button.png") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: bolder;
+    border: none;
+    width: 300px;
+    height: 130px;
+}
+.drawn-button:hover {
+    background: url("../img/button_hover.png") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: bolder;
+    border: none;
+}

@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/step1/templates/step1/Wait.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_templates/global/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_templates/global/Page.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instruction1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +141,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/getz/Pycharm/CovidGoodGameOtree/step1/models.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/step1/templates/step1" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -145,18 +152,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/step1/templates/step1" />
+      <recent name="$PROJECT_DIR$/_templates/global" />
+      <recent name="$PROJECT_DIR$/step1" />
+      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1\templates\step1" />
+      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/_static/css" />
       <recent name="$PROJECT_DIR$/_static/js" />
       <recent name="$PROJECT_DIR$/_static" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/step2" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/_templates/global" />
-      <recent name="$PROJECT_DIR$/step1" />
-      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1\templates\step1" />
-      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -178,7 +186,9 @@
       <workItem from="1618169270743" duration="1120000" />
       <workItem from="1618442889877" duration="622000" />
       <workItem from="1619034363181" duration="1211000" />
-      <workItem from="1619110838957" duration="422000" />
+      <workItem from="1619110838957" duration="1615000" />
+      <workItem from="1619451018488" duration="2239000" />
+      <workItem from="1619522574831" duration="14108000" />
     </task>
     <servers />
   </component>
