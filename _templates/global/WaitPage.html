@@ -34,7 +34,7 @@
 {% comment %}this template is used by rooms, where js_vars does not exist{% endcomment %}
 {% block body_main %}{% if is_defined('js_vars') and js_vars %}<script>var js_vars = {{ js_vars|json }};</script>{% endif %}
 <div class="otree-wait-page container fade-in">
-    <div class="card handdrawn" style="width: 50%">
+    <div class="card handdrawn" style="width: 60%">
         <h4 class="otree-wait-page__title card-header handrawn">
             {% block title %}{{ title_text }}{% endblock %}
         </h4>

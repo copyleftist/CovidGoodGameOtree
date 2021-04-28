@@ -153,7 +153,50 @@ class Player(BasePlayer):
     )
     disclose = models.BooleanField()
     multiplier = models.FloatField()
+    RT = models.FloatField()
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():
             return p.participant.multiplier if p.disclose else None
+
+    def custom_export(self):
+        # header row
+        yield [
+            'app',
+            'session',
+            'is_bot',
+            'participant_code',
+            'prolific_id',
+            'id_in_session',
+            'multiplier',
+            'disclose',
+            'contribution',
+            'RT',
+            'round_number',
+            'id_in_group',
+            'payoff',
+            'individual_share',
+            'total_contribution'
+        ]
+        for p in self.get_players():
+            participant = p.participant
+            session = p.session
+            group = p.group
+            yield [
+                participant._is_bot,
+                participant._current_app_name,
+                session.code,
+                participant.code,
+                participant.label,
+                participant.id_in_session,
+                participant.multiplier,
+                p.disclose,
+                p.contribution,
+                p.RT,
+                p.round_number,
+                p.id_in_group,
+                p.payoff,
+                group.individual_share,
+                group.total_contribution,
+            ]
+

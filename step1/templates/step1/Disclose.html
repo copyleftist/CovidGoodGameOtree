@@ -33,10 +33,12 @@
         </div>
        </div>
         <input type="hidden" id="disclose" name="disclose"/>
+        <input type="hidden" id="RT" name="RT"/>
 
     </div>
 
     <script>
+        const startTime = Date.now();
         {#$(document).ready(function () {#}
         {#        const rc = rough.canvas(document.getElementById('timeline'));#}
         {#        rc.circle(80, 120, 50, {#}
@@ -49,12 +51,14 @@
         {#);#}
 
         $('#disc').click(function () {
+            $('#RT').val(Date.now()-startTime);
             $('#disclose').val(1);
             $('.container').fadeOut(140);
             $('#form').submit();
         });
 
         $('#hide').click(function () {
+            $('#RT').val(Date().now()-startTime);
             $('#disclose').val(0);
             $('.container').fadeOut(140);
             $('#form').submit();

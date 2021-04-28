@@ -20,10 +20,9 @@ class Init(WaitPage):
         return {'bg': ''}
 
 
-
 class Contribute(Page):
     form_model = 'player'
-    form_fields = ['contribution']
+    form_fields = ['contribution', 'RT']
 
     def vars_for_template(self):
         opp_character, opp_multiplier = [self.player.see_opponent_type(), ] * 2
@@ -51,7 +50,7 @@ class Instruction1(Page):
 
 class Disclose(Page):
     form_model = 'player'
-    form_fields = ['disclose']
+    form_fields = ['disclose', 'RT']
 
     def vars_for_template(self):
         return {

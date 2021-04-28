@@ -39,10 +39,12 @@
 
 
         <input type="hidden" name="contribution" id="contribution" />
+        <input type="hidden" name="RT" id="RT" />
 
     </div>
 
     <script>
+        const startTime = Date.now();
         $(document).ready(function () {
 
             // params
@@ -67,6 +69,7 @@
 
             // listen on events
             SliderManager.listenOnSlider({}, function (event) {
+                    $('#RT').val(Date.now()-startTime);
                     let choice = event.data.slider.val();
                     $('.container').fadeOut(140);
                     $('#contribution').val(choice);
