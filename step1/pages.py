@@ -5,10 +5,20 @@ from .models import Constants
 
 class Init(WaitPage):
     # template_name = 'step1/Wait.html'
+    template_name = 'step1/Wait.html'
     wait_for_all_groups = True
 
     def is_displayed(self):
         return self.round_number == 1
+
+    @staticmethod
+    def vars_for_template():
+        # with open('templates/step1/Contribute.html') as file:
+        #     str = file.read()
+        #     html = str.split('{#content#}')[1]
+
+        return {'bg': ''}
+
 
 
 class Contribute(Page):
@@ -40,7 +50,6 @@ class Instruction1(Page):
 
 
 class Disclose(Page):
-
     form_model = 'player'
     form_fields = ['disclose']
 
@@ -51,15 +60,30 @@ class Disclose(Page):
 
 
 class DiscloseWaitPage(WaitPage):
-    pass
-    # template_name = 'step1/Wait.html'
+    template_name = 'step1/Wait.html'
     # timeout_seconds = 120
+    @staticmethod
+    def vars_for_template():
+        # with open('templates/step1/Contribute.html') as file:
+        #     str = file.read()
+        #     html = str.split('{#content#}')[1]
+
+        return {'bg': ''}
 
 
 class ResultsWaitPage(WaitPage):
+    template_name = 'step1/Wait.html'
     # timeout_seconds = 120
     # template_name = 'step1/Wait.html'
     after_all_players_arrive = 'end_round'
+
+    @staticmethod
+    def vars_for_template():
+        # with open('step1/templates/step1/Contribute.html') as file:
+        #     str = file.read()
+        #     html = str.split('{#content#}')[1]
+
+        return {'bg': ''}
 
 
 class Results(Page):

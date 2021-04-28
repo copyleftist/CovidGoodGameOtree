@@ -1,7 +1,13 @@
+
 .box{
     position: relative;
     display: inline-block; /* Make the width of box same as image */
 }
+
+.container {
+    width: 80%;
+}
+
 .box .text-centered{
     position: absolute;
     z-index: 999;
@@ -21,6 +27,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
+    font-size: 20px;
     font-weight: bolder;
     border: none;
     width: 300px;
@@ -31,6 +38,77 @@
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
+    font-size: 20px;
     font-weight: bolder;
     border: none;
+}
+
+.fade-in {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+
+.fade-out{
+  animation: fadeOut 2s;
+  -webkit-animation: fadeOut 2s;
+  -moz-animation: fadeOut 2s;
+  -o-animation: fadeOut 2s;
+  -ms-animation: fadeOut 2s;
+}
+
+.handdrawn {
+    border-top-left-radius: 255px 15px !important;
+    border-top-right-radius: 15px 225px !important;
+    border-bottom-right-radius: 225px 15px !important;
+    border-bottom-left-radius:15px 255px !important;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+
+
+@keyframes fadeOut{
+  100% {opacity:1;} 0% {opacity:0;}
+}
+
+@-moz-keyframes fadeOut {
+    100% {opacity:1;} 0% {opacity:0;}
+}
+
+@-webkit-keyframes fadeOut{
+    100% {opacity:1;} 0% {opacity:0;}
+}
+
+@-o-keyframes fadeOut{
+    100% {opacity:1;} 0% {opacity:0;}
+}
+
+@-ms-keyframes fadeOut{
+    100% {opacity:1;} 0% {opacity:0;}
 }

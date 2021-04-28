@@ -149,9 +149,9 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     contribution = models.CurrencyField(
-        min=0, max=Constants.endowment, label="How much will you contribute?"
+        min=0, max=Constants.endowment
     )
-    disclose = models.BooleanField(label="Do you want to reveal your multiplier to the other player?")
+    disclose = models.BooleanField()
     multiplier = models.FloatField()
 
     def see_opponent_type(self):

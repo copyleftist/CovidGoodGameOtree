@@ -1,6 +1,6 @@
 from os import environ
 
-DEBUG = 1
+DEBUG = 0
 SESSION_CONFIGS = [
     dict(
         name='theresa_fernanda_base',

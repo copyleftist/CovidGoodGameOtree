@@ -2,6 +2,8 @@
 
 {% load otree %}
 
+
+
 {% block global_styles  %}
      <link href="{% static 'css/slider.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
@@ -14,7 +16,7 @@
 
         body {
             font-family: "FuturaHandwritten";
-            font-size: 20px;
+            font-size: 17px;
             {#background-color: #E6E6E6;#}
         }
     </style>
@@ -23,4 +25,7 @@
 {% block global_scripts  %}
     <script src="{% static 'js/tween.umd.js' %}"> </script>
     <script src="{% static 'js/slider.js' %}"> </script>
+    <script src="{% static 'js/rough.js' %}"> </script>
 {% endblock %}
+
+
