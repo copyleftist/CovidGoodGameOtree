@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+
+{% block content %}
+
+    <div id="text" class="container fade-in">
+
+    </div>
+
+    <div class="row">
+        <div class="col" align="center" >
+            <button type="button" class="drawn-button" id="previous">PREVIOUS</button>
+        </div>
+        <div class="col" align="center">
+            <button type="button" class="drawn-button" id="next">NEXT</button>
+        </div>
+       </div>
+    <script>
+    let panels = `{{ panels }}`;
+    let index = 1;
+    $('#next').click(function () {
+        index++;
+        $('#text').html(panel[index])
+
+        }
+     )
+
+    </script>
+
+{% endblock %}
+
