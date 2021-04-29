@@ -1,5 +1,8 @@
 {% extends "global/Page.html" %}
 
+{% if player.participant.is_dropout %}
+
+{% endf %}
 
 {% block title %}
     Results
@@ -7,13 +10,13 @@
 
 {% block content %}
 
-    <p>
-        You started with an endowment of {{ Constants.endowment }},
-        of which you contributed {{ player.contribution }}.
-        Your group contributed {{ group.total_contribution }},
-        resulting in an individual share of {{ group.individual_share }}.
-        Your profit is therefore {{ player.payoff }}.
-    </p>
+{#    <p>#}
+{#        You started with an endowment of {{ Constants.endowment }},#}
+{#        of which you contributed {{ player.contribution }}.#}
+{#        Your group contributed {{ group.total_contribution }},#}
+{#        resulting in an individual share of {{ group.individual_share }}.#}
+{#        Your profit is therefore {{ player.payoff }}.#}
+{#    </p>#}
 
     {% next_button %}
 

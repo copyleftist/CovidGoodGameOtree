@@ -1,5 +1,7 @@
 {% extends 'otree/Base.html' %}
 
+{% load otree %}
+
 
 {% block internal_styles %}
     {{ super() }}
@@ -61,6 +63,7 @@
     <!-- this is an HTML file rather than JavaScript static file because context variables need to be passed to it -->
 <script type="text/javascript">
 $(document).ready(function () {
+
 
     var socket;
 

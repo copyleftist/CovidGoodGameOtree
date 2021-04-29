@@ -2,8 +2,7 @@
 
 
 {% block content %}
-{#    <canvas id="timeline"></canvas>#}
-    <div class="container fade-in">
+    <div id="main" class="container fade-in">
             <div class="row">
                 <div class="col">
 
@@ -26,43 +25,85 @@
         <br>
        <div class="row">
         <div class="col" align="center" >
-            <button class="drawn-button" id="disc">DISCLOSE</button>
+            <button type="button" class="drawn-button" id="disc">DISCLOSE</button>
         </div>
         <div class="col" align="center">
-            <button class="drawn-button" id="hide">HIDE</button>
+            <button type="button" class="drawn-button" id="hide">HIDE</button>
         </div>
        </div>
-        <input type="hidden" id="disclose" name="disclose"/>
-        <input type="hidden" id="RT" name="RT"/>
+{#        <input type="hidden" id="disclose" name="disclose"/>#}
+{#        <input type="hidden" id="RT" name="RT"/>#}
 
     </div>
 
     <script>
-        const startTime = Date.now();
-        {#$(document).ready(function () {#}
-        {#        const rc = rough.canvas(document.getElementById('timeline'));#}
-        {#        rc.circle(80, 120, 50, {#}
-        {#            fill: "black",#}
-        {#            fillWeight: 5// thicker lines for hachure#}
-        {#            }); // centerX, centerY, diameter#}
-        {#        rc.line(80, 120, 200, 120, {strokeWidth: 4, color: 'gray'}); // x1, y1, x2, y2#}
-        {#        rc.circle(200, 120, 50, {strokeWidth: 4}); // centerX, centerY, diameter#}
-        {#    }#}
-        {#);#}
 
-        $('#disc').click(function () {
-            $('#RT').val(Date.now()-startTime);
-            $('#disclose').val(1);
-            $('.container').fadeOut(140);
-            $('#form').submit();
-        });
+        $(document).ready(function () {
+            let startTime = Date.now();
+            let RT;
+            let disclose;
 
-        $('#hide').click(function () {
-            $('#RT').val(Date.now()-startTime);
-            $('#disclose').val(0);
-            $('.container').fadeOut(140);
-            $('#form').submit();
+            let templateWait = `{{ html }}`;
+
+            $('#disc').click(function () {
+                choice(1, startTime);
+            });
+
+            $('#hide').click(function () {
+                choice(0, startTime);
+            });
+
+            function choice(value, startTime) {
+
+                RT = Date.now() - startTime;
+                console.log(RT);
+                disclose = value;
+
+                $('#main').append(templateWait);
+                $("#modalWait").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                $('#modalWait').modal('show');
+
+                var startTime = Date.now();
+
+                setInterval(function () {
+                    liveSend(
+                        {
+                            time: Date.now() - startTime,
+                            RT: RT,
+                            disclose: disclose
+                        });
+                }, 2000);
+
+                setInterval(function () {
+                        var wait = document.getElementById("wait");
+
+                        if (wait.innerHTML.length >= 3)
+                            wait.innerHTML = "";
+                        else
+                            wait.innerHTML += ".";
+
+                    },
+                    500);
+
+            }
+
+
         });
+        function liveRecv(data) {
+                if (data) {
+                    {#console.log('RT = ' + RT);#}
+                    {#console.log('Disclose = ' + disclose);#}
+                    {#$('#RT').val(RT);#}
+                    {#$('#disclose').val(disclose);#}
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
+                }
+            }
+
+
     </script>
 
 

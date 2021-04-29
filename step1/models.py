@@ -15,7 +15,7 @@ from utils.debug import logger
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 4
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = c(10)
@@ -48,6 +48,8 @@ class Subsession(BaseSubsession):
             p.participant.disclose = np.zeros(Constants.num_rounds)
             # p.participant.opp_multiplier = np.zeros(Constants.num_rounds)
             p.participant.opp_id = np.zeros(Constants.num_rounds)
+
+            p.participant.is_dropout = False
 
     def creating_session(self):
         """
@@ -101,6 +103,31 @@ class Subsession(BaseSubsession):
 
             self.set_group_matrix(matrix)
 
+    # def group_by_arrival_time_method(self, waiting_players):
+    #     import time
+    #
+    #     for p in waiting_players:
+    #         other_player = p.get_others_in_group()
+    #         group = p.group
+    #         other_participant = other_player.participant
+    #
+    #         too_long = (time.time() - p.participant.wait_page_arrival) > 20
+    #
+    #         if too_long or other_participant.is_dropout:
+    #             try:
+    #                 p_disclose = np.mean([p.disclose for p in other_player.get_others_in_subsession()])
+    #                 disclose = np.random.choice([False, True], p=[1-p_disclose, p_disclose])
+    #                 other_player.disclose = disclose
+    #                 other_player.RT = 0
+    #                 other_participant.is_dropout = True
+    #                 logger.debug(
+    #                     f'Participant {other_participant.id_in_session} dropped out.'
+    #                     f' Bot p(disclose)={p_disclose}')
+    #             except Exception as e:
+    #                 logger.error(e)
+    #                 logger.debug('Wait for everyone to play and retry')
+#
+
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -153,17 +180,22 @@ class Player(BasePlayer):
     )
     disclose = models.BooleanField()
     multiplier = models.FloatField()
-    RT = models.FloatField()
+    RT1 = models.FloatField()
+    RT2 = models.FloatField()
+    response1 = models.BooleanField(default=False)
+    response2 = models.BooleanField(default=False)
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():
             return p.participant.multiplier if p.disclose else None
 
-    def custom_export(self):
-        # header row
+
+def custom_export(players):
+        #header row
         yield [
             'app',
             'session',
+            'is_demo',
             'is_bot',
             'participant_code',
             'prolific_id',
@@ -171,32 +203,36 @@ class Player(BasePlayer):
             'multiplier',
             'disclose',
             'contribution',
-            'RT',
+            'RT1',
+            'RT2',
             'round_number',
             'id_in_group',
             'payoff',
             'individual_share',
-            'total_contribution'
+            'total_contribution',
+            'group_id'
         ]
-        for p in self.get_players():
+        for p in players:
             participant = p.participant
             session = p.session
             group = p.group
             yield [
-                participant._is_bot,
                 participant._current_app_name,
                 session.code,
+                session.is_demo,
+                participant._is_bot,
                 participant.code,
                 participant.label,
                 participant.id_in_session,
                 participant.multiplier,
                 p.disclose,
                 p.contribution,
-                p.RT,
+                p.RT1,
+                p.RT2,
                 p.round_number,
                 p.id_in_group,
                 p.payoff,
                 group.individual_share,
                 group.total_contribution,
+                group.id
             ]
-

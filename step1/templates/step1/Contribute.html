@@ -2,7 +2,7 @@
 
 {% block content %}
     {#content#}
-    <div class="container fade-in">
+    <div class="container fade-in" id="main">
         <div class="row">
             <div class="col">
                 <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙ </div>
@@ -36,16 +36,23 @@
 
         <div id="slider-div">
         </div>
+        <div align="center"><button type="button" id="ok" class="drawn-button">CONTRIBUTE</button></div>
 
 
-        <input type="hidden" name="contribution" id="contribution" />
-        <input type="hidden" name="RT" id="RT" />
+{#        <input type="hidden" name="contribution" id="contribution" />#}
+{#        <input type="hidden" name="RT" id="RT" />#}
 
     </div>
 
     <script>
-        const startTime = Date.now();
+
         $(document).ready(function () {
+            let startTime = Date.now();
+            let RT;
+            let contribution;
+
+            let templateWait = `{{ html }}`;
+
 
             // params
             let min = 0;
@@ -57,27 +64,70 @@
             let sliderHTML = SliderManager.generateSlider({ text: '',
                 min: min, max: max, step: step, initValue: initValue});
 
-            //let imgHTML = generateImg('img/index.png')
-            //let questionHTML = generateQuestion(question);
-            let buttonHTML = generateSubmitButton();
-
-            // insert in html
-        //    appendElement('Stage', questionHTML);
-            //appendElement('Stage', imgHTML);
             appendElement('slider-div', sliderHTML);
-            appendElement('slider-div', buttonHTML);
 
             // listen on events
             SliderManager.listenOnSlider({}, function (event) {
-                    $('#RT').val(Date.now()-startTime);
-                    let choice = event.data.slider.val();
-                    $('.container').fadeOut(140);
-                    $('#contribution').val(choice);
+                    let value = event.data.slider.val();
+                    choice(value, startTime);
             });
 
             // allows to change value using left and right arrows
             SliderManager.listenOnArrowKeys();
-            })
+
+
+            function choice (value, startTime) {
+
+                RT = Date.now()-startTime;
+                contribution = value;
+
+                $('#main').append(templateWait);
+                $("#modalWait").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                $('#modalWait').modal('show');
+
+                var startTime = Date.now();
+
+                setInterval(function () {
+                    liveSend(
+                        {
+                            time: Date.now() - startTime,
+                            RT: RT,
+                            contribution: contribution
+                        });
+                }, 2000);
+
+                setInterval(function () {
+                    var wait = document.getElementById("wait");
+
+                    if (wait.innerHTML.length >= 3)
+                        wait.innerHTML = "";
+                    else
+                        wait.innerHTML += ".";
+
+                    },
+                500);
+
+            }
+
+
+        });
+
+        function liveRecv(data) {
+                if (data) {
+                    {#console.log('RT = ' + RT);#}
+                    {#console.log('contribution = ' + contribution);#}
+                    {#$('#RT').val(RT);#}
+                    {#$('#disclose').val(disclose);#}
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
+                }
+        }
+
+
+
 
     </script>
 

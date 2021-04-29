@@ -124,7 +124,7 @@ function appendElement(divId, el) {
 }
 
 function generateSubmitButton(n) {
-    return `<div align="center"><button id="ok" class="drawn-button">CONTRIBUTE</button></div>`;
+    return `<div align="center"><button type="button" id="ok" class="drawn-button">CONTRIBUTE</button></div>`;
 }
 
 function generateImg(src) {
