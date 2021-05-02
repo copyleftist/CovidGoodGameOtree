@@ -103,31 +103,6 @@ class Subsession(BaseSubsession):
 
             self.set_group_matrix(matrix)
 
-    # def group_by_arrival_time_method(self, waiting_players):
-    #     import time
-    #
-    #     for p in waiting_players:
-    #         other_player = p.get_others_in_group()
-    #         group = p.group
-    #         other_participant = other_player.participant
-    #
-    #         too_long = (time.time() - p.participant.wait_page_arrival) > 20
-    #
-    #         if too_long or other_participant.is_dropout:
-    #             try:
-    #                 p_disclose = np.mean([p.disclose for p in other_player.get_others_in_subsession()])
-    #                 disclose = np.random.choice([False, True], p=[1-p_disclose, p_disclose])
-    #                 other_player.disclose = disclose
-    #                 other_player.RT = 0
-    #                 other_participant.is_dropout = True
-    #                 logger.debug(
-    #                     f'Participant {other_participant.id_in_session} dropped out.'
-    #                     f' Bot p(disclose)={p_disclose}')
-    #             except Exception as e:
-    #                 logger.error(e)
-    #                 logger.debug('Wait for everyone to play and retry')
-#
-
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()

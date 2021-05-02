@@ -43,6 +43,11 @@
     border: none;
 }
 
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
 .fade-in {
   animation: fadeIn 2s;
   -webkit-animation: fadeIn 2s;

@@ -2,27 +2,62 @@
 
 {% block content %}
 
+    <h2 id="title" class="container fade-in"></h2>
     <div id="text" class="container fade-in">
-
     </div>
 
-    <div class="row">
-        <div class="col" align="center" >
-            <button type="button" class="drawn-button" id="previous">PREVIOUS</button>
+    <div class="row fade-in">
+        <div class="col" align="center" id="col-previous">
+            <button style="display: none" type="button" class="drawn-button" id="previous">PREVIOUS</button>
         </div>
-        <div class="col" align="center">
+        <div class="col" align="center" id="col-next">
             <button type="button" class="drawn-button" id="next">NEXT</button>
         </div>
        </div>
     <script>
-    let panels = `{{ panels }}`;
+    let panels = {{ panels }};
+    let titles = {{ titles }};
+    let max = Math.max(Object.keys(panels));
     let index = 1;
+
+    let startTime = Date.now();
+
+    $('#text').html(panels[index])
+    $('#title').html(titles[index])
     $('#next').click(function () {
         index++;
-        $('#text').html(panel[index])
-
+        $('#text').hide().html(panels[index]).fadeIn(200)
+        $('#title').hide().html(titles[index]).fadeIn(200)
+        if (index > 1) {
+            $('#col-previous').show();
         }
-     )
+
+        if (index == max) {
+            $('#col-next').hide();
+        }
+    })
+    $('#previous').click(function () {
+        index--;
+        $('#text').hide().html(panels[index]).fadeIn(200)
+        $('#title').hide().html(titles[index]).fadeIn(200)
+        if (index == 1) {
+            $('#col-previous').hide();
+        }
+    })
+
+    setInterval(function () {
+        liveSend(
+            {
+                time: Date.now() - startTime,
+            });
+    }, 2000);
+
+    function liveRecv(data) {
+        if (data){
+            $('#form').submit();
+        }
+    }
+
 
     </script>
 
