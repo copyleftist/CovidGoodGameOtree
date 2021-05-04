@@ -7,8 +7,8 @@ from utils.debug import logger
 
 
 SECOND = 1000
-DROPOUT_TIME = 10 * SECOND
-INSTRUCTIONS_TIME = 10 * SECOND
+DROPOUT_TIME = 6 * SECOND
+INSTRUCTIONS_TIME = 2 * SECOND
 
 
 class Init(WaitPage):
@@ -30,7 +30,7 @@ class Instructions(Page):
 
     @staticmethod
     def live_method(player, data):
-        return {player.id_in_group: data['time'] > INSTRUCTIONS_TIME}
+        return {0: int(data['time']) > INSTRUCTIONS_TIME}
 
 
 class Disclose(Page):
@@ -54,36 +54,40 @@ class Disclose(Page):
         if not player.response1:
             logger.debug(f'Participant {player.participant.id_in_session}'
                          ' saving disclosure response.')
-            player.disclose = data['disclose']
-            player.RT1 = data['RT']
+            player.disclose = bool(data['disclose'])
+            player.RT1 = int(data['RT'])
             player.response1 = True
 
         other_player = player.get_others_in_group()[0]
-        too_long = data['time'] > DROPOUT_TIME
+        too_long = int(data['time']) > DROPOUT_TIME
+
+        if other_player.round_number != player.round_number:
+            return {player.id_in_group: False}
 
         if other_player.response1:
             return {player.id_in_group: True}
 
         if too_long or other_player.participant.is_dropout:
-            others = other_player.get_others_in_subsession()
-            p_disclose = .5
-            if len(others) > 1:
-                real_participants = [p for p in others if not p.participant.is_dropout]
-                response = [p.response1 for p in real_participants]
-                if all(response):
-                    p_disclose = np.mean(
-                        [p.disclose for p in others]
-                    )
-                else:
-                    logger.debug('Wait for all players to play before bots response')
+            other_player.participant.is_dropout = True
+            others = [player, ] + other_player.get_others_in_subsession()
+            for p in others:
+                if p.round_number != player.round_number:
                     return {player.id_in_group: False}
+            real_participants = [p for p in others if not p.participant.is_dropout]
+            response = [p.response1 for p in real_participants]
+            if all(response):
+                p_disclose = np.mean(
+                    [p.disclose for p in real_participants]
+                )
+            else:
+                logger.debug('Wait for all players to play before bots response')
+                return {player.id_in_group: False}
 
             disclose = np.random.choice(
                 [False, True], p=[1-p_disclose, p_disclose])
 
             other_player.disclose = disclose
             other_player.RT1 = 0
-            other_player.participant.is_dropout = True
             other_player.response1 = True
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -125,34 +129,40 @@ class Contribute(Page):
         if not player.response2:
             logger.debug(f'Participant {player.participant.id_in_session}'
                          ' saving contribution response.')
-            player.contribution = c(data['contribution'])
-            player.RT2 = data['RT']
+            player.contribution = int(data['contribution'])
+            player.RT2 = int(data['RT'])
             player.response2 = True
 
         other_player = player.get_others_in_group()[0]
-        too_long = data['time'] > DROPOUT_TIME
+        too_long = int(data['time']) > DROPOUT_TIME
+
+        if other_player.round_number != player.round_number:
+            return {player.id_in_group: False}
 
         if other_player.response2:
             player.group.end_round()
             return {player.id_in_group: True}
 
         if too_long or other_player.participant.is_dropout:
-            others = other_player.get_others_in_subsession()
-            contribution = 5
-            if len(others) > 1:
-                real_participants = [p for p in others if not p.participant.is_dropout]
-                response = [p.response2 for p in real_participants]
-                if all(response):
-                    contribution = np.round(np.mean(
-                        [p.contribution for p in real_participants]
-                    ))
-                else:
-                    logger.debug('Wait for all players to play before bots response')
+            other_player.participant.is_dropout = True
+            others = [player, ] + other_player.get_others_in_subsession()
+            for p in others:
+                if p.round_number != player.round_number:
                     return {player.id_in_group: False}
 
-            other_player.contribution = c(contribution)
+            real_participants = [p for p in others if not p.participant.is_dropout]
+            response = [p.response2 for p in real_participants]
+            if all(response):
+                contribution = np.round(np.mean(
+                    [p.contribution for p in real_participants]
+                ))
+
+            else:
+                logger.debug('Wait for all players to play before bots response')
+                return {player.id_in_group: False}
+
+            other_player.contribution = contribution
             other_player.RT2 = 0
-            other_player.participant.is_dropout = True
             other_player.response2 = True
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'

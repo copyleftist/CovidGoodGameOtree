@@ -10,16 +10,17 @@ from otree.api import (
 )
 import numpy as np
 from utils.debug import logger
+from settings import SESSION_CONFIGS
 
 
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 3
     multiplier_bad = .8
     multiplier_good = 1.2
-    endowment = c(10)
-    deterministic = False
+    endowment = 10
+    deterministic = SESSION_CONFIGS[0]['num_demo_participants'] % 3 == 0
 
 
 class Subsession(BaseSubsession):
@@ -105,8 +106,8 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    total_contribution = models.CurrencyField()
-    individual_share = models.CurrencyField()
+    total_contribution = models.FloatField()
+    individual_share = models.FloatField()
 
     def init_round(self):
         """
@@ -150,13 +151,13 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    contribution = models.CurrencyField(
+    contribution = models.IntegerField(
         min=0, max=Constants.endowment
     )
     disclose = models.BooleanField()
     multiplier = models.FloatField()
-    RT1 = models.FloatField()
-    RT2 = models.FloatField()
+    RT1 = models.IntegerField()
+    RT2 = models.IntegerField()
     response1 = models.BooleanField(default=False)
     response2 = models.BooleanField(default=False)
 
@@ -171,42 +172,71 @@ def custom_export(players):
             'app',
             'session',
             'is_demo',
-            'is_bot',
-            'participant_code',
-            'prolific_id',
-            'id_in_session',
-            'multiplier',
-            'disclose',
-            'contribution',
-            'RT1',
-            'RT2',
+            'p1.is_bot',
+            'p1.participant_code',
+            'p1.prolific_id',
+            'p1.id_in_session',
+            'p1.id_in_group',
+            'p1.multiplier',
+            'p1.disclose',
+            'p1.contribution',
+            'p1.RT1',
+            'p1.RT2',
+            'p1.payoff',
+            'p2.is_bot',
+            'p2.participant_code',
+            'p2.prolific_id',
+            'p2.id_in_session',
+            'p2.id_in_group',
+            'p2.multiplier',
+            'p2.disclose',
+            'p2.contribution',
+            'p2.RT1',
+            'p2.RT2',
+            'p2.payoff',
             'round_number',
-            'id_in_group',
-            'payoff',
             'individual_share',
             'total_contribution',
             'group_id'
         ]
+        groups = []
         for p in players:
-            participant = p.participant
-            session = p.session
-            group = p.group
+            # participant = p.participant
+            # session = p.session
+            if p.group not in groups:
+                groups.append(p.group)
+        for group in groups:
+            p1 = group.get_player_by_id(1)
+            p2 = group.get_player_by_id(2)
+            assert p1.round_number == p2.round_number
+            assert p1.group.id == p2.group.id
             yield [
-                participant._current_app_name,
-                session.code,
-                session.is_demo,
-                participant._is_bot,
-                participant.code,
-                participant.label,
-                participant.id_in_session,
-                participant.multiplier,
-                p.disclose,
-                p.contribution,
-                p.RT1,
-                p.RT2,
-                p.round_number,
-                p.id_in_group,
-                p.payoff,
+                p1.participant._current_app_name,
+                p1.session.code,
+                p1.session.is_demo,
+                p1.participant.is_dropout,
+                p1.participant.code,
+                p1.participant.label,
+                p1.participant.id_in_session,
+                p1.id_in_group,
+                p1.participant.multiplier,
+                p1.disclose,
+                p1.contribution,
+                p1.RT1,
+                p1.RT2,
+                p1.payoff,
+                p2.participant.is_dropout,
+                p2.participant.code,
+                p2.participant.label,
+                p2.participant.id_in_session,
+                p2.id_in_group,
+                p2.participant.multiplier,
+                p2.disclose,
+                p2.contribution,
+                p2.RT1,
+                p2.RT2,
+                p2.round_number,
+                p2.payoff,
                 group.individual_share,
                 group.total_contribution,
                 group.id
