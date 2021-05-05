@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/step1/templates/step1/Results2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bots.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Wait.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Wait.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +201,8 @@
       <workItem from="1620060382962" duration="7949000" />
       <workItem from="1620072711733" duration="11629000" />
       <workItem from="1620144051729" duration="13781000" />
-      <workItem from="1620204119027" duration="12690000" />
+      <workItem from="1620204119027" duration="14932000" />
+      <workItem from="1620229520751" duration="5559000" />
     </task>
     <servers />
   </component>

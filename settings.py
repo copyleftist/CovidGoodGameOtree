@@ -43,7 +43,7 @@ ROOMS = [
     ),
     dict(
         name='prolific',
-        display_name='Prolific experiement',
+        display_name='Prolific experiment',
         #participant_label_file='_rooms/econ101.txt',
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),

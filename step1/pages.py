@@ -9,6 +9,7 @@ from utils.debug import logger
 SECOND = 1000
 DROPOUT_TIME = 15 * SECOND
 INSTRUCTIONS_TIME = 2 * SECOND
+RESULTS_TIME = 3.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
@@ -81,7 +82,6 @@ class Disclose(Page):
                 return {player.id_in_group: False}
 
             disclose = _get_participants_disclose(player)
-            assert type(disclose) == int
             other_player.set_disclose(disclose=disclose)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -155,15 +155,38 @@ class Contribute(Page):
             return {player.id_in_group: True}
 
 
-class Results(Page):
+class Results2(Page):
     def get_template_name(self):
         if self.participant.is_dropout:
             return 'step1/Dropout.html'
         # if not dropout then execute the original method
         return super().get_template_name()
 
+    def vars_for_template(self):
+        player_multiplier = self.player.participant.multiplier
 
-page_sequence = [Init, Instructions, Disclose, Contribute, Results]
+        opp = self.player.get_others_in_group()[0]
+        opp_multiplier = opp.participant.multiplier
+        opp_disclose = opp.disclose
+        opp_contribution = opp.contribution
+
+        return {
+            'player_character': 'img/{}.gif'.format(player_multiplier),
+            'opp_character': 'img/{}.gif'.format(opp_multiplier),
+            'player_multiplier': player_multiplier,
+            'opp_multiplier': opp_multiplier,
+            'opp_contribution': opp_contribution,
+            'player_color': '#5893f6' if player_multiplier == Constants.multiplier_good else '#d4c84d',
+            'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
+            'disclose': opp_disclose
+        }
+
+    @staticmethod
+    def live_method(player, data):
+        return {player.id_in_group: int(data['time']) > RESULTS_TIME}
+
+
+page_sequence = [Init, Instructions, Disclose, Contribute, Results2]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions
