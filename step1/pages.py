@@ -7,8 +7,12 @@ from utils.debug import logger
 
 
 SECOND = 1000
-DROPOUT_TIME = 6 * SECOND
+DROPOUT_TIME = 15 * SECOND
 INSTRUCTIONS_TIME = 2 * SECOND
+
+# ------------------------------------------------------------------------------------------------------------------- #
+# Pages
+# ------------------------------------------------------------------------------------------------------------------- #
 
 
 class Init(WaitPage):
@@ -54,44 +58,35 @@ class Disclose(Page):
         if not player.response1:
             logger.debug(f'Participant {player.participant.id_in_session}'
                          ' saving disclosure response.')
-            player.disclose = bool(data['disclose'])
-            player.RT1 = int(data['RT'])
-            player.response1 = True
+            assert type(data['disclose']) == int
+            assert type(data['RT']) == int
+            player.set_disclose(
+                disclose=int(data['disclose']),
+                rt1=int(data['RT'])
+            )
 
         other_player = player.get_others_in_group()[0]
         too_long = int(data['time']) > DROPOUT_TIME
 
-        if other_player.round_number != player.round_number:
-            return {player.id_in_group: False}
-
         if other_player.response1:
+            # if _everybody_played_disclose(player):
+            #     _check_for_last_bots_disclose(player)
+
             return {player.id_in_group: True}
 
         if too_long or other_player.participant.is_dropout:
             other_player.participant.is_dropout = True
-            others = [player, ] + other_player.get_others_in_subsession()
-            for p in others:
-                if p.round_number != player.round_number:
-                    return {player.id_in_group: False}
-            real_participants = [p for p in others if not p.participant.is_dropout]
-            response = [p.response1 for p in real_participants]
-            if all(response):
-                p_disclose = np.mean(
-                    [p.disclose for p in real_participants]
-                )
-            else:
+            if not _everybody_played_disclose(player):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            disclose = np.random.choice(
-                [False, True], p=[1-p_disclose, p_disclose])
-
-            other_player.disclose = disclose
-            other_player.RT1 = 0
-            other_player.response1 = True
+            disclose = _get_participants_disclose(player)
+            assert type(disclose) == int
+            other_player.set_disclose(disclose=disclose)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
-                f' Bot p(disclose)={p_disclose}')
+                f' Bot disclose={disclose}')
+            # _check_for_last_bots_disclose(player)
             return {player.id_in_group: True}
 
 
@@ -129,50 +124,127 @@ class Contribute(Page):
         if not player.response2:
             logger.debug(f'Participant {player.participant.id_in_session}'
                          ' saving contribution response.')
-            player.contribution = int(data['contribution'])
-            player.RT2 = int(data['RT'])
-            player.response2 = True
+            player.set_contribution(
+                contribution=int(data['contribution']),
+                rt2=int(data['RT'])
+            )
 
         other_player = player.get_others_in_group()[0]
         too_long = int(data['time']) > DROPOUT_TIME
 
-        if other_player.round_number != player.round_number:
-            return {player.id_in_group: False}
-
         if other_player.response2:
+            # if _everybody_played_contrib(player):
+            #     _check_for_last_bots_contrib(player)
+
             player.group.end_round()
             return {player.id_in_group: True}
 
         if too_long or other_player.participant.is_dropout:
             other_player.participant.is_dropout = True
-            others = [player, ] + other_player.get_others_in_subsession()
-            for p in others:
-                if p.round_number != player.round_number:
-                    return {player.id_in_group: False}
-
-            real_participants = [p for p in others if not p.participant.is_dropout]
-            response = [p.response2 for p in real_participants]
-            if all(response):
-                contribution = np.round(np.mean(
-                    [p.contribution for p in real_participants]
-                ))
-
-            else:
+            if not _everybody_played_contrib(player):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            other_player.contribution = contribution
-            other_player.RT2 = 0
-            other_player.response2 = True
+            contribution = _get_participants_contrib(player)
+            other_player.set_contribution(contribution)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
                 f' Bot contribution={contribution}')
+            # _check_for_last_bots_contrib(player)
             player.group.end_round()
             return {player.id_in_group: True}
 
 
 class Results(Page):
-    pass
+    def get_template_name(self):
+        if self.participant.is_dropout:
+            return 'step1/Dropout.html'
+        # if not dropout then execute the original method
+        return super().get_template_name()
 
 
 page_sequence = [Init, Instructions, Disclose, Contribute, Results]
+
+# ------------------------------------------------------------------------------------------------------------------- #
+# Side Functions
+# ------------------------------------------------------------------------------------------------------------------- #
+
+
+def _everybody_played_disclose(player):
+    players = _get_all_players(player)
+    real_participants = [p for p in players if not p.participant.is_dropout]
+    response = [p.response1 for p in real_participants]
+    return all(response)
+
+
+def _everybody_played_contrib(player):
+    players = _get_all_players(player)
+    real_participants = [p for p in players if not p.participant.is_dropout]
+    response = [p.response2 for p in real_participants]
+    return all(response)
+
+
+def _get_all_players(player):
+    return [player, ] + player.get_others_in_subsession()
+
+
+def _get_participants_contrib(player):
+    contribution = np.round(np.mean(
+        [p.contribution for p in _get_all_players(player) if not p.participant.is_dropout]
+    ))
+    return contribution
+
+
+def _get_participants_disclose(player):
+    p_disclose = np.mean(
+        [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
+    )
+    return int(np.random.choice(
+            [0, 1], p=[1-p_disclose, p_disclose]))
+
+
+def _get_groups(player):
+    groups = []
+
+    for p in player.get_others_in_subsession():
+        if p.group not in groups:
+            groups.append(p.group)
+    return groups
+
+
+def _check_for_last_bots_disclose(player):
+    groups = _get_groups(player)
+    for group in groups:
+
+        p1 = group.get_player_by_id(1)
+        p2 = group.get_player_by_id(2)
+
+        if p1.participant.is_dropout and p2.participant.is_dropout:
+
+            if not p1.response1:
+                disclose = _get_participants_disclose(player)
+                p1.set_disclose(disclose, 0)
+
+            if not p2.response1:
+                disclose = _get_participants_disclose(player)
+                p2.set_disclose(disclose, 0)
+
+
+def _check_for_last_bots_contrib(player):
+    groups = _get_groups(player)
+    for group in groups:
+
+        p1 = group.get_player_by_id(1)
+        p2 = group.get_player_by_id(2)
+
+        if p1.participant.is_dropout and p2.participant.is_dropout:
+
+            contribution = _get_participants_contrib(player)
+
+            if not p1.response2:
+                p1.set_contribution(contribution, 0)
+
+            if not p2.response2:
+                p2.set_contribution(contribution, 0)
+
+            p1.group.end_round()

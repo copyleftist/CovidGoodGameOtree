@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
     dict(
         name='theresa_fernanda_base',
         display_name="Public Covid",
-        num_demo_participants=6,
+        num_demo_participants=2,
         use_browser_bots=False,
         app_sequence=['step1'],
     ),

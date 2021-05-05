@@ -18,10 +18,12 @@ CHROMEDRIVER = \
 
 
 class Bot:
-    def __init__(self, idx, url, slow=False):
+    def __init__(self, idx, url, p_disclose, p_contrib, slow=False):
         super().__init__()
 
         self.idx = idx
+        self.p_contrib = p_contrib
+        self.p_disclose = p_disclose
 
         # with threading.Lock():
         self.driver = webdriver.Chrome(CHROMEDRIVER)
@@ -40,7 +42,8 @@ class Bot:
         while True:
             try:
 
-                return self.driver.find_element_by_id(el_id)
+                el = self.driver.find_element_by_id(el_id)
+                return el
 
             except Exception as e:
                 print(f'Bot {self.idx}: {e}')
@@ -51,7 +54,7 @@ class Bot:
                     time.sleep(1)
 
     def wait_until_el(self, el_id):
-        timeout = 15
+        timeout = 20
         try:
             element_present = EC.presence_of_element_located((By.ID, el_id))
             WebDriverWait(self.driver, timeout).until(element_present)
@@ -68,7 +71,7 @@ class Bot:
         # self.wait_until_el('next')
         # self.submit()
 
-        for _ in range(3):
+        for _ in range(15):
 
             self.wait_until_el('disc')
             time.sleep(self.time_wait)
@@ -79,21 +82,24 @@ class Bot:
             self.contribute()
 
             self.wait_until_el('results')
-            time.sleep(3)
+            time.sleep(2)
             self.submit()
+
         exit()
 
     def disclose(self):
-        btn = self.find('disc')
+        disclose = np.random.choice([False, True], p=[1-self.p_disclose, self.p_disclose])
+        btn = self.find('disc') if disclose else self.find('hide')
         btn.click()
 
     def contribute(self):
-        # self.set_value(slider, 5)
+        contrib = np.random.choice(range(1, 11), p=self.p_contrib)
+        self.set_value('slider', contrib)
         btn = self.find('ok')
         btn.click()
 
-    def set_value(self, el, v):
-        self.driver.execute_script(f"arguments[0].setAttribute('value', {v})", el)
+    def set_value(self, el_id, v):
+        self.driver.execute_script(f"$('#{el_id}').val({v})")
 
     def submit(self):
         form = self.find('form')
@@ -102,8 +108,17 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = idx % 3 == 0
-    b = Bot(url=url, idx=idx, slow=slow)
+    slow = idx % 2 == 0
+    p_contrib = np.ones(10)
+    if idx < 10:
+        p_contrib[idx] = 10
+    else:
+        i = idx - 10
+        p_contrib[i] = 10
+
+    p_contrib = np.exp(p_contrib)/np.sum(np.exp(p_contrib))
+    p_disclose = np.array(list(range(11)) + [5, ]) / 10
+    b = Bot(url=url, idx=idx, slow=slow, p_disclose=p_disclose[idx], p_contrib=p_contrib)
     print(f'Bot {b.idx} is running')
     b.run()
 

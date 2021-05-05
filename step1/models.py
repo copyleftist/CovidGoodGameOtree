@@ -16,7 +16,7 @@ from settings import SESSION_CONFIGS
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 3
+    num_rounds = 15
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
@@ -106,8 +106,9 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    total_contribution = models.FloatField()
-    individual_share = models.FloatField()
+    total_contribution = models.FloatField(default=-1)
+    individual_share = models.FloatField(default=-1)
+    response = models.BooleanField(default=False)
 
     def init_round(self):
         """
@@ -128,8 +129,10 @@ class Group(BaseGroup):
         """
         logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
                      f' Setting payoffs and saving data.')
-        self.set_payoffs()
-        self.record_round_data()
+        if not self.response:
+            self.set_payoffs()
+            self.record_round_data()
+            self.response = True
 
     def set_payoffs(self):
         players = self.get_players()
@@ -142,6 +145,7 @@ class Group(BaseGroup):
     def record_round_data(self):
         players = self.get_players()
         id_of_opp = {1: 2, 2: 1}
+
         for p in players:
             p.participant.disclose[self.round_number-1] = p.disclose
             p.participant.contribution[self.round_number-1] = p.contribution
@@ -151,13 +155,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    contribution = models.IntegerField(
-        min=0, max=Constants.endowment
-    )
-    disclose = models.BooleanField()
-    multiplier = models.FloatField()
-    RT1 = models.IntegerField()
-    RT2 = models.IntegerField()
+    contribution = models.IntegerField(default=-1)
+    disclose = models.IntegerField(default=-1)
+    rt1 = models.IntegerField(default=-1)
+    rt2 = models.IntegerField(default=-1)
     response1 = models.BooleanField(default=False)
     response2 = models.BooleanField(default=False)
 
@@ -165,13 +166,25 @@ class Player(BasePlayer):
         for p in self.get_others_in_group():
             return p.participant.multiplier if p.disclose else None
 
+    def set_disclose(self, disclose: int, rt1: int=None):
+        self.disclose = disclose
+        if rt1 is not None:
+            self.rt1 = rt1
+        self.response1 = True
+
+    def set_contribution(self, contribution: int, rt2: int=None):
+        self.contribution = contribution
+        if rt2 is not None:
+            self.rt2 = rt2
+        self.response2 = True
+
 
 def custom_export(players):
         #header row
         yield [
             'app',
             'session',
-            'is_demo',
+            'session_is_demo',
             'p1.is_bot',
             'p1.participant_code',
             'p1.prolific_id',
@@ -180,8 +193,8 @@ def custom_export(players):
             'p1.multiplier',
             'p1.disclose',
             'p1.contribution',
-            'p1.RT1',
-            'p1.RT2',
+            'p1.rt1',
+            'p1.rt2',
             'p1.payoff',
             'p2.is_bot',
             'p2.participant_code',
@@ -191,8 +204,8 @@ def custom_export(players):
             'p2.multiplier',
             'p2.disclose',
             'p2.contribution',
-            'p2.RT1',
-            'p2.RT2',
+            'p2.rt1',
+            'p2.rt2',
             'p2.payoff',
             'round_number',
             'individual_share',
@@ -222,8 +235,8 @@ def custom_export(players):
                 p1.participant.multiplier,
                 p1.disclose,
                 p1.contribution,
-                p1.RT1,
-                p1.RT2,
+                p1.rt1,
+                p1.rt2,
                 p1.payoff,
                 p2.participant.is_dropout,
                 p2.participant.code,
@@ -233,8 +246,8 @@ def custom_export(players):
                 p2.participant.multiplier,
                 p2.disclose,
                 p2.contribution,
-                p2.RT1,
-                p2.RT2,
+                p2.rt1,
+                p2.rt2,
                 p2.round_number,
                 p2.payoff,
                 group.individual_share,
