@@ -34,9 +34,9 @@ class Instructions(Page):
         from .instructions import panels, titles
         return {'panels': panels, 'titles': titles, 'instructionsTime': INSTRUCTIONS_TIME}
 
-    # @staticmethod
-    # def live_method(player, data):
-    #     return {0: int(data['time']) > INSTRUCTIONS_TIME}
+    @staticmethod
+    def live_method(player, data):
+        player.participant.time_at_last_response = time.time()
 
 
 class Disclose(Page):

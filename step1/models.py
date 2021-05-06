@@ -143,6 +143,7 @@ class Group(BaseGroup):
         self.individual_share = self.total_contribution / Constants.players_per_group
         for p in players:
             p.payoff = Constants.endowment - p.contribution + self.individual_share
+            p.reward = Constants.endowment - p.contribution + self.individual_share
 
     def record_round_data(self):
         players = self.get_players()
@@ -163,6 +164,7 @@ class Player(BasePlayer):
     rt2 = models.IntegerField(default=-1)
     response1 = models.BooleanField(default=False)
     response2 = models.BooleanField(default=False)
+    reward = models.FloatField(default=-1)
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():

@@ -56,6 +56,14 @@ button::-moz-focus-inner {
   -ms-animation: fadeIn 2s;
 }
 
+.fade-in-var {
+  animation: fadeIn var(--time);
+  -webkit-animation: fadeIn var(--time);
+  -moz-animation: fadeIn var(--time);
+  -o-animation: fadeIn var(--time);
+  -ms-animation: fadeIn var(--time);
+}
+
 .fade-out {
     animation: fadeOut 2s;
     -webkit-animation: fadeOut 2s;
