@@ -2,7 +2,7 @@
 
 {% block content %}
     {#content#}
-    <div class="container fade-in-var" style="display:none; --time: 0.2s" id="main">
+    <div class="container fade-in-var" style="display:none; --time: 1s" id="main">
         <div class="row">
             <div class="col">
                 <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
@@ -28,16 +28,16 @@
         <div id="results" class="fade-in-var" style="display: none; border-bottom: black; --time: 1s">
             <h2 style="border-bottom: dashed black">RESULTS</h3><br>
 
-                <h4>CONTRIBUTION = <b>{{ player.contribution }}</b></h4>
-                <h4>OTHER PLAYER CONTRIBUTION = <b>{{ opp_contribution }}</b></h4>
+                <h4 >CONTRIBUTION = <b id="r1" class="fade-in-var" style="display: none;--time: 1s; font-size: 35px">{{ player.contribution }}</b></h4>
+                <h4 >OTHER PLAYER CONTRIBUTION = <b id="r2" class="fade-in-var" style="display: none;--time: 1s; font-size: 35px">{{ opp_contribution }}</b></h4>
 
-                <h4>IND. SHARE = (({{ player.contribution }} x <b
+                <h4 >IND. SHARE =<b id="r3" class="fade-in-var" style="display: none;--time: 1s; font-size: 35px"> (({{ player.contribution }} x <b
                         style="color: {{ player_color }}">{{ player_multiplier }}</b>)
                     +
-                    ({{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b>)) / 2  = <b>{{ group.individual_share }} </b></h4>
+                    ({{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b>)) / 2  = <b style="font-size: 35px">{{ group.individual_share }} </b></b></h4>
+                <h4>POINTS LEFT = <b  id="r4" class="fade-in-var" style="display: none;--time: 1s; font-size: 35px">{{ player_left }}</b></h4><br>
                 <br>
-                <h4>POINTS LEFT = <b>{{ player_left }}</b></h4>
-                <h3 >REWARD = IND. SHARE + POINTS LEFT = <b>{{ player.reward }}</b></h3>
+                <h3>REWARD = IND. SHARE + POINTS LEFT = <b id="r5" class="fade-in-var" style="display: none;--time: 1;font-size: 35px">{{ player.reward }}</b></h3>
         </div>
     <br>
     <br>
@@ -76,19 +76,32 @@
     <script>
 
         $(document).ready(function () {
+
             setTimeout(function () {
                 $('.container').show();
                 $('#results').show();
-            }, 800);
+            }, 500);
             setTimeout(function () {
-                $('#results-detailed').show();
+                $('#r1').show();
+            }, 1000);
+            setTimeout(function () {
+                $('#r2').show();
             }, 2000);
+            setTimeout(function () {
+                $('#r3').show();
+            }, 3000);
+            setTimeout(function () {
+                $('#r4').show();
+            }, 4000);
+            setTimeout(function () {
+                $('#r5').show();
+            }, 5000);
             let startTime = Date.now();
             let timeLimit = {{ resultsTime }};
             setInterval(function () {
                 if ((Date.now() - startTime) > timeLimit) {
-                    {#$('#main').fadeOut(140);#}
-                    {#$('#form').submit();#}
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
                 }
             }, 1500);
 

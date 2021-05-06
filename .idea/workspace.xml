@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements_base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_base.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,6 +202,7 @@
       <workItem from="1620144051729" duration="13781000" />
       <workItem from="1620204119027" duration="14932000" />
       <workItem from="1620229520751" duration="6167000" />
+      <workItem from="1620322726626" duration="4420000" />
     </task>
     <servers />
   </component>

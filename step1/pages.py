@@ -10,7 +10,7 @@ from utils.debug import logger
 SECOND = 1000
 DROPOUT_TIME = 15 * SECOND
 INSTRUCTIONS_TIME = 15 * SECOND
-RESULTS_TIME = 3.5 * SECOND
+RESULTS_TIME = 6 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
