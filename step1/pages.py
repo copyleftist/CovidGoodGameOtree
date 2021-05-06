@@ -2,13 +2,14 @@ from otree.api import Currency as c, currency_range
 from step1._builtin import Page, WaitPage
 from .models import Constants
 import numpy as np
+import time
 
 from utils.debug import logger
 
 
 SECOND = 1000
 DROPOUT_TIME = 15 * SECOND
-INSTRUCTIONS_TIME = 2 * SECOND
+INSTRUCTIONS_TIME = 15 * SECOND
 RESULTS_TIME = 3.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -31,11 +32,11 @@ class Instructions(Page):
     @staticmethod
     def vars_for_template():
         from .instructions import panels, titles
-        return {'panels': panels, 'titles': titles}
+        return {'panels': panels, 'titles': titles, 'instructionsTime': INSTRUCTIONS_TIME}
 
-    @staticmethod
-    def live_method(player, data):
-        return {0: int(data['time']) > INSTRUCTIONS_TIME}
+    # @staticmethod
+    # def live_method(player, data):
+    #     return {0: int(data['time']) > INSTRUCTIONS_TIME}
 
 
 class Disclose(Page):
@@ -48,6 +49,9 @@ class Disclose(Page):
 
     def vars_for_template(self):
         from .html import wait
+
+        self.player.participant.time_at_last_response = time.time()
+
         return {
             'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
             'html': wait
@@ -56,27 +60,23 @@ class Disclose(Page):
     @staticmethod
     def live_method(player, data):
 
+        player.participant.time_at_last_response = time.time()
+
+        _check_for_disconnections(player)
+        other_player = player.get_others_in_group()[0]
+
         if not player.response1:
             logger.debug(f'Participant {player.participant.id_in_session}'
                          ' saving disclosure response.')
-            assert type(data['disclose']) == int
-            assert type(data['RT']) == int
             player.set_disclose(
                 disclose=int(data['disclose']),
                 rt1=int(data['RT'])
             )
 
-        other_player = player.get_others_in_group()[0]
-        too_long = int(data['time']) > DROPOUT_TIME
-
         if other_player.response1:
-            # if _everybody_played_disclose(player):
-            #     _check_for_last_bots_disclose(player)
-
             return {player.id_in_group: True}
 
-        if too_long or other_player.participant.is_dropout:
-            other_player.participant.is_dropout = True
+        if other_player.participant.is_dropout:
             if not _everybody_played_disclose(player):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
@@ -100,6 +100,8 @@ class Contribute(Page):
     def vars_for_template(self):
         from .html import wait
 
+        self.player.participant.time_at_last_response = time.time()
+
         opp_character, opp_multiplier = [self.player.see_opponent_type(), ] * 2
         player_character, player_multiplier = [self.player.participant.multiplier, ] * 2
 
@@ -120,6 +122,9 @@ class Contribute(Page):
 
     @staticmethod
     def live_method(player, data):
+        player.participant.time_at_last_response = time.time()
+        _check_for_disconnections(player)
+        other_player = player.get_others_in_group()[0]
 
         if not player.response2:
             logger.debug(f'Participant {player.participant.id_in_session}'
@@ -129,18 +134,11 @@ class Contribute(Page):
                 rt2=int(data['RT'])
             )
 
-        other_player = player.get_others_in_group()[0]
-        too_long = int(data['time']) > DROPOUT_TIME
-
         if other_player.response2:
-            # if _everybody_played_contrib(player):
-            #     _check_for_last_bots_contrib(player)
-
             player.group.end_round()
             return {player.id_in_group: True}
 
-        if too_long or other_player.participant.is_dropout:
-            other_player.participant.is_dropout = True
+        if other_player.participant.is_dropout:
             if not _everybody_played_contrib(player):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
@@ -155,7 +153,7 @@ class Contribute(Page):
             return {player.id_in_group: True}
 
 
-class Results2(Page):
+class Results(Page):
     def get_template_name(self):
         if self.participant.is_dropout:
             return 'step1/Dropout.html'
@@ -169,6 +167,7 @@ class Results2(Page):
         opp_multiplier = opp.participant.multiplier
         opp_disclose = opp.disclose
         opp_contribution = opp.contribution
+        opp_payoff = opp.payoff
 
         return {
             'player_character': 'img/{}.gif'.format(player_multiplier),
@@ -176,21 +175,35 @@ class Results2(Page):
             'player_multiplier': player_multiplier,
             'opp_multiplier': opp_multiplier,
             'opp_contribution': opp_contribution,
+            'opp_left': Constants.endowment - opp_contribution,
+            'player_left': Constants.endowment - self.player.contribution,
+            'opp_payoff': opp_payoff,
             'player_color': '#5893f6' if player_multiplier == Constants.multiplier_good else '#d4c84d',
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
-            'disclose': opp_disclose
+            'disclose': opp_disclose,
+            'resultsTime': RESULTS_TIME
         }
 
-    @staticmethod
-    def live_method(player, data):
-        return {player.id_in_group: int(data['time']) > RESULTS_TIME}
+    # @staticmethod
+    # def live_method(player, data):
+    #     return {player.id_in_group: int(data['time']) > RESULTS_TIME}
+#
 
 
-page_sequence = [Init, Instructions, Disclose, Contribute, Results2]
+page_sequence = [Init, Instructions, Disclose, Contribute, Results]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions
 # ------------------------------------------------------------------------------------------------------------------- #
+
+
+def _check_for_disconnections(player):
+    players = _get_all_players(player)
+    real_players = [p for p in players if not p.participant.is_dropout]
+    for p in real_players:
+        t = time.time() - p.participant.time_at_last_response
+        if t * SECOND > DROPOUT_TIME:
+            p.participant.is_dropout = True
 
 
 def _everybody_played_disclose(player):

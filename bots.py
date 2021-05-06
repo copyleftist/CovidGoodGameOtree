@@ -8,13 +8,17 @@ from multiprocessing.pool import ThreadPool
 import threading
 import argparse
 import time
+import os
 import numpy as np
 from settings import SESSION_CONFIGS
 # from step1.pages import DROPOUT_TIME
 # from step1.models import Constants
 
-CHROMEDRIVER = \
-    'C:/Users/Basile/.wdm/drivers/chromedriver/win32/90.0.4430.24/chromedriver.exe'
+if os.name == 'nt':
+    CHROMEDRIVER = \
+        'C:/Users/Basile/.wdm/drivers/chromedriver/win32/90.0.4430.24/chromedriver.exe'
+else:
+    CHROMEDRIVER = '/usr/lib/chromium-browser/chromedriver'
 
 
 class Bot:
@@ -25,16 +29,18 @@ class Bot:
         self.p_contrib = p_contrib
         self.p_disclose = p_disclose
 
-        # with threading.Lock():
-        self.driver = webdriver.Chrome(CHROMEDRIVER)
-        self.driver.get(url)
+        with mp.Lock():
+            options = webdriver.ChromeOptions()
+            # options.add_argument('headless')
+            self.driver = webdriver.Chrome(CHROMEDRIVER, options=options)
+            self.driver.get(url)
 
         self.slow = slow
 
     @property
     def time_wait(self):
         if self.slow:
-            return np.random.choice(np.linspace(2, 7+2, 10))
+            return np.random.choice(np.linspace(2, 20, 10))
 
         return np.random.choice(np.linspace(2, 3, 10))
 
@@ -54,7 +60,7 @@ class Bot:
                     time.sleep(1)
 
     def wait_until_el(self, el_id):
-        timeout = 20
+        timeout = 60
         try:
             element_present = EC.presence_of_element_located((By.ID, el_id))
             WebDriverWait(self.driver, timeout).until(element_present)
@@ -81,9 +87,8 @@ class Bot:
             time.sleep(self.time_wait)
             self.contribute()
 
-            self.wait_until_el('results')
-            time.sleep(2)
-            self.submit()
+            # self.wait_until_el('results')
+            # time.sleep(2)
 
         exit()
 
@@ -108,17 +113,24 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = idx % 2 == 0
+    slow = idx % 10 == 0
     p_contrib = np.ones(10)
     if idx < 10:
         p_contrib[idx] = 10
     else:
-        i = idx - 10
+        i = int(str(idx)[1])
         p_contrib[i] = 10
 
+    p_disclose = np.arange(11) / 10
+
+    if idx < 10:
+        p_disclose = p_disclose[idx]
+    else:
+        i = int(str(idx)[1])
+        p_disclose = p_disclose[i]
     p_contrib = np.exp(p_contrib)/np.sum(np.exp(p_contrib))
-    p_disclose = np.array(list(range(11)) + [5, ]) / 10
-    b = Bot(url=url, idx=idx, slow=slow, p_disclose=p_disclose[idx], p_contrib=p_contrib)
+
+    b = Bot(url=url, idx=idx, slow=slow, p_disclose=p_disclose, p_contrib=p_contrib)
     print(f'Bot {b.idx} is running')
     b.run()
 

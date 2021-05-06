@@ -52,6 +52,8 @@ class Subsession(BaseSubsession):
 
             p.participant.is_dropout = False
 
+            p.participant.time_at_last_response = np.NaN
+
     def creating_session(self):
         """
         match according to deterministic good/bad, good/good, bad/bad
@@ -248,8 +250,8 @@ def custom_export(players):
                 p2.contribution,
                 p2.rt1,
                 p2.rt2,
-                p2.round_number,
                 p2.payoff,
+                group.round_number,
                 group.individual_share,
                 group.total_contribution,
                 group.id

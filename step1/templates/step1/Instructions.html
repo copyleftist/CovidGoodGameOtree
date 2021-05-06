@@ -7,57 +7,54 @@
     </div>
 
     <div class="row fade-in">
-        <div class="col" align="center" id="col-previous">
-            <button style="display: none" type="button" class="drawn-button" id="previous">PREVIOUS</button>
+        <div class="col" align="center" id="col-previous" style="display: none">
+            <button type="button" class="drawn-button" id="previous">PREVIOUS</button>
         </div>
         <div class="col" align="center" id="col-next">
             <button type="button" class="drawn-button" id="next">NEXT</button>
         </div>
-       </div>
+    </div>
     <script>
-    let panels = {{ panels }};
-    let titles = {{ titles }};
-    let max = Math.max(Object.keys(panels));
-    let index = 1;
+        $(document).ready(function () {
+            let panels = {{ panels }};
+            let titles = {{ titles }};
+            let max = Math.max(Object.keys(panels));
+            let index = 1;
 
-    let startTime = Date.now();
+            let startTime = Date.now();
+            let timeLimit = {{ instructionsTime }};
 
-    $('#text').html(panels[index])
-    $('#title').html(titles[index])
-    $('#next').click(function () {
-        index++;
-        $('#text').hide().html(panels[index]).fadeIn(200)
-        $('#title').hide().html(titles[index]).fadeIn(200)
-        if (index > 1) {
-            $('#col-previous').show();
-        }
+            $('#text').html(panels[index]);
+            $('#title').html(titles[index]);
+            $('#next').click(function () {
+                index++;
+                $('#text').hide().html(panels[index]).fadeIn(200);
+                $('#title').hide().html(titles[index]).fadeIn(200);
+                if (index > 1) {
+                    $('#col-previous').show();
+                }
 
-        if (index == max) {
-            $('#col-next').hide();
-        }
-    })
-    $('#previous').click(function () {
-        index--;
-        $('#text').hide().html(panels[index]).fadeIn(200)
-        $('#title').hide().html(titles[index]).fadeIn(200)
-        if (index == 1) {
-            $('#col-previous').hide();
-        }
-    })
+                if (index === max) {
+                    $('#col-next').hide();
+                }
+            })
+            $('#previous').click(function () {
+                index--;
+                $('#text').hide().html(panels[index]).fadeIn(200)
+                $('#title').hide().html(titles[index]).fadeIn(200)
+                if (index === 1) {
+                    $('#col-previous').hide();
+                }
+            })
 
-    setInterval(function () {
-        liveSend(
-            {
-                time: Date.now() - startTime,
-            });
-    }, 2000);
+            setInterval(function () {
+                if ((Date.now() - startTime) > timeLimit) {
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
+                }
+            }, 1500);
 
-    function liveRecv(data) {
-        if (data){
-            $('#form').submit();
-        }
-    }
-
+        });
 
     </script>
 

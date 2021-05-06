@@ -3,36 +3,36 @@
 
 {% block content %}
     <div id="main" class="container fade-in">
-            <div class="row">
-                <div class="col">
+        <div class="row">
+            <div class="col">
 
-                    <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙ </div>
-                        <div class="box">
-                            <img src="{% static player_character %}">
-                            <div class="text-centered">{{ player.participant.multiplier }}</div>
-                        </div>
-                </div>
-                <div class="col">
+                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
+                <div class="box">
+                    <img src="{% static player_character %}">
+                    <div class="text-centered">{{ player.participant.multiplier }}</div>
                 </div>
             </div>
+            <div class="col">
+            </div>
+        </div>
         <br>
         <br>
         <p>
-        Your multiplier is {{ player.participant.multiplier }}. <br>
-        <b>Do you want to disclose your multiplier to the other player?</b>
+            Your multiplier is {{ player.participant.multiplier }}. <br>
+            <b>Do you want to disclose your multiplier to the other player?</b>
         </p>
         <br>
         <br>
-       <div class="row">
-        <div class="col" align="center" >
-            <button type="button" class="drawn-button" id="disc">DISCLOSE</button>
+        <div class="row">
+            <div class="col" align="center">
+                <button type="button" class="drawn-button" id="disc">DISCLOSE</button>
+            </div>
+            <div class="col" align="center">
+                <button type="button" class="drawn-button" id="hide">HIDE</button>
+            </div>
         </div>
-        <div class="col" align="center">
-            <button type="button" class="drawn-button" id="hide">HIDE</button>
-        </div>
-       </div>
-{#        <input type="hidden" id="disclose" name="disclose"/>#}
-{#        <input type="hidden" id="RT" name="RT"/>#}
+        {#        <input type="hidden" id="disclose" name="disclose"/>#}
+        {#        <input type="hidden" id="RT" name="RT"/>#}
 
     </div>
 
@@ -92,16 +92,17 @@
 
 
         });
+
         function liveRecv(data) {
-                if (data===true) {
-                    {#console.log('RT = ' + RT);#}
-                    {#console.log('Disclose = ' + disclose);#}
-                    {#$('#RT').val(RT);#}
-                    {#$('#disclose').val(disclose);#}
-                    $('#main').fadeOut(140);
-                    $('#form').submit();
-                }
+            if (data === true) {
+                {#console.log('RT = ' + RT);#}
+                {#console.log('Disclose = ' + disclose);#}
+                {#$('#RT').val(RT);#}
+                {#$('#disclose').val(disclose);#}
+                $('#main').fadeOut(140);
+                $('#form').submit();
             }
+        }
 
 
     </script>

@@ -1,23 +1,96 @@
 {% extends "global/Page.html" %}
 
-{#{% if player.participant.is_dropout %}#}
-{##}
-{#{% endf %}#}
-
-{% block title %}
-    Results
-{% endblock %}
-
 {% block content %}
+    {#content#}
+    <div class="container fade-in" id="main">
+        <div class="row">
+            <div class="col">
+                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
+                <div class="box" style="float: left">
+                    <img src="{% static player_character %}">
+                    <div class="text-centered">{{ player_multiplier }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div style="margin-left: 55%;color: gray;font-weight: bolder;">Other player<br> ↘</div>
+                <div class="box" style="float: right">
+                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opp_character %}">
+                    <div style="left: 6%" class="text-centered">{{ opp_multiplier }}</div>
+                </div>
+            </div>
+        </div>
+        </br>
+        </br>
+        </br>
+        </br>
+{#        <p style="text-align: center; font-size: larger">#}
+        <div style="border-bottom: black">
+            <h2 style="border-bottom: dashed black">RESULTS</h3><br>
+                <h3>YOUR FINAL REWARD = {{ player.payoff }}</h3>
+                <h4>YOUR FINAL REWARD = IND. SHARE + POINTS LEFT</h4>
+                <h4>POINTS LEFT = {{ player_left }}</h4>
+                <h4>IND. SHARE = (({{ player.contribution }} x <b
+                        style="color: {{ player_color }}">{{ player_multiplier }}</b>)
+                    +
+                    ({{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b>)) / 2 </h4>
+                <br>
+        </div>
+        <div class="row">
+            <div style="border-bottom: dashed black">
+                <h2>Detailed Results</h2>
+            </div><br>
+            <div class="col">
+                <br>
+                <h4>You</h4>
+                final reward = {{ player.payoff }} <br>
+                contribution = {{ player.contribution }} x <b
+                    style="color: {{ player_color }}">{{ player_multiplier }}</b><br>
+                points left = {{ player_left }}
 
-    <p id="results">
-        You started with an endowment of {{ Constants.endowment }},
-        of which you contributed {{ player.contribution }}.
-        Your group contributed {{ group.total_contribution }},
-        resulting in an individual share of {{ group.individual_share }}.
-        Your profit is therefore {{ player.payoff }}.
-    </p>
+            </div>
+            <div class="col">
+                <br>
+                <h4>Other player</h4>
+                final reward = {{ opp_payoff }} <br>
+                contribution = {{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b><br>
+                points left = {{ opp_left }}
 
-    {% next_button %}
+            </div>
+
+
+            <br>
+            <br>
+
+            </br>
+
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            let startTime = Date.now();
+            let timeLimit = {{ resultsTime }};
+            setInterval(function () {
+                if ((Date.now() - startTime) > timeLimit) {
+                    {#$('#main').fadeOut(140);#}
+                    {#$('#form').submit();#}
+                }
+            }, 1500);
+
+        });
+
+        {#function liveRecv(data) {#}
+        {#        if (data===true) {#}
+        {#console.log('RT = ' + RT);#}
+        {#console.log('contribution = ' + contribution);#}
+        {#$('#RT').val(RT);#}
+        {#$('#disclose').val(disclose);#}
+        {#$('#main').fadeOut(140);#}
+        {#$('#form').submit();}}#}
+
+    </script>
+
+    {#content#}
 
 {% endblock %}
