@@ -2,7 +2,7 @@
 
 {% block content %}
     {#content#}
-    <div class="container fade-in-var" style="display:none; --time: 1s" id="main">
+    <div class="container" id="main">
         <div class="row">
             <div class="col">
                 <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
@@ -71,14 +71,12 @@
             </br>
 
         </div>
-    </div>
 
     <script>
 
         $(document).ready(function () {
 
             setTimeout(function () {
-                $('.container').show();
                 $('#results').show();
             }, 500);
             setTimeout(function () {
