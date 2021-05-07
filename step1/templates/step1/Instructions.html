@@ -51,8 +51,10 @@
                 if ((Date.now() - startTime) > timeLimit) {
                     $('#main').fadeOut(140);
                     $('#form').submit();
+                } else {
+                    liveSend('Hey');
                 }
-            }, 1500);
+            }, 2000);
 
         });
 

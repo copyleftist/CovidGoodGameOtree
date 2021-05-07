@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/_templates/global/Base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CovidGoodGameOtree.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/instructions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Instructions.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instructions.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +156,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -199,7 +206,7 @@
       <workItem from="1620229520751" duration="6167000" />
       <workItem from="1620322726626" duration="5625000" />
       <workItem from="1620378725061" duration="5083000" />
-      <workItem from="1620398253875" duration="2336000" />
+      <workItem from="1620398253875" duration="13465000" />
     </task>
     <servers />
   </component>

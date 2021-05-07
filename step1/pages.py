@@ -9,7 +9,7 @@ from utils.debug import logger
 
 SECOND = 1000
 DROPOUT_TIME = 15 * SECOND
-INSTRUCTIONS_TIME = 15 * SECOND
+INSTRUCTIONS_TIME = 3000 * SECOND
 RESULTS_TIME = 6.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -38,7 +38,7 @@ class Instructions(Page):
 
     @staticmethod
     def live_method(player, data):
-        player.participant.time_at_last_response = time.time()
+        _set_as_connected(player)
 
 
 class Disclose(Page):
@@ -52,7 +52,7 @@ class Disclose(Page):
     def vars_for_template(self):
         from .html import wait
 
-        self.player.participant.time_at_last_response = time.time()
+        _set_as_connected(self.player)
 
         return {
             'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
@@ -61,9 +61,7 @@ class Disclose(Page):
 
     @staticmethod
     def live_method(player, data):
-
-        player.participant.time_at_last_response = time.time()
-
+        _set_as_connected(player)
         _check_for_disconnections(player)
         other_player = player.get_others_in_group()[0]
 
@@ -83,7 +81,7 @@ class Disclose(Page):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            disclose = _get_participants_disclose(player)
+            disclose = _get_average_disclose(player)
             other_player.set_disclose(disclose=disclose)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -102,7 +100,7 @@ class Contribute(Page):
     def vars_for_template(self):
         from .html import wait
 
-        self.player.participant.time_at_last_response = time.time()
+        _set_as_connected(self.player)
 
         opp_character, opp_multiplier = [self.player.see_opponent_type(), ] * 2
         player_character, player_multiplier = [self.player.participant.multiplier, ] * 2
@@ -124,7 +122,7 @@ class Contribute(Page):
 
     @staticmethod
     def live_method(player, data):
-        player.participant.time_at_last_response = time.time()
+        _set_as_connected(player)
         _check_for_disconnections(player)
         other_player = player.get_others_in_group()[0]
 
@@ -145,7 +143,7 @@ class Contribute(Page):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            contribution = _get_participants_contrib(player)
+            contribution = _get_average_contrib(player)
             other_player.set_contribution(contribution)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -186,17 +184,16 @@ class Results(Page):
             'resultsTime': RESULTS_TIME
         }
 
-    # @staticmethod
-    # def live_method(player, data):
-    #     return {player.id_in_group: int(data['time']) > RESULTS_TIME}
-#
-
 
 page_sequence = [Init, Instructions, Disclose, Contribute, Results]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions
 # ------------------------------------------------------------------------------------------------------------------- #
+
+
+def _set_as_connected(player):
+    player.participant.time_at_last_response = time.time()
 
 
 def _check_for_disconnections(player):
@@ -226,14 +223,14 @@ def _get_all_players(player):
     return [player, ] + player.get_others_in_subsession()
 
 
-def _get_participants_contrib(player):
+def _get_average_contrib(player):
     contribution = np.round(np.mean(
         [p.contribution for p in _get_all_players(player) if not p.participant.is_dropout]
     ))
     return contribution
 
 
-def _get_participants_disclose(player):
+def _get_average_disclose(player):
     p_disclose = np.mean(
         [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
     )
