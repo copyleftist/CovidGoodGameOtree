@@ -50,7 +50,8 @@ class Subsession(BaseSubsession):
             # p.participant.opp_multiplier = np.zeros(Constants.num_rounds)
             p.participant.opp_id = np.zeros(Constants.num_rounds)
 
-            p.participant.is_dropout = self.session.config.get('single_player') and p.participant.id_in_session != 1
+            p.participant.is_dropout = self.session.config.get('single_player')\
+                                       and (p.participant.id_in_session != 1)
 
             p.participant.time_at_last_response = np.NaN
 
