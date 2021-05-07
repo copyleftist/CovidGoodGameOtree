@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CovidGoodGameOtree.otreezip" beforeDir="false" afterPath="$PROJECT_DIR$/CovidGoodGameOtree.otreezip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +203,7 @@
       <workItem from="1620229520751" duration="6167000" />
       <workItem from="1620322726626" duration="5625000" />
       <workItem from="1620378725061" duration="5083000" />
-      <workItem from="1620398253875" duration="1185000" />
+      <workItem from="1620398253875" duration="1622000" />
     </task>
     <servers />
   </component>
