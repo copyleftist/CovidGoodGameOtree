@@ -6,6 +6,7 @@ SESSION_CONFIGS = [
         name='theresa_fernanda_base',
         display_name="Public Covid",
         num_demo_participants=2,
+        single_player=False,
         use_browser_bots=False,
         app_sequence=['step1'],
     ),

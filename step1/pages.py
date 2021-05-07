@@ -10,7 +10,7 @@ from utils.debug import logger
 SECOND = 1000
 DROPOUT_TIME = 15 * SECOND
 INSTRUCTIONS_TIME = 15 * SECOND
-RESULTS_TIME = 6 * SECOND
+RESULTS_TIME = 6.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
@@ -22,7 +22,9 @@ class Init(WaitPage):
     wait_for_all_groups = True
 
     def is_displayed(self):
-        return self.round_number == 1
+        real_participants = [not p.participant.is_dropout
+                             for p in _get_all_players(self.player)]
+        return (self.round_number == 1) and (sum(real_participants) > 1)
 
 
 class Instructions(Page):
@@ -235,8 +237,8 @@ def _get_participants_disclose(player):
     p_disclose = np.mean(
         [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
     )
-    return int(np.random.choice(
-            [0, 1], p=[1-p_disclose, p_disclose]))
+    return np.random.choice(
+            [0, 1], p=[1-p_disclose, p_disclose])
 
 
 def _get_groups(player):
@@ -246,41 +248,3 @@ def _get_groups(player):
         if p.group not in groups:
             groups.append(p.group)
     return groups
-
-
-def _check_for_last_bots_disclose(player):
-    groups = _get_groups(player)
-    for group in groups:
-
-        p1 = group.get_player_by_id(1)
-        p2 = group.get_player_by_id(2)
-
-        if p1.participant.is_dropout and p2.participant.is_dropout:
-
-            if not p1.response1:
-                disclose = _get_participants_disclose(player)
-                p1.set_disclose(disclose, 0)
-
-            if not p2.response1:
-                disclose = _get_participants_disclose(player)
-                p2.set_disclose(disclose, 0)
-
-
-def _check_for_last_bots_contrib(player):
-    groups = _get_groups(player)
-    for group in groups:
-
-        p1 = group.get_player_by_id(1)
-        p2 = group.get_player_by_id(2)
-
-        if p1.participant.is_dropout and p2.participant.is_dropout:
-
-            contribution = _get_participants_contrib(player)
-
-            if not p1.response2:
-                p1.set_contribution(contribution, 0)
-
-            if not p2.response2:
-                p2.set_contribution(contribution, 0)
-
-            p1.group.end_round()
