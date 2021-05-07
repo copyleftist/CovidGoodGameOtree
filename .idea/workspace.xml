@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CovidGoodGameOtree.otreezip" beforeDir="false" afterPath="$PROJECT_DIR$/CovidGoodGameOtree.otreezip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_templates/global/Base.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +199,7 @@
       <workItem from="1620229520751" duration="6167000" />
       <workItem from="1620322726626" duration="5625000" />
       <workItem from="1620378725061" duration="5083000" />
-      <workItem from="1620398253875" duration="1622000" />
+      <workItem from="1620398253875" duration="2336000" />
     </task>
     <servers />
   </component>
