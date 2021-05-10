@@ -14,7 +14,7 @@
             <div class="col">
                 <div style="margin-left: 55%;color: gray;font-weight: bolder;">Other player<br> ↘ </div>
                 <div class="box" style="float: right">
-                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opponent_character %}">
+                    <img  loading="lazy" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opponent_character %}">
                         <div style="left: 6%" class="text-centered">{{ opponent_multiplier }}</div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
     </br>
         <p>
         {% if player.see_opponent_type %}
-        The other player multiplier is {{ player.see_opponent_type }}.
+        The other player multiplier is <b style="color: {{ opp_color }} ">{{ player.see_opponent_type }}</b>.
         {% else %}
         The other player did not disclose its multiplier.
         {% endif %}

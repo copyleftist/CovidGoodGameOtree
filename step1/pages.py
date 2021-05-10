@@ -115,6 +115,7 @@ class Contribute(Page):
         return {
             'player_character': 'img/{}.gif'.format(player_character),
             'opponent_character': 'img/{}.gif'.format(opp_character),
+            'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'opponent_multiplier': opp_multiplier,
             'player_multiplier': player_multiplier,
             'html': wait
