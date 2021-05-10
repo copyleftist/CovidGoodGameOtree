@@ -37,15 +37,18 @@ panels = {
        'In each round you will be randomly matched with another player. A round is divided into 3 steps.<br>'
        '1) You will be asked to either display or hide your multiplier, so that the other player will know your type or not.<br>'
        '2) You will be asked to contribute (a certain number of points) to a public pot.<br>'
-       '3) Your contribution will be multiplied according to your type and the points put in the public pot will be equally distributed among the players. <br>'
+       '3) Your contribution will be multiplied according to your type and the points put in the public pot'
+       'will be equally distributed among the players. <br>'
        'Thereafter, you will continue to the next round.'
        '</p>',
 
     3: '<p>'
        'In the beginning of each round you will be presented with your character and its multiplier. '
        'You will be also asked whether or not you want to <b>disclose it</b>.<br> '
-       'If you choose to disclose it, the <b>other player</b> will be <b>informed</b> of this information in the contribution step (he will see your character on his screen). '
-       'Conversely, if you choose to hide it, the <b>other player</b> will see your character hiding his multiplier by means of a sign in the <b>contribution step</b>.<br>'
+       'If you choose to disclose it, the <b>other player</b> will be <b>informed</b> of this information'
+       ' in the contribution step (he will see your character on his screen). '
+       'Conversely, if you choose to hide it, the <b>other player</b> will see your character hiding his multiplier'
+       ' by means of a sign in the <b>contribution step</b>.<br>'
        '<br>Suppose you were attributed the <b style="color: #5893f6">blue</b> type and the other player the <b style="color: #d4c84d">yellow</b>,'
        'then there are 4 possible "disclosure" situations:<br><br>'
        '<b>1) You both disclose</b> <br><br>' + two_players(1.2, 0.8, 1.2, 0.8) +
@@ -68,5 +71,3 @@ titles = {
     4: 'Contribution',
     5: 'Results',
 }
-
-
