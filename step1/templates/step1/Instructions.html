@@ -29,8 +29,8 @@
 
             $('#next').click(function () {
                 index++;
-                $('#text').hide().html(panels[index]).fadeIn(200);
-                $('#title').hide().html(titles[index]).fadeIn(200);
+                $('#text').hide().html(panels[index]).fadeIn(300);
+                $('#title').hide().html(titles[index]).fadeIn(300);
                 if (index > 1) {
                     $('#col-previous').show();
                 }
@@ -41,8 +41,8 @@
             })
             $('#previous').click(function () {
                 index--;
-                $('#text').hide().html(panels[index]).fadeIn(200)
-                $('#title').hide().html(titles[index]).fadeIn(200)
+                $('#text').hide().html(panels[index]).fadeIn(300)
+                $('#title').hide().html(titles[index]).fadeIn(300)
                 if (index === 1) {
                     $('#col-previous').hide();
                 }

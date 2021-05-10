@@ -32,7 +32,7 @@ panels = {
        'In the game there are <b>two types</b> of players: the <b style="color: #5893f6">blue</b> and <b style="color: #d4c84d">yellow</b> one.'
        'You will be randomly attributed to one color in the beginning of the game.'
        'Your type will <b>remain</b> the same all along the game.<br>'
-       'Note that different types have different multipliers (the latter is displayed on the character tshirt).'
+       'Note that different types have different multipliers (the latter is displayed on the character t-shirt).'
        '<br><br><div align="center"><img src="/static/img/2_players.png"><br><br></div>'
        'In each round you will be randomly matched with another player. A round is divided into 3 steps:<br><br>'
        '1) You will be asked if you want to either display or hide your multiplier, so that the other player will know your type or not.<br><br>'
@@ -62,7 +62,7 @@ panels = {
        ' Also, in each round, you will be <b>endowed with 10 points</b>, and asked to contribute to the public pot. You will be able to do so '
        'using a slider, which value corresponds to the number of points you want to put in the public pot. <br>'
        'To select a value on the slider you can either select with your mouse cursor, eitheir using your left and right arrow keys on your keyboard.'
-       'The maximum contribution is 10, while the minimun is 0.<br>'
+       'The maximum contribution is 10, while the minimum is 0.<br>'
        '<br><div align="center"><img src="/static/img/contribute.gif"><br></div>'
        '</p>'
 }
