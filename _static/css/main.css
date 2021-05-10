@@ -44,6 +44,9 @@
 }
 
 
+.img-center {margin:0 auto;}
+
+
 button::-moz-focus-inner {
   border: 0;
 }
