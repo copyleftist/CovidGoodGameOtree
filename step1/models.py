@@ -169,6 +169,7 @@ class Player(BasePlayer):
     response1 = models.BooleanField(default=False)
     response2 = models.BooleanField(default=False)
     reward = models.FloatField(default=-1)
+    time_instructions = models.FloatField(default=-1)
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():
@@ -245,7 +246,7 @@ def custom_export(players):
                 p1.contribution,
                 p1.rt1,
                 p1.rt2,
-                p1.payoff,
+                p1.reward,
                 p2.participant.is_dropout,
                 p2.participant.code,
                 p2.participant.label,
@@ -256,7 +257,7 @@ def custom_export(players):
                 p2.contribution,
                 p2.rt1,
                 p2.rt2,
-                p2.payoff,
+                p2.reward,
                 group.round_number,
                 group.individual_share,
                 group.total_contribution,

@@ -8,9 +8,10 @@ from utils.debug import logger
 
 
 SECOND = 1000
+MINUTE = SECOND * 60
 DROPOUT_TIME = 15 * SECOND
-INSTRUCTIONS_TIME = 10 * SECOND
-RESULTS_TIME = 6.5 * SECOND
+INSTRUCTIONS_TIME = 3 * SECOND
+RESULTS_TIME = 7.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
@@ -28,17 +29,23 @@ class Init(WaitPage):
 
 
 class Instructions(Page):
+
     def is_displayed(self):
         return self.round_number == 1
 
-    @staticmethod
-    def vars_for_template():
+    def vars_for_template(self):
         from .instructions import panels, titles
+        if self.player.time_instructions == -1:
+            self.player.time_instructions = time.time()
         return {'panels': panels, 'titles': titles, 'instructionsTime': INSTRUCTIONS_TIME}
 
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
+        time_since_opening = (time.time() - player.time_instructions)
+        if time_since_opening*SECOND > INSTRUCTIONS_TIME:
+            return {player.id_in_group: True}
+        return False
 
 
 class Disclose(Page):

@@ -18,7 +18,7 @@
         $(document).ready(function () {
             let panels = {{ panels }};
             let titles = {{ titles }};
-            let max = Math.max(Object.keys(panels));
+            let max = Math.max(...Object.keys(panels));
             let index = 1;
 
             let startTime = Date.now();
@@ -36,6 +36,16 @@
                 }
 
                 if (index === max) {
+                    setInterval(function () {
+                        if (index === max) {
+                            let txt = $('#text').html();
+                            let strtime = txt.match(/(?<=in\s+).*?(?=\s+seconds)/gs);
+                            let time = Math.round((timeLimit - (Date.now() - startTime)) / 1000);
+                            txt = txt.replace(strtime, time);
+                            $('#text').html(txt);
+                        }
+                    }, 100);
+
                     $('#col-next').hide();
                 }
             })
@@ -46,18 +56,28 @@
                 if (index === 1) {
                     $('#col-previous').hide();
                 }
+                if (index <= max) {
+                    $('#col-next').show();
+                }
             })
 
             setInterval(function () {
+                liveSend('hey');
                 if ((Date.now() - startTime) > timeLimit) {
                     $('#main').fadeOut(140);
                     $('#form').submit();
-                } else {
-                    liveSend('Hey');
                 }
             }, 2000);
 
+
         });
+
+        function liveRecv(data) {
+            if (data === true) {
+                $('#main').fadeOut(140);
+                $('#form').submit();
+            }
+        }
 
     </script>
 
