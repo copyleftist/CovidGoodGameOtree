@@ -69,7 +69,7 @@ panels = {
        '</p>',
     5: '<p>'
        'In the third step of the round, you will see the <b>outcome</b> of the <b>contribution step</b>. '
-       'Also, both players type will be displayed, whether or not you or the other player chose to disclose in the previous steps.'
+       'Your type, as well as the type of the player with whom you have played will be revealed.<br>'#Also, both players type will be displayed, whether or not you or the other player chose to disclose in the previous steps.'
        '<br><br>Suppose you are a <b style="color: #d4c84d">yellow</b> player, your contribution to the public pot will be multiplied by <b style="color: #d4c84d">0.8</b>. '
        'Suppose you chose to contribute 10 points to the public pot, then your final contribution will be 8 because 10x<b style="color: #d4c84d">0.8</b> = 8.<br>'
        '<br>Suppose the other player is <b style="color: #5893f6">blue</b> and chose to contribute also 10 points to the public pot, '
@@ -81,7 +81,7 @@ panels = {
        '<b>Please note that payoffs from all the 60 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
        'Regarding your bonus compensation, here is the conversion: <br>'
        ' 1 point = 0.5 pence <br>'
-       ' 192 points = 1 pound <br>'
+       ' 200 points = 1 pound <br>'
        'Note that you can win up to 5 pounds as a bonus compensation.'
        '</p>',
     6: '<p>'
