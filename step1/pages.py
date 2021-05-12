@@ -9,8 +9,8 @@ from utils.debug import logger
 
 SECOND = 1000
 MINUTE = SECOND * 60
-DROPOUT_TIME = 15 * SECOND
-INSTRUCTIONS_TIME = 3 * SECOND
+DROPOUT_TIME = 30 * SECOND
+INSTRUCTIONS_TIME = 10 * MINUTE
 RESULTS_TIME = 7.5 * SECOND
 
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -42,8 +42,8 @@ class Instructions(Page):
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        time_since_opening = (time.time() - player.time_instructions)
-        if time_since_opening*SECOND > INSTRUCTIONS_TIME:
+        time_since_opening = (time.time() - player.time_instructions) * SECOND
+        if time_since_opening > INSTRUCTIONS_TIME:
             return {player.id_in_group: True}
         return False
 
@@ -208,8 +208,8 @@ def _check_for_disconnections(player):
     players = _get_all_players(player)
     real_players = [p for p in players if not p.participant.is_dropout]
     for p in real_players:
-        t = time.time() - p.participant.time_at_last_response
-        if t * SECOND > DROPOUT_TIME:
+        t = (time.time() - p.participant.time_at_last_response) * SECOND
+        if t > DROPOUT_TIME:
             p.participant.is_dropout = True
 
 

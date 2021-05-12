@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/survey/templates/survey/Section1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/instructions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/survey/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/survey/pages.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +149,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/getz/Pycharm/CovidGoodGameOtree/step1/models.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/survey/templates/survey" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -155,11 +161,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGameOtree\survey\templates\survey" />
       <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGameOtree\step1\templates\step1" />
       <recent name="$PROJECT_DIR$/step1/templates/step1" />
       <recent name="$PROJECT_DIR$/_templates/global" />
       <recent name="$PROJECT_DIR$/step1" />
-      <recent name="C:\Users\Basile\PycharmProjects\CovidGoodGame3\step1\templates\step1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/_static/css" />

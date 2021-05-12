@@ -55,15 +55,17 @@ panels = {
        '<b>2) You both hide</b> <br><br>' + two_players(None, None, '...', '...') +
        '<b>3) You disclose and the other player hides</b> <br><br>' + two_players(1.2, None, 1.2, '...') +
        '<b>4) You hide and the other player discloses</b> <br><br>' + two_players(None, 0.8, '...', 0.8) +
+       '<br><br><b> Please note that you have 30 seconds to choose to disclose or hide your multiplier, if you take more time, you will be disconnected.<br>'
        '<p>',
 
     4: '<p>'
        'In the second step of the round, you will see the outcome of the previous decision, that is one of the <b>4 "disclosure" situations</b>.'
-       ' Also, in each round, your private wallet  will be <b>endowed with 10 points</b>, and you will be asked to contribute to the public pot. You will be able to do so '
+       '<br><br>Also, in each round, your private wallet  will be <b>endowed with 10 points</b>, and you will be asked to contribute to the public pot. You will be able to do so '
        'using a slider, which value corresponds to the number of points you want to put in the public pot. <br>'
        'To select a value on the slider you can either select with your mouse cursor, eitheir using your left and right arrow keys on your keyboard.'
        ' The maximum contribution is 10, while the minimum is 0.<br>'
        '<br><div align="center"><img src="/static/img/contribute.gif"><br></div>'
+       '<br><b> Please note that you have 30 seconds to give your contribution, if you take more time, you will be disconnected.<br>'
        '</p>',
     5: '<p>'
        'In the third step of the round, you will see the <b>outcome</b> of the <b>contribution step</b>. '
@@ -75,8 +77,8 @@ panels = {
        '<br><br>The total contribution (the sum of both player contribution) is then distributed equally among the players such that:<br>'
        '<div align="center">IND. SHARE = 10 = ((10x<b style="color: #d4c84d">0.8</b>) + (10x<b style="color: #5893f6">1.2</b>))/2</div>'
         '<br>It means that both player individual share is 10 points for this hypothetical round. <br><br>'
-       '<b>Now the payoff you will receive is your individual share added to the points left in your private wallet.<b>'
-       '<b>Please note that payoffs from all the 60 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b>'
+       '<b>Please note that the payoff you will receive is your individual share added to the points left in your private wallet.<b><br><br>'
+       '<b>Please note that payoffs from all the 60 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
        'Regarding your bonus compensation, here is the conversion: <br>'
        ' 1 point = 0.5 pence <br>'
        ' 192 points = 1 pound <br>'

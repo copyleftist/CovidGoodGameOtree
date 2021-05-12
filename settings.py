@@ -8,6 +8,7 @@ SESSION_CONFIGS = [
         num_demo_participants=12,
         single_player=False,
         use_browser_bots=False,
+        completion_link='',
         app_sequence=['step1'],
     ),
 
@@ -15,7 +16,7 @@ SESSION_CONFIGS = [
         name='survey',
         display_name='survey',
         num_demo_participants=1,
-        app_sequence=['survey', 'payment_info'],
+        app_sequence=['survey'],
     ),
 ]
 
