@@ -35,15 +35,17 @@ class Instructions(Page):
 
     def vars_for_template(self):
         from .instructions import panels, titles
+        limit = self.session.config.get('instructions_time') * SECOND
         if self.player.time_instructions == -1:
             self.player.time_instructions = time.time()
-        return {'panels': panels, 'titles': titles, 'instructionsTime': INSTRUCTIONS_TIME}
+        return {'panels': panels, 'titles': titles, 'instructionsTime': limit}
 
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
         time_since_opening = (time.time() - player.time_instructions) * SECOND
-        if time_since_opening > INSTRUCTIONS_TIME:
+        limit = player.session.config.get('instructions_time') * SECOND
+        if time_since_opening > limit:
             return {player.id_in_group: True}
         return False
 
@@ -189,7 +191,7 @@ class Results(Page):
             'player_color': '#5893f6' if player_multiplier == Constants.multiplier_good else '#d4c84d',
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'disclose': opp_disclose,
-            'resultsTime': RESULTS_TIME
+            'resultsTime': self.session.config.get('results_time') * SECOND
         }
 
 
@@ -207,9 +209,10 @@ def _set_as_connected(player):
 def _check_for_disconnections(player):
     players = _get_all_players(player)
     real_players = [p for p in players if not p.participant.is_dropout]
+    limit = player.session.config.get('dropout_time')*SECOND
     for p in real_players:
         t = (time.time() - p.participant.time_at_last_response) * SECOND
-        if t > DROPOUT_TIME:
+        if t > limit:
             p.participant.is_dropout = True
 
 

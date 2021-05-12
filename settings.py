@@ -3,12 +3,14 @@ from os import environ
 DEBUG = 0
 SESSION_CONFIGS = [
     dict(
-        name='theresa_fernanda_base',
-        display_name="Public Covid",
+        name='baseline',
+        display_name="baseline",
         num_demo_participants=12,
         single_player=False,
         use_browser_bots=False,
-        completion_link='',
+        instructions_time=60*10,
+        dropout_time=30,
+        results_time=7.5,
         app_sequence=['step1'],
     ),
 

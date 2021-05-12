@@ -146,10 +146,10 @@ class Group(BaseGroup):
         players = self.get_players()
         contributions = [p.contribution*p.participant.multiplier for p in players]
         self.total_contribution = sum(contributions)
-        self.individual_share = self.total_contribution / Constants.players_per_group
+        self.individual_share = np.round(self.total_contribution / Constants.players_per_group, 2)
         for p in players:
-            p.payoff = Constants.endowment - p.contribution + self.individual_share
-            p.reward = Constants.endowment - p.contribution + self.individual_share
+            p.payoff = np.round(Constants.endowment - p.contribution + self.individual_share, 2)
+            p.reward = np.round(Constants.endowment - p.contribution + self.individual_share, 2)
 
     def record_round_data(self):
         players = self.get_players()
