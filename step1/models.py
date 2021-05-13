@@ -70,9 +70,6 @@ class Subsession(BaseSubsession):
                 f'Round {self.round_number}: '
                 'Set matching pairs with a fixed nb of GG, GB, BB.')
             n_players = self.session.num_participants
-
-            n_group = n_players/3
-
             types = {
                 Constants.multiplier_bad: [],
                 Constants.multiplier_good: []
@@ -86,14 +83,10 @@ class Subsession(BaseSubsession):
             np.random.shuffle(types[Constants.multiplier_bad])
 
             n_row = n_players//Constants.players_per_group
+            n_group_per_matching = n_row/3
+
             matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
 
-            # begin = [0,
-            #     round(n_row_col*ratio[0]),
-            #     round(n_row_col*ratio[0]+n_row_col*ratio[1])
-            # ]
-            #
-            # end = [round(n_row_col*i) for i in ratio]
             multipliers = [
                 (Constants.multiplier_good, Constants.multiplier_bad),
                 (Constants.multiplier_good, Constants.multiplier_good),
@@ -101,18 +94,14 @@ class Subsession(BaseSubsession):
             ]
 
             count = 0
-            for i, (m1, m2) in enumerate(multipliers):
-                for g in range(n_group):
+            for m1, m2 in multipliers:
+                for _ in range(n_group_per_matching):
                     matrix[count, :] = [types[m1].pop(), types[m2].pop()]
                     count += 1
 
             assert count == n_row
-
-            # for i, j, k in zip(begin, end, multipliers):
-            #     matrix[i:i+j, :] = [
-            #         [types[k[0]].pop(), types[k[1]].pop()]
-            #         for _ in range(j)
-            #     ]
+            assert (len(types[Constants.multiplier_good])==0) \
+                   and (len(types[Constants.multiplier_bad])==0)
 
             self.set_group_matrix(matrix)
 
