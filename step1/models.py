@@ -83,7 +83,7 @@ class Subsession(BaseSubsession):
             np.random.shuffle(types[Constants.multiplier_bad])
 
             n_row = n_players//Constants.players_per_group
-            n_group_per_matching = n_row/3
+            n_group_per_matching = n_row//3
 
             matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
 
