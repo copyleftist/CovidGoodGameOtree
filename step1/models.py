@@ -42,9 +42,9 @@ class Subsession(BaseSubsession):
                     + [Constants.multiplier_bad, ] * (n_participant // 2)
         np.random.shuffle(multipliers)
 
-        for p in self.get_players():
+        for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)
-            p.participant.idx = p.participant.id_in_session - 1
+            p.participant.idx = i
             p.participant.multiplier = multipliers[p.participant.idx]
 
             # init data fields to use in next app
