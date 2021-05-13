@@ -7,7 +7,6 @@ SESSION_CONFIGS = [
         display_name="baseline",
         num_demo_participants=12,
         single_player=False,
-        use_browser_bots=False,
         instructions_time=60*10,
         dropout_time=30,
         results_time=7.5,

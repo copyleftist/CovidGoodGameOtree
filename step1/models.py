@@ -65,8 +65,6 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             self.init()
 
-        self.deterministic =  self.session.num_participants % 3 == 0
-
         if self.deterministic:
             logger.debug(
                 f'Round {self.round_number}: '
