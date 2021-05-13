@@ -13,6 +13,7 @@ DROPOUT_TIME = 30 * SECOND
 INSTRUCTIONS_TIME = 10 * MINUTE
 RESULTS_TIME = 7.5 * SECOND
 
+
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
 # ------------------------------------------------------------------------------------------------------------------- #
@@ -51,7 +52,6 @@ class Instructions(Page):
 
 
 class Disclose(Page):
-
     def get_template_name(self):
         if self.participant.is_dropout:
             return 'step1/Dropout.html'
@@ -60,9 +60,7 @@ class Disclose(Page):
 
     def vars_for_template(self):
         from .html import wait
-
         _set_as_connected(self.player)
-
         return {
             'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
             'html': wait
