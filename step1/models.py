@@ -23,7 +23,6 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    deterministic = models.BooleanField(default=False)
 
     def init(self):
         """
@@ -34,8 +33,6 @@ class Subsession(BaseSubsession):
                      ' attributing multipliers and participant labels.')
         n_participant = self.session.num_participants
         logger.debug(f'N participants = {n_participant}')
-        if n_participant % 3 == 0:
-            self.deterministic = True
 
         # equal repartition of types
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
@@ -65,7 +62,7 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             self.init()
 
-        if self.deterministic:
+        if self.session.num_participants % 3 == 0:
             logger.debug(
                 f'Round {self.round_number}: '
                 'Set matching pairs with a fixed nb of GG, GB, BB.')
