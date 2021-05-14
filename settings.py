@@ -5,8 +5,8 @@ SESSION_CONFIGS = [
     dict(
         name='baseline',
         display_name="baseline",
-        num_demo_participants=12,
         single_player=False,
+        num_demo_participants=10,
         instructions_time=60*10,
         dropout_time=30,
         results_time=7.5,
