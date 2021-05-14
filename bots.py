@@ -130,7 +130,7 @@ def run(idx, url):
         p_disclose = p_disclose[i]
     p_contrib = np.exp(p_contrib)/np.sum(np.exp(p_contrib))
 
-    b = Bot(url=url, idx=idx, slow=slow, p_disclose=p_disclose, p_contrib=p_contrib)
+    b = Bot(url=url+f"?participant_label=Bob{idx}", idx=idx, slow=slow, p_disclose=p_disclose, p_contrib=p_contrib)
     print(f'Bot {b.idx} is running')
     b.run()
 
