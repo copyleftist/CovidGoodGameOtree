@@ -41,8 +41,6 @@ class Subsession(BaseSubsession):
 
         for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)
-            print(i)
-            print(multipliers)
             p.participant.idx = i
             p.participant.multiplier = multipliers[p.participant.idx]
 
