@@ -41,6 +41,8 @@ class Subsession(BaseSubsession):
 
         for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)
+            print(i)
+            print(multipliers)
             p.participant.idx = i
             p.participant.multiplier = multipliers[p.participant.idx]
 
@@ -66,6 +68,7 @@ class Subsession(BaseSubsession):
             logger.debug(
                 f'Round {self.round_number}: '
                 'Set matching pairs with a fixed nb of GG, GB, BB.')
+
             n_players = self.session.num_participants
             types = {
                 Constants.multiplier_bad: [],
@@ -81,25 +84,19 @@ class Subsession(BaseSubsession):
 
             n_row = n_players//Constants.players_per_group
             n_group_per_matching = n_row//3
-
-            matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
-
             multipliers = [
                 (Constants.multiplier_good, Constants.multiplier_bad),
                 (Constants.multiplier_good, Constants.multiplier_good),
                 (Constants.multiplier_bad, Constants.multiplier_bad)
             ]
 
+            matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
             count = 0
             for m1, m2 in multipliers:
                 for _ in range(n_group_per_matching):
                     matrix[count, :] = [types[m1].pop(), types[m2].pop()]
                     count += 1
-
             assert count == n_row
-            assert (len(types[Constants.multiplier_good])==0) \
-                   and (len(types[Constants.multiplier_bad])==0)
-
             self.set_group_matrix(matrix)
 
 
