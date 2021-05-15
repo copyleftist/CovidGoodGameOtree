@@ -29,6 +29,18 @@ class Init(WaitPage):
         return (self.round_number == 1) and (sum(real_participants) > 1)
 
 
+class End(Page):
+
+    def vars_for_template(self):
+        total = self.player.participant.total
+        pounds = np.round(total*.005, 2)
+        pences = np.round(pounds*100, 2)
+        return {'total': total, 'pences': pences, 'pounds': pounds}
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
 class Instructions(Page):
 
     def is_displayed(self):
@@ -193,7 +205,7 @@ class Results(Page):
         }
 
 
-page_sequence = [Init, Instructions, Disclose, Contribute, Results]
+page_sequence = [Init, Instructions, Disclose, Contribute, Results, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions

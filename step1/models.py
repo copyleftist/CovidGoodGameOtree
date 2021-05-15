@@ -16,7 +16,7 @@ from settings import SESSION_CONFIGS
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 60
+    num_rounds = 15
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
@@ -55,6 +55,8 @@ class Subsession(BaseSubsession):
                                        and (p.participant.id_in_session != 1)
 
             p.participant.time_at_last_response = np.NaN
+
+            p.participant.total = 0
 
     def creating_session(self):
         """
@@ -136,6 +138,7 @@ class Group(BaseGroup):
         for p in players:
             p.payoff = np.round(Constants.endowment - p.contribution + self.individual_share, 2)
             p.reward = np.round(Constants.endowment - p.contribution + self.individual_share, 2)
+            p.participant.total += p.reward
 
     def record_round_data(self):
         players = self.get_players()
@@ -158,6 +161,7 @@ class Player(BasePlayer):
     response2 = models.BooleanField(default=False)
     reward = models.FloatField(default=-1)
     time_instructions = models.FloatField(default=-1)
+    total = models.FloatField(default=0)
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():

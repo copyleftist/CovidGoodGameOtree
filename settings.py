@@ -66,4 +66,4 @@ SECRET_KEY = '7f%n61qy537uzmsb3$zsxjxlpeqzb=442lk_&t&)(!-xj%fn^h'
 INSTALLED_APPS = ['otree']
 
 PARTICIPANT_FIELDS = ['opp_id', 'multiplier', 'disclose', 'contribution',
-                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response']
+                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total']
