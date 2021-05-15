@@ -17,6 +17,11 @@ RESULTS_TIME = 7.5 * SECOND
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
 # ------------------------------------------------------------------------------------------------------------------- #
+# def vars_for_admin_report(subsession):
+#     disconnected = [(p.participant.label, p.participant.code, p.participant.is_dropout)
+#                     for p in _get_all_players(subsession.get_players()[0])]
+#     print('*' * 100)
+#     return dict(players=disconnected)
 
 
 class Init(WaitPage):

@@ -138,9 +138,10 @@ def run(idx, url):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-u', '--url', help='global link for the experiment')
+    parser.add_argument('-n', '--nbot', help='number of bots')
     args = parser.parse_args()
 
-    n_bot = SESSION_CONFIGS[0]['num_demo_participants']
+    n_bot = int(args.nbot)
     n_process = n_bot
 
     with ThreadPool(processes=n_process) as pool:
