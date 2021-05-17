@@ -113,7 +113,7 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = idx % 10 == 0
+    slow = False
     p_contrib = np.ones(10)
     if idx < 10:
         p_contrib[idx] = 10

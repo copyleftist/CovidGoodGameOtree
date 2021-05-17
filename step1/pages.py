@@ -46,6 +46,29 @@ class End(Page):
         return self.round_number == Constants.num_rounds
 
 
+class DisclosureSorting(WaitPage):
+    template_name = 'step1/DisclosureSorting.html'
+    wait_for_all_groups = True
+
+    @staticmethod
+    def after_all_players_arrive(subsession):
+        subsession.group_with_disclosure()
+
+    def is_displayed(player):
+        return player.round_number == (Constants.num_rounds//2)
+
+
+class DisclosureSorting(WaitPage):
+    template_name = 'step1/DisclosureSorting.html'
+
+    @staticmethod
+    def after_all_players_arrive(subsession):
+        subsession.group_with_disclosure()
+
+    def is_displayed(player):
+        return player.round_number > (Constants.num_rounds // 2)
+
+
 class Instructions(Page):
 
     def is_displayed(self):
@@ -83,7 +106,7 @@ class Disclose(Page):
             'html': wait,
             'modalReal': real,
             'training': int(self.player.round_number <= 3),
-            'real': int(self.player.round_number == 4)
+            'real': int(self.player.round_number == 20)
         }
 
     @staticmethod
@@ -146,7 +169,7 @@ class Contribute(Page):
             'opponent_multiplier': opp_multiplier,
             'player_multiplier': player_multiplier,
             'html': wait,
-            'training': int(self.player.round_number <= 3)
+            'training': int(self.player.round_number <= 20)
         }
 
     @staticmethod
@@ -211,12 +234,12 @@ class Results(Page):
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'disclose': opp_disclose,
             'resultsTime': self.session.config.get('results_time') * SECOND,
-            'training': int(self.player.round_number <= 3)
+            'training': int(self.player.round_number <= 20)
 
         }
 
 
-page_sequence = [Init, Instructions, Disclose, Contribute, Results, End]
+page_sequence = [Init, Instructions, DisclosureSorting, Disclose, Contribute, Results, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions

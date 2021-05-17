@@ -16,13 +16,14 @@ from settings import SESSION_CONFIGS
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 13
+    num_rounds = 6
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
 
 
 class Subsession(BaseSubsession):
+    is_grouped_with_disclosure = models.BooleanField(default=False)
 
     def init(self):
         """
@@ -38,6 +39,9 @@ class Subsession(BaseSubsession):
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
                       + [Constants.multiplier_bad, ] * (n_participant // 2)
         np.random.shuffle(multipliers)
+
+        self.session.group1 = np.ones(len(n_participant // 2)) * -1
+        self.session.group2 = np.ones(len(n_participant // 2)) * -1
 
         for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)
@@ -55,6 +59,8 @@ class Subsession(BaseSubsession):
                                        and (p.participant.id_in_session != 1)
 
             p.participant.time_at_last_response = np.NaN
+
+            p.participant.disclosure_group = -1
 
             p.participant.total = 0
 
@@ -102,6 +108,62 @@ class Subsession(BaseSubsession):
                 count += 1
         assert count == n_row
         self.set_group_matrix(matrix)
+
+    def group_with_disclosure(self):
+        if not self.is_grouped_with_disclosure:
+
+            if all(self.session.group1 == -1) :
+                logger.debug(
+                    f'Round {self.round_number}: '
+                    'Create groups and match according to disclosure rate')
+
+                data = np.zeros(self.session.num_participants)
+                for p in self.get_players():
+                    cond = p.participant.disclose != -1
+                    data[p.participant.id_in_session - 1] = np.mean(p.participant.disclose[cond])
+
+                idx_order = np.argsort(data) + 1
+                length = len(idx_order)
+                group1 = idx_order[0:length // 2]
+                group2 = idx_order[length // 2:]
+
+                for p in self.get_players():
+                    p.participant.disclosure_group = \
+                        1 if p.participant.id_in_session in group1 else 2
+
+                self.session.group1 = group1.copy()
+                self.session.group2 = group2.copy()
+
+            group1 = self.session.group1.copy()
+            group2 = self.session.group2.copy()
+
+            np.random.shuffle(group1)
+            np.random.shuffle(group2)
+
+            assert len(group1) == len(group2)
+
+            group1 = np.reshape(group1, [len(group1) // 2, 2])
+            group2 = np.reshape(group2, [len(group2) // 2, 2])
+
+            matrix = np.concatenate((group1, group2), axis=0)
+            self.set_group_matrix(matrix)
+
+        # else:
+        #     logger.debug(
+        #         f'Round {self.round_number}: '
+        #         'Match according to disclosure rate')
+        #
+        #     group1 = self.session.group1.copy()
+        #     group2 = self.session.group2.copy()
+        #     np.random.shuffle(group1)
+        #     np.random.shuffle(group2)
+        #
+        #     group1 = np.reshape(group1, [len(group1) // 2, 2])
+        #     group2 = np.reshape(group2, [len(group2) // 2, 2])
+        #
+        #     matrix = np.concatenate((group1, group2), axis=0)
+        #
+        #     self.set_group_matrix(matrix)
 
 
 class Group(BaseGroup):
