@@ -258,7 +258,8 @@ def _get_average_contrib(player):
     else:
         contribution = []
         for p in _get_all_players(player):
-            contribution.append(p.participant.contribution[t - 1])
+            if not p.participant.is_dropout:
+                contribution.append(p.participant.contribution[t - 1])
         contribution = np.round(np.mean(contribution))
     return contribution
 
@@ -272,7 +273,8 @@ def _get_average_disclose(player):
     else:
         disclose = []
         for p in _get_all_players(player):
-            disclose.append(p.participant.disclose[t - 1])
+            if not p.participant.is_dropout:
+                disclose.append(p.participant.disclose[t - 1])
         p_disclose = np.mean(disclose)
     return np.random.choice(
             [0, 1], p=[1-p_disclose, p_disclose])
