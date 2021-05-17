@@ -79,7 +79,7 @@ panels = {
         '<br>It means that both player individual share is 10 points for this hypothetical round. <br><br>'
        '<b>Please note that the payoff you will receive is your individual share added to the points left in your private wallet. In the fictional example above, there are no points letft '
        'in your private wallet because you contributed the maximum number of points.<b><br><br>'
-       '<b>Please note that payoffs from all the 60 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
+       '<b>Please note that payoffs from all the 10 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
        'Regarding your bonus compensation, here is the conversion: <br>'
        ' 1 point = 0.5 pence <br>'
        ' 200 points = 1 pound <br>'
