@@ -1,5 +1,6 @@
 from settings import pounds_per_point
 
+
 def two_players(m1, m2, t1, t2):
     s = f'''<div class="row">
     <div class="col">
