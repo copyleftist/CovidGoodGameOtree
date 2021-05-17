@@ -36,7 +36,7 @@ class Subsession(BaseSubsession):
 
         # equal repartition of types
         multipliers = [Constants.multiplier_good, ] * (n_participant // 2) \
-                    + [Constants.multiplier_bad, ] * (n_participant // 2)
+                      + [Constants.multiplier_bad, ] * (n_participant // 2)
         np.random.shuffle(multipliers)
 
         for i, p in enumerate(self.get_players()):
@@ -51,7 +51,7 @@ class Subsession(BaseSubsession):
             # p.participant.opp_multiplier = np.zeros(Constants.num_rounds)
             p.participant.opp_id = np.zeros(Constants.num_rounds)
 
-            p.participant.is_dropout = self.session.config.get('single_player')\
+            p.participant.is_dropout = self.session.config.get('single_player') \
                                        and (p.participant.id_in_session != 1)
 
             p.participant.time_at_last_response = np.NaN
@@ -66,40 +66,42 @@ class Subsession(BaseSubsession):
             self.init()
 
         if self.session.num_participants % 3 == 0:
-            logger.debug(
-                f'Round {self.round_number}: '
-                'Set matching pairs with a fixed nb of GG, GB, BB.')
+            self.deterministic_matching()
 
-            n_players = self.session.num_participants
-            types = {
-                Constants.multiplier_bad: [],
-                Constants.multiplier_good: []
-            }
+    def deterministic_matching(self):
+        logger.debug(
+            f'Round {self.round_number}: '
+            'Set matching pairs with a fixed nb of GG, GB, BB.')
 
-            for p in self.get_players():
-                types[p.participant.multiplier]\
-                    .append(p.participant.id_in_session)
+        n_players = self.session.num_participants
+        types = {
+            Constants.multiplier_bad: [],
+            Constants.multiplier_good: []
+        }
 
-            np.random.shuffle(types[Constants.multiplier_good])
-            np.random.shuffle(types[Constants.multiplier_bad])
+        for p in self.get_players():
+            types[p.participant.multiplier] \
+                .append(p.participant.id_in_session)
 
-            n_row = n_players//Constants.players_per_group
-            n_group_per_matching = n_row//3
-            multipliers = [
-                (Constants.multiplier_good, Constants.multiplier_bad),
-                (Constants.multiplier_good, Constants.multiplier_good),
-                (Constants.multiplier_bad, Constants.multiplier_bad)
-            ]
+        np.random.shuffle(types[Constants.multiplier_good])
+        np.random.shuffle(types[Constants.multiplier_bad])
 
-            matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
-            count = 0
-            for m1, m2 in multipliers:
-                for _ in range(n_group_per_matching):
-                    matrix[count, :] = [types[m1].pop(), types[m2].pop()]
-                    count += 1
-            assert count == n_row
-            self.set_group_matrix(matrix)
+        n_row = n_players // Constants.players_per_group
+        n_group_per_matching = n_row // 3
+        multipliers = [
+            (Constants.multiplier_good, Constants.multiplier_bad),
+            (Constants.multiplier_good, Constants.multiplier_good),
+            (Constants.multiplier_bad, Constants.multiplier_bad)
+        ]
 
+        matrix = np.zeros((n_row, Constants.players_per_group), dtype=int)
+        count = 0
+        for m1, m2 in multipliers:
+            for _ in range(n_group_per_matching):
+                matrix[count, :] = [types[m1].pop(), types[m2].pop()]
+                count += 1
+        assert count == n_row
+        self.set_group_matrix(matrix)
 
 
 class Group(BaseGroup):
@@ -133,7 +135,7 @@ class Group(BaseGroup):
 
     def set_payoffs(self):
         players = self.get_players()
-        contributions = [p.contribution*p.participant.multiplier for p in players]
+        contributions = [p.contribution * p.participant.multiplier for p in players]
         self.total_contribution = sum(contributions)
         self.individual_share = np.round(self.total_contribution / Constants.players_per_group, 2)
         for p in players:
@@ -147,11 +149,11 @@ class Group(BaseGroup):
         id_of_opp = {1: 2, 2: 1}
 
         for p in players:
-            p.participant.disclose[self.round_number-1] = p.disclose
-            p.participant.contribution[self.round_number-1] = p.contribution
+            p.participant.disclose[self.round_number - 1] = p.disclose
+            p.participant.contribution[self.round_number - 1] = p.contribution
             opp = self.get_player_by_id(id_of_opp[p.id_in_group])
             # p.participant.opp_multiplier[self.round_number-1] = opp.multiplier
-            p.participant.opp_id[self.round_number-1] = opp.participant.idx
+            p.participant.opp_id[self.round_number - 1] = opp.participant.idx
 
 
 class Player(BasePlayer):
@@ -183,81 +185,81 @@ class Player(BasePlayer):
 
 
 def custom_export(players):
-        #header row
+    # header row
+    yield [
+        'app',
+        'session',
+        'session_is_demo',
+        'p1.is_bot',
+        'p1.participant_code',
+        'p1.prolific_id',
+        'p1.id_in_session',
+        'p1.id_in_group',
+        'p1.multiplier',
+        'p1.disclose',
+        'p1.contribution',
+        'p1.rt1',
+        'p1.rt2',
+        'p1.payoff',
+        'p1.total',
+        'p2.is_bot',
+        'p2.participant_code',
+        'p2.prolific_id',
+        'p2.id_in_session',
+        'p2.id_in_group',
+        'p2.multiplier',
+        'p2.disclose',
+        'p2.contribution',
+        'p2.rt1',
+        'p2.rt2',
+        'p2.payoff',
+        'p2.total',
+        'round_number',
+        'individual_share',
+        'total_contribution',
+        'group_id'
+    ]
+    groups = []
+    for p in players:
+        # participant = p.participant
+        # session = p.session
+        if p.group not in groups:
+            groups.append(p.group)
+    for group in groups:
+        p1 = group.get_player_by_id(1)
+        p2 = group.get_player_by_id(2)
+        assert p1.round_number == p2.round_number
+        assert p1.group.id == p2.group.id
         yield [
-            'app',
-            'session',
-            'session_is_demo',
-            'p1.is_bot',
-            'p1.participant_code',
-            'p1.prolific_id',
-            'p1.id_in_session',
-            'p1.id_in_group',
-            'p1.multiplier',
-            'p1.disclose',
-            'p1.contribution',
-            'p1.rt1',
-            'p1.rt2',
-            'p1.payoff',
-            'p1.total',
-            'p2.is_bot',
-            'p2.participant_code',
-            'p2.prolific_id',
-            'p2.id_in_session',
-            'p2.id_in_group',
-            'p2.multiplier',
-            'p2.disclose',
-            'p2.contribution',
-            'p2.rt1',
-            'p2.rt2',
-            'p2.payoff',
-            'p2.total',
-            'round_number',
-            'individual_share',
-            'total_contribution',
-            'group_id'
+            p1.participant._current_app_name,
+            p1.session.code,
+            p1.session.is_demo,
+            p1.participant.is_dropout,
+            p1.participant.code,
+            p1.participant.label,
+            p1.participant.id_in_session,
+            p1.id_in_group,
+            p1.participant.multiplier,
+            p1.disclose,
+            p1.contribution,
+            p1.rt1,
+            p1.rt2,
+            p1.reward,
+            p1.participant.total,
+            p2.participant.is_dropout,
+            p2.participant.code,
+            p2.participant.label,
+            p2.participant.id_in_session,
+            p2.id_in_group,
+            p2.participant.multiplier,
+            p2.disclose,
+            p2.contribution,
+            p2.rt1,
+            p2.rt2,
+            p2.reward,
+            p2.participant.total,
+            group.round_number,
+            group.individual_share,
+            group.total_contribution,
+            group.id
         ]
-        groups = []
-        for p in players:
-            # participant = p.participant
-            # session = p.session
-            if p.group not in groups:
-                groups.append(p.group)
-        for group in groups:
-            p1 = group.get_player_by_id(1)
-            p2 = group.get_player_by_id(2)
-            assert p1.round_number == p2.round_number
-            assert p1.group.id == p2.group.id
-            yield [
-                p1.participant._current_app_name,
-                p1.session.code,
-                p1.session.is_demo,
-                p1.participant.is_dropout,
-                p1.participant.code,
-                p1.participant.label,
-                p1.participant.id_in_session,
-                p1.id_in_group,
-                p1.participant.multiplier,
-                p1.disclose,
-                p1.contribution,
-                p1.rt1,
-                p1.rt2,
-                p1.reward,
-                p1.participant.total,
-                p2.participant.is_dropout,
-                p2.participant.code,
-                p2.participant.label,
-                p2.participant.id_in_session,
-                p2.id_in_group,
-                p2.participant.multiplier,
-                p2.disclose,
-                p2.contribution,
-                p2.rt1,
-                p2.rt2,
-                p2.reward,
-                p2.participant.total,
-                group.round_number,
-                group.individual_share,
-                group.total_contribution,
-                group.id
-            ]
