@@ -101,9 +101,9 @@ class Disclose(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            if not _everybody_played_disclose(player):
-                logger.debug('Wait for all players to play before bots response')
-                return {player.id_in_group: False}
+            # if not _everybody_played_disclose(player):
+            #     logger.debug('Wait for all players to play before bots response')
+            #     return {player.id_in_group: False}
 
             disclose = _get_average_disclose(player)
             other_player.set_disclose(disclose=disclose)
@@ -164,9 +164,9 @@ class Contribute(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            if not _everybody_played_contrib(player):
-                logger.debug('Wait for all players to play before bots response')
-                return {player.id_in_group: False}
+            # if not _everybody_played_contrib(player):
+            #     logger.debug('Wait for all players to play before bots response')
+            #     return {player.id_in_group: False}
 
             contribution = _get_average_contrib(player)
             other_player.set_contribution(contribution)
@@ -250,16 +250,30 @@ def _get_all_players(player):
 
 
 def _get_average_contrib(player):
-    contribution = np.round(np.mean(
-        [p.contribution for p in _get_all_players(player) if not p.participant.is_dropout]
-    ))
+    t = player.round_number
+    if t == 1:
+        contribution = np.round(np.mean(
+            [p.contribution for p in _get_all_players(player) if not p.participant.is_dropout]
+        ))
+    else:
+        contribution = []
+        for p in _get_all_players(player):
+            contribution.append(p.participant.contribution[t - 1])
+        contribution = np.round(np.mean(contribution))
     return contribution
 
 
 def _get_average_disclose(player):
-    p_disclose = np.mean(
-        [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
-    )
+    t = player.round_number
+    if t == 1:
+        p_disclose = np.mean(
+            [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
+        )
+    else:
+        disclose = []
+        for p in _get_all_players(player):
+            disclose.append(p.participant.disclose[t - 1])
+        p_disclose = np.mean(disclose)
     return np.random.choice(
             [0, 1], p=[1-p_disclose, p_disclose])
 
