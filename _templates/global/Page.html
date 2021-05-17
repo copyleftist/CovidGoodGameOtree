@@ -1,5 +1,6 @@
 {% extends "otree/Page.html" %}
 
+
 {% load otree %}
 
 
@@ -7,6 +8,7 @@
 {% block global_styles  %}
      <link href="{% static 'css/slider.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <title>Online experiment</title>
 
     <style>
         @font-face {
@@ -26,6 +28,6 @@
     <script src="{% static 'js/tween.umd.js' %}"> </script>
     <script src="{% static 'js/slider.js' %}"> </script>
     <script src="{% static 'js/rough.js' %}"> </script>
+    <script src="{% static 'js/main.js' %}"> </script>
 {% endblock %}
-
 

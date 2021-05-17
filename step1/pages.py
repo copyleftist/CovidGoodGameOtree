@@ -76,11 +76,14 @@ class Disclose(Page):
         return super().get_template_name()
 
     def vars_for_template(self):
-        from .html import wait
+        from .html import wait, real
         _set_as_connected(self.player)
         return {
             'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
-            'html': wait
+            'html': wait,
+            'modalReal': real,
+            'training': int(self.player.round_number <= 3),
+            'real': int(self.player.round_number == 4)
         }
 
     @staticmethod
@@ -142,7 +145,8 @@ class Contribute(Page):
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'opponent_multiplier': opp_multiplier,
             'player_multiplier': player_multiplier,
-            'html': wait
+            'html': wait,
+            'training': int(self.player.round_number <= 3)
         }
 
     @staticmethod
@@ -206,7 +210,9 @@ class Results(Page):
             'player_color': '#5893f6' if player_multiplier == Constants.multiplier_good else '#d4c84d',
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'disclose': opp_disclose,
-            'resultsTime': self.session.config.get('results_time') * SECOND
+            'resultsTime': self.session.config.get('results_time') * SECOND,
+            'training': int(self.player.round_number <= 3)
+
         }
 
 
@@ -259,7 +265,7 @@ def _get_average_contrib(player):
         contribution = []
         for p in _get_all_players(player):
             if not p.participant.is_dropout:
-                contribution.append(p.participant.contribution[t - 1])
+                contribution.append(p.participant.contribution[t - 2])
         contribution = np.round(np.mean(contribution))
     return contribution
 
@@ -274,7 +280,7 @@ def _get_average_disclose(player):
         disclose = []
         for p in _get_all_players(player):
             if not p.participant.is_dropout:
-                disclose.append(p.participant.disclose[t - 1])
+                disclose.append(p.participant.disclose[t - 2])
         p_disclose = np.mean(disclose)
     return np.random.choice(
             [0, 1], p=[1-p_disclose, p_disclose])

@@ -22,8 +22,9 @@ panels = {
        'This study is based on your voluntary participation and your data will be treated confidentially and anonymously.'
        'This experiment is composed of three phases: <br>'
        '1) Instructions<br>'
-       '2) A game<br>'
-       '3) A short survey<br>'
+       '2) A short training game.<br>'
+       '3) A game<br>'
+       '4) A short survey<br>'
        '<b>Please note that from now on you have 10 minutes to read these instructions. <br>'
        'After that the game will start automatically.</b>'
        '</p>',
@@ -34,7 +35,7 @@ panels = {
        'Your type will <b>remain</b> the same all along the game.<br>'
        'Note that different types have different multipliers (the latter is displayed on the character t-shirt).'
        '<br><br><div align="center"><img src="/static/img/2_players.png"><br><br></div>'
-       'In total there are <b>60 rounds</b>. In each round you will be randomly matched with another player. A round is divided into 3 steps:<br><br>'
+       'In total there are <b>10 rounds</b> (+ 3 training rounds). In each round you will be randomly matched with another player. A round is divided into 3 steps:<br><br>'
        '1) You will be asked if you want to either display or hide your multiplier, so that the other player will know your type or not.<br><br>'
        '2) You will be asked to contribute (a certain number of points) to a public pot.<br><br>'
        '3) Your contribution will be multiplied according to your type and the points put in the public pot'
@@ -86,7 +87,7 @@ panels = {
        'Note that you can win up to 5 pounds as a bonus compensation.'
        '</p>',
     6: '<p>'
-       '<br><br><b> The game will start in time seconds.</b>'
+       '<br><br><b> The training game will start in time seconds.</b>'
         '<p>'
 
 }

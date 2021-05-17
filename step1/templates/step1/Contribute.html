@@ -1,49 +1,93 @@
 {% extends "global/Page.html" %}
 
+
+{% block title %}
+        <!--- Timeline of the experiment ---------------------->
+<div class="md-stepper-horizontal black" id="timeline">
+    <div class="md-step" id="instructions">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Instructions</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="training">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Training</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active" id="experiment">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Experiment</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="questionnaire">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Survey</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+</div>
+    <br>
+    <br>
+<!-------------------------------------------------->
+{% endblock %}
+
 {% block content %}
     {#content#}
     <div class="container fade-in" id="main">
         <div class="row">
             <div class="col">
-                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙ </div>
+                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
                 <div class="box" style="float: left">
                     <img src="{% static player_character %}">
-                        <div class="text-centered">{{ player_multiplier }}</div>
+                    <div class="text-centered">{{ player_multiplier }}</div>
                 </div>
             </div>
+            <div class="col" align="center" >
+                <img style="margin-top: 36%" src="{% static 'img/pot.png' %}">
+            </div>
             <div class="col">
-                <div style="margin-left: 55%;color: gray;font-weight: bolder;">Other player<br> ↘ </div>
+                <div style="margin-left: 40%;color: gray;font-weight: bolder;">Other player<br> ↘</div>
                 <div class="box" style="float: right">
-                    <img  loading="lazy" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opponent_character %}">
-                        <div style="left: 6%" class="text-centered">{{ opponent_multiplier }}</div>
+                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);"
+                         src="{% static opponent_character %}">
+                    <div style="left: 6%" class="text-centered">{{ opponent_multiplier }}</div>
                 </div>
             </div>
         </div>
-    </br>
-    </br>
-    </br>
-    </br>
+        </br>
+        </br>
+        </br>
+        </br>
         <p>
-        {% if player.see_opponent_type %}
-        The other player multiplier is <b style="color: {{ opp_color }} ">{{ player.see_opponent_type }}</b>.
-        {% else %}
-        The other player did not disclose its multiplier.
-        {% endif %}
-    </br>
-        You've been endowed with {{ Constants.endowment }} points.
-        <b>How many points do you want to put in the public pot?</b>
+            {% if player.see_opponent_type %}
+                The other player multiplier is <b style="color: {{ opp_color }} ">{{ player.see_opponent_type }}</b>.
+            {% else %}
+                The other player did not disclose its multiplier.
+            {% endif %}
+            </br>
+            You've been endowed with {{ Constants.endowment }} points.
+            <b>How many points do you want to put in the public pot?</b>
 
         <p>
 
         <div id="slider-div">
         </div>
-        <div align="center"><button type="button" id="ok" class="drawn-button">CONTRIBUTE</button></div>
+        <div align="center">
+            <button type="button" id="ok" class="drawn-button">CONTRIBUTE</button>
+        </div>
 
     </div>
 
     <script>
 
+
         $(document).ready(function () {
+            if ({{ training }}) {
+                setActiveCurrentStep('training');
+            }
             let startTime = Date.now();
             let RT;
             let contribution;
@@ -58,24 +102,26 @@
             //let question = 'What was the average value of this symbol?'
             let initValue = Math.floor(Math.random() * (8 - 2 + 1)) + 2;
             // generate html
-            let sliderHTML = SliderManager.generateSlider({ text: '',
-                min: min, max: max, step: step, initValue: initValue});
+            let sliderHTML = SliderManager.generateSlider({
+                text: '',
+                min: min, max: max, step: step, initValue: initValue
+            });
 
             appendElement('slider-div', sliderHTML);
 
             // listen on events
             SliderManager.listenOnSlider({}, function (event) {
-                    let value = event.data.slider.val();
-                    choice(value, startTime);
+                let value = event.data.slider.val();
+                choice(value, startTime);
             });
 
             // allows to change value using left and right arrows
             SliderManager.listenOnArrowKeys();
 
 
-            function choice (value, startTime) {
+            function choice(value, startTime) {
 
-                RT = Date.now()-startTime;
+                RT = Date.now() - startTime;
                 contribution = value;
 
                 $('#main').append(templateWait);
@@ -97,15 +143,15 @@
                 }, 2000);
 
                 setInterval(function () {
-                    var wait = document.getElementById("wait");
+                        var wait = document.getElementById("wait");
 
-                    if (wait.innerHTML.length >= 3)
-                        wait.innerHTML = "";
-                    else
-                        wait.innerHTML += ".";
+                        if (wait.innerHTML.length >= 3)
+                            wait.innerHTML = "";
+                        else
+                            wait.innerHTML += ".";
 
                     },
-                500);
+                    500);
 
             }
 
@@ -113,17 +159,15 @@
         });
 
         function liveRecv(data) {
-                if (data===true) {
-                    {#console.log('RT = ' + RT);#}
-                    {#console.log('contribution = ' + contribution);#}
-                    {#$('#RT').val(RT);#}
-                    {#$('#disclose').val(disclose);#}
-                    $('#main').fadeOut(140);
-                    $('#form').submit();
-                }
+            if (data === true) {
+                {#console.log('RT = ' + RT);#}
+                {#console.log('contribution = ' + contribution);#}
+                {#$('#RT').val(RT);#}
+                {#$('#disclose').val(disclose);#}
+                $('#main').fadeOut(140);
+                $('#form').submit();
+            }
         }
-
-
 
 
     </script>

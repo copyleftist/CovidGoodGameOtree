@@ -1,5 +1,39 @@
 {% extends "global/Page.html" %}
 
+
+{% block title %}
+    <!--- Timeline of the experiment ---------------------->
+<div class="md-stepper-horizontal black" id="timeline">
+    <div class="md-step active" id="instructions">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Instructions</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="training">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Training</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="experiment">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Experiment</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="questionnaire">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Survey</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+</div>
+    <br>
+    <br>
+<!-------------------------------------------------->
+{% endblock %}
+
 {% block content %}
 
     <h2 id="title" class="container fade-in"></h2>

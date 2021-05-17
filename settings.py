@@ -12,13 +12,6 @@ SESSION_CONFIGS = [
         results_time=7.5,
         app_sequence=['step1'],
     ),
-
-    dict(
-        name='survey',
-        display_name='survey',
-        num_demo_participants=1,
-        app_sequence=['survey'],
-    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
