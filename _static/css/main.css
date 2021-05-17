@@ -1,4 +1,9 @@
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
 .box{
     position: relative;
     display: inline-block; /* Make the width of box same as image */
@@ -6,6 +11,7 @@
 
 .container {
     width: 80%;
+    height: 100%;
 }
 
 .box .text-centered{
@@ -150,7 +156,6 @@ button::-moz-focus-inner {
     width: 100%;
     margin: 0 auto;
     background-color: #FFFFFF;
-    background: url('images/logo-ens.png') no-repeat 1% 50%;
     background-size: 70px;
 
    /* box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50);*/
@@ -173,7 +178,7 @@ button::-moz-focus-inner {
         /*max-width: 160% !important;*/
     /*}*/
     .md-stepper-horizontal {
-        background: url('images/logo-ens.png') no-repeat 1% 50%;
+        /*background: url('images/logo-ens.png') no-repeat 1% 50%;*/
         background-size: 27px;
     }
 
@@ -206,20 +211,6 @@ button::-moz-focus-inner {
         margin-left: 0 !important;
     }
 
-    @media only screen and (max-height: 600px) {
-        #game {
-            height: 70%;
-        }
-
-        #TextBoxDiv {
-            height: 80%;
-        }
-
-        .img-responsive {
-            height: 80%;
-            max-width: none;
-        }
-    }
 }
 
 

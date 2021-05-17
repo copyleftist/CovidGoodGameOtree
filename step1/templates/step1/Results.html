@@ -29,7 +29,6 @@
     </div>
 </div>
     <br>
-    <br>
 <!-------------------------------------------------->
 {% endblock %}
 
@@ -40,24 +39,21 @@
             <div class="col">
                 <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
                 <div class="box" style="float: left">
-                    <img src="{% static player_character %}">
+                    <img class="responsive" src="{% static player_character %}">
                     <div class="text-centered">{{ player_multiplier }}</div>
                 </div>
             </div>
             <div class="col" align="center" >
-                <img style="margin-top: 36%" src="{% static 'img/pot.png' %}">
+                <img class="responsive" style="margin-top: 10%" src="{% static 'img/pot.png' %}">
             </div>
             <div class="col">
                 <div style="margin-left: 40%;color: gray;font-weight: bolder;">Other player<br> ↘</div>
                 <div class="box" style="float: right">
-                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opp_character %}">
+                    <img class="responsive" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opp_character %}">
                     <div style="left: 6%" class="text-centered">{{ opp_multiplier }}</div>
                 </div>
             </div>
         </div>
-        </br>
-        </br>
-        </br>
         </br>
         {#        <p style="text-align: center; font-size: larger">#}
         <div id="results" class="fade-in-var" style="display: none; border-bottom: black; --time: 1s">
@@ -75,18 +71,11 @@
                     ({{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b>)) / 2 = <b
                             style="font-size: 35px">{{ group.individual_share }} </b></h4>
                 <h4 id="r4" class="fade-in-var" style="display: none;--time: 1s;">POINTS LEFT = <b
-                        style="font-size: 35px">{{ player_left }}</b></h4><br>
+                        style="font-size: 35px">{{ player_left }}</b></h4>
                 <br>
                 <h3 id="r5" class="fade-in-var" style="display: none;--time: 1;">PAYOFF = IND. SHARE + POINTS LEFT = <b
                         style="font-size: 35px; text-decoration: underline">{{ player.reward }}</b></h3>
         </div>
-        <br>
-        <br>
-
-        <br>
-        <br>
-
-        </br>
 
     </div>
 

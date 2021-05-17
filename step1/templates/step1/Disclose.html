@@ -29,7 +29,6 @@
     </div>
 </div>
     <br>
-    <br>
 <!-------------------------------------------------->
 {% endblock %}
 
@@ -51,7 +50,6 @@
             </div>
         </div>
         <br>
-        <br>
         <p>
             Your multiplier is {{ player.participant.multiplier }}. <br>
             <b>Do you want to disclose your multiplier to the other player?</b>
@@ -66,8 +64,6 @@
                 <button type="button" class="drawn-button" id="hide">HIDE</button>
             </div>
         </div>
-        {#        <input type="hidden" id="disclose" name="disclose"/>#}
-        {#        <input type="hidden" id="RT" name="RT"/>#}
 
     </div>
 
@@ -84,7 +80,10 @@
                 $('#main').append(templateReal);
                 {#$("#modalReal").modal();#}
                 $('#modalReal').modal('show');
-                setTimeout(function () { $('#modalReal').modal('toggle');}, 6000);
+                setTimeout(function () {
+                    $('#modalReal').modal('toggle');
+                    $('#modalReal').remove();
+                }, 6000);
 
             }
 

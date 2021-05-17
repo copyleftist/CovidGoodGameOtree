@@ -7,3 +7,11 @@ function setActiveCurrentStep(id) {
             $('#' + id).attr('class', 'md-step active');
         }
 }
+
+function changeTitle() {
+    count++;
+    var newTitle = '(' + count + ') ' + title;
+    document.title = newTitle;
+}
+
+document.title = 'Online experiment';

@@ -30,7 +30,6 @@
     </div>
 </div>
     <br>
-    <br>
 <!-------------------------------------------------->
 {% endblock %}
 
@@ -41,25 +40,22 @@
             <div class="col">
                 <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
                 <div class="box" style="float: left">
-                    <img src="{% static player_character %}">
+                    <img class="responsive" src="{% static player_character %}">
                     <div class="text-centered">{{ player_multiplier }}</div>
                 </div>
             </div>
             <div class="col" align="center" >
-                <img style="margin-top: 36%" src="{% static 'img/pot.png' %}">
+                <img class="responsive" style="margin-top: 10%" src="{% static 'img/pot.png' %}">
             </div>
             <div class="col">
                 <div style="margin-left: 40%;color: gray;font-weight: bolder;">Other player<br> ↘</div>
                 <div class="box" style="float: right">
-                    <img style="-webkit-transform: scaleX(-1);transform: scaleX(-1);"
+                    <img class="responsive" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);"
                          src="{% static opponent_character %}">
                     <div style="left: 6%" class="text-centered">{{ opponent_multiplier }}</div>
                 </div>
             </div>
         </div>
-        </br>
-        </br>
-        </br>
         </br>
         <p>
             {% if player.see_opponent_type %}
@@ -91,9 +87,7 @@
             let startTime = Date.now();
             let RT;
             let contribution;
-
             let templateWait = `{{ html }}`;
-
 
             // params
             let min = 0;
@@ -160,15 +154,10 @@
 
         function liveRecv(data) {
             if (data === true) {
-                {#console.log('RT = ' + RT);#}
-                {#console.log('contribution = ' + contribution);#}
-                {#$('#RT').val(RT);#}
-                {#$('#disclose').val(disclose);#}
                 $('#main').fadeOut(140);
                 $('#form').submit();
             }
         }
-
 
     </script>
 

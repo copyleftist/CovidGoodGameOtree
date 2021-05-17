@@ -3,7 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/css/slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/_static/css/slider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/_static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bots.py" beforeDir="false" afterPath="$PROJECT_DIR$/bots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/instructions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Wait.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Wait.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

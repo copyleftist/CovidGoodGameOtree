@@ -3,6 +3,7 @@ from step1._builtin import Page, WaitPage
 from .models import Constants
 import numpy as np
 import time
+from settings import pounds_per_point
 
 from utils.debug import logger
 
@@ -17,11 +18,6 @@ RESULTS_TIME = 7.5 * SECOND
 # ------------------------------------------------------------------------------------------------------------------- #
 # Pages
 # ------------------------------------------------------------------------------------------------------------------- #
-# def vars_for_admin_report(subsession):
-#     disconnected = [(p.participant.label, p.participant.code, p.participant.is_dropout)
-#                     for p in _get_all_players(subsession.get_players()[0])]
-#     print('*' * 100)
-#     return dict(players=disconnected)
 
 
 class Init(WaitPage):
@@ -29,6 +25,7 @@ class Init(WaitPage):
     wait_for_all_groups = True
 
     def is_displayed(self):
+        _set_as_connected(player=self.player)
         real_participants = [not p.participant.is_dropout
                              for p in _get_all_players(self.player)]
         return (self.round_number == 1) and (sum(real_participants) > 1)
@@ -38,7 +35,7 @@ class End(Page):
 
     def vars_for_template(self):
         total = self.player.participant.total
-        pounds = np.round(total*.005, 2)
+        pounds = np.round(total*pounds_per_point, 2)
         pences = np.round(pounds*100, 2)
         return {'total': total, 'pences': pences, 'pounds': pounds}
 
@@ -53,9 +50,9 @@ class Instructions(Page):
 
     def vars_for_template(self):
         from .instructions import panels, titles
-        limit = self.session.config.get('instructions_time') * SECOND
         if self.player.time_instructions == -1:
             self.player.time_instructions = time.time()
+        limit = self.session.config.get('instructions_time') * SECOND
         return {'panels': panels, 'titles': titles, 'instructionsTime': limit}
 
     @staticmethod
@@ -78,12 +75,13 @@ class Disclose(Page):
     def vars_for_template(self):
         from .html import wait, real
         _set_as_connected(self.player)
+        training_round_number = self.session.config.get('training_round_number')
         return {
             'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
             'html': wait,
             'modalReal': real,
-            'training': int(self.player.round_number <= 3),
-            'real': int(self.player.round_number == 4)
+            'training': int(self.player.round_number <= training_round_number),
+            'real': int(self.player.round_number == (training_round_number+1))
         }
 
     @staticmethod
@@ -104,9 +102,9 @@ class Disclose(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            # if not _everybody_played_disclose(player):
-            #     logger.debug('Wait for all players to play before bots response')
-            #     return {player.id_in_group: False}
+            if not _everybody_played_disclose(player, player.round_number-1):
+                logger.debug('Wait for all players to play before bots response')
+                return {player.id_in_group: False}
 
             disclose = _get_average_disclose(player)
             other_player.set_disclose(disclose=disclose)
@@ -139,6 +137,7 @@ class Contribute(Page):
             player_multiplier = '...'
             player_character = None
 
+        training_round_number = self.session.config.get('training_round_number')
         return {
             'player_character': 'img/{}.gif'.format(player_character),
             'opponent_character': 'img/{}.gif'.format(opp_character),
@@ -146,7 +145,7 @@ class Contribute(Page):
             'opponent_multiplier': opp_multiplier,
             'player_multiplier': player_multiplier,
             'html': wait,
-            'training': int(self.player.round_number <= 3)
+            'training': int(self.player.round_number <= training_round_number)
         }
 
     @staticmethod
@@ -168,9 +167,9 @@ class Contribute(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            # if not _everybody_played_contrib(player):
-            #     logger.debug('Wait for all players to play before bots response')
-            #     return {player.id_in_group: False}
+            if not _everybody_played_contrib(player, player.round_number-1):
+                logger.debug('Wait for all players to play before bots response')
+                return {player.id_in_group: False}
 
             contribution = _get_average_contrib(player)
             other_player.set_contribution(contribution)
@@ -197,6 +196,7 @@ class Results(Page):
         opp_disclose = opp.disclose
         opp_contribution = opp.contribution
         opp_payoff = opp.payoff
+        training_round_number = self.session.config.get('training_round_number')
 
         return {
             'player_character': 'img/{}.gif'.format(player_multiplier),
@@ -211,7 +211,7 @@ class Results(Page):
             'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
             'disclose': opp_disclose,
             'resultsTime': self.session.config.get('results_time') * SECOND,
-            'training': int(self.player.round_number <= 3)
+            'training': int(self.player.round_number <= training_round_number)
 
         }
 
@@ -237,16 +237,20 @@ def _check_for_disconnections(player):
             p.participant.is_dropout = True
 
 
-def _everybody_played_disclose(player):
+def _everybody_played_disclose(player, t):
+    if t == 0:
+        t = 1
     players = _get_all_players(player)
-    real_participants = [p for p in players if not p.participant.is_dropout]
+    real_participants = [p.in_round(t) for p in players if not p.participant.is_dropout]
     response = [p.response1 for p in real_participants]
     return all(response)
 
 
-def _everybody_played_contrib(player):
+def _everybody_played_contrib(player, t):
+    if t == 0:
+        t = 1
     players = _get_all_players(player)
-    real_participants = [p for p in players if not p.participant.is_dropout]
+    real_participants = [p.in_round(t) for p in players if not p.participant.is_dropout]
     response = [p.response2 for p in real_participants]
     return all(response)
 

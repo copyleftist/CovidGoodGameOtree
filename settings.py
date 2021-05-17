@@ -1,5 +1,6 @@
 from os import environ
 
+
 DEBUG = 0
 SESSION_CONFIGS = [
     dict(
@@ -11,9 +12,11 @@ SESSION_CONFIGS = [
         dropout_time=30,
         results_time=7.5,
         app_sequence=['step1'],
+        training_round_number=3,
     ),
 ]
 
+pounds_per_point = .005
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,

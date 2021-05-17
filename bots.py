@@ -95,7 +95,14 @@ class Bot:
     def disclose(self):
         disclose = np.random.choice([False, True], p=[1-self.p_disclose, self.p_disclose])
         btn = self.find('disc') if disclose else self.find('hide')
-        btn.click()
+        while True:
+            try:
+                btn.click()
+                break
+            except Exception as e:
+                print(e)
+                time.sleep(1)
+
 
     def contribute(self):
         contrib = np.random.choice(range(1, 11), p=self.p_contrib)
@@ -113,7 +120,7 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = idx % 10 == 0
+    slow = False
     p_contrib = np.ones(10)
     if idx < 10:
         p_contrib[idx] = 10

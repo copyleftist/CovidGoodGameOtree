@@ -1,3 +1,5 @@
+from settings import pounds_per_point
+
 def two_players(m1, m2, t1, t2):
     s = f'''<div class="row">
     <div class="col">
@@ -82,8 +84,8 @@ panels = {
        'in your private wallet because you contributed the maximum number of points.<b><br><br>'
        '<b>Please note that payoffs from all the 10 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
        'Regarding your bonus compensation, here is the conversion: <br>'
-       ' 1 point = 0.5 pence <br>'
-       ' 200 points = 1 pound <br>'
+       f' 1 point = {pounds_per_point*100} pence <br>'
+       f' 200 points =  {200*pounds_per_point} pound <br>'
        'Note that you can win up to 5 pounds as a bonus compensation.'
        '</p>',
     6: '<p>'
