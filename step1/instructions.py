@@ -20,7 +20,7 @@ panels = {
     1: '<p>'
        'You are about to participate in an experiment on decision-making in economics. '
        'This study is based on your voluntary participation and your data will be treated confidentially and anonymously.'
-       'This experiment is composed of three phases: <br>'
+       'This experiment is composed of four phases: <br>'
        '1) Instructions<br>'
        '2) A short training game.<br>'
        '3) A game<br>'
