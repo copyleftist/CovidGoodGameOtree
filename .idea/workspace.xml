@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_static/img/pot.png" beforeDir="false" afterPath="$PROJECT_DIR$/_static/img/pot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_templates/global/Page.html" beforeDir="false" afterPath="$PROJECT_DIR$/_templates/global/Page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/html.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/html.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/instructions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/pages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Contribute.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Disclose.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Instructions.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Instructions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/step1/templates/step1/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/Results.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +205,7 @@
       <workItem from="1620661512846" duration="6048000" />
       <workItem from="1620914944586" duration="10695000" />
       <workItem from="1621005038971" duration="12451000" />
-      <workItem from="1621249502221" duration="6425000" />
+      <workItem from="1621249502221" duration="9424000" />
     </task>
     <servers />
   </component>

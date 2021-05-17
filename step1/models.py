@@ -101,6 +101,7 @@ class Subsession(BaseSubsession):
             self.set_group_matrix(matrix)
 
 
+
 class Group(BaseGroup):
     total_contribution = models.FloatField(default=-1)
     individual_share = models.FloatField(default=-1)
