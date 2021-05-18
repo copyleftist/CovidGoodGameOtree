@@ -19,6 +19,17 @@ RESULTS_TIME = 7.5 * SECOND
 # Pages
 # ------------------------------------------------------------------------------------------------------------------- #
 
+class Sorting(WaitPage):
+    template_name = 'step1/Wait.html'
+    wait_for_all_groups = True
+
+    def is_displayed(self):
+        return self.round_number >= Constants.num_rounds//2
+
+    @staticmethod
+    def after_all_players_arrive(subsession):
+        subsession.group_by_disclosure()
+
 
 class Init(WaitPage):
     template_name = 'step1/Wait.html'
@@ -177,6 +188,7 @@ class Contribute(Page):
 
             contribution = _get_average_contrib(players, t-1)
             other_player.set_contribution(contribution)
+
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
                 f' Bot contribution={contribution}')
@@ -220,7 +232,7 @@ class Results(Page):
         }
 
 
-page_sequence = [Init, Instructions, Disclose, Contribute, Results, End]
+page_sequence = [Init, Sorting, Instructions, Disclose, Contribute, Results, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions
