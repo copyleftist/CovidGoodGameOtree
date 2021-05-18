@@ -144,6 +144,9 @@ class Group(BaseGroup):
             p.participant.total += p.reward
             p.participant.total = np.round(p.participant.total, 2)
 
+            if self.round_number == self.session.config.get('training_round_number'):
+                p.participant.total = 0
+
     def record_round_data(self):
         players = self.get_players()
         id_of_opp = {1: 2, 2: 1}

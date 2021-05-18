@@ -59,7 +59,7 @@ real = '''
             </h4>
             <div class="card-body handdrawn">
                 <p class="otree-wait-page__body">
-                    The real experiment starts now! Click to continue.
+                    The real experiment starts now! Your points are reset to 0. Click to continue.
                 </p>
             </div>
 

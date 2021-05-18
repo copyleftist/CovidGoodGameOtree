@@ -70,11 +70,17 @@
                     +
                     ({{ opp_contribution }} x <b style="color: {{ opp_color }}">{{ opp_multiplier }}</b>)) / 2 = <b
                             style="font-size: 35px">{{ group.individual_share }} </b></h4>
-                <h4 id="r4" class="fade-in-var" style="display: none;--time: 1s;">POINTS LEFT = <b
-                        style="font-size: 35px">{{ player_left }}</b></h4>
+{#                <h4 id="r4" class="fade-in-var" style="display: none;--time: 1s;">POINTS LEFT = <b#}
+{#                        style="font-size: 35px">{{ player_left }}</b></h4>#}
+
                 <br>
-                <h3 id="r5" class="fade-in-var" style="display: none;--time: 1;">PAYOFF = IND. SHARE + POINTS LEFT = <b
+                <h3 id="r5" class="fade-in-var" style="display: none;--time: 1;">PAYOFF = IND. SHARE + POINTS LEFT ({{ player_left }}) = <b
                         style="font-size: 35px; text-decoration: underline">{{ player.reward }}</b></h3>
+
+{#                <h3 id="r6" class="fade-in-var" style="display: none;--time: 1;">TOTAL SCORE = <b>{{ player.participant.total }}</b></h3>#}
+
+
+
         </div>
 
     </div>
@@ -88,22 +94,21 @@
 
             setTimeout(function () {
                 $('#results').show();
-            }, 500);
+            }, 200);
             setTimeout(function () {
                 $('#r1').show();
-            }, 1000);
+            }, 700);
             setTimeout(function () {
                 $('#r2').show();
-            }, 2000);
+            }, 1500);
             setTimeout(function () {
                 $('#r3').show();
-            }, 3000);
-            setTimeout(function () {
-                $('#r4').show();
-            }, 4000);
+            }, 2500);
             setTimeout(function () {
                 $('#r5').show();
-            }, 5000);
+            }, 3900);
+            {#setTimeout(function () {#}
+            {#    $('#r6').show();#}
             let startTime = Date.now();
             let timeLimit = {{ resultsTime }};
             setInterval(function () {
