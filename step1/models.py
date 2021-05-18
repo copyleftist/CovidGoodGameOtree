@@ -143,6 +143,7 @@ class Group(BaseGroup):
             p.reward = np.round(Constants.endowment - p.contribution + self.individual_share, 2)
             p.participant.total += p.reward
             p.participant.total = np.round(p.participant.total, 2)
+            p.total = p.participant.total
 
             if self.round_number == self.session.config.get('training_round_number'):
                 p.participant.total = 0
@@ -271,11 +272,8 @@ def custom_export(players):
     else:
         # header row
         yield [
-            'app',
             'session',
-            'session_is_demo',
             'is_bot',
-            'participant_code',
             'prolific_id',
             'id_in_session',
             'id_in_group',
@@ -294,11 +292,8 @@ def custom_export(players):
         for p in players:
             group = p.group
             yield [
-                p.participant._current_app_name,
                 p.session.code,
-                p.session.is_demo,
                 p.participant.is_dropout,
-                p.participant.code,
                 p.participant.label,
                 p.participant.id_in_session,
                 p.id_in_group,
