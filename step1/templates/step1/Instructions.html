@@ -49,20 +49,17 @@
         </div>
     </div>
     <script>
-        {#window.onload = function () {#}
-        {#    var context = new AudioContext();#}
-        {#    // Setup all nodes#}
-        {#    var audio = new Audio('/static/audio/notif.mp3');#}
-        {#context.resume().then(() => {#}
-        {#    audio.play();#}
-        {#    console.log('Playback resumed successfully');#}
 
         $(document).ready(function () {
 
-            let audio = new Audio('/static/audio/notif.mp3');
-            audio.play();
-            {#audio.play();#}
-            document.title = '(1) Online experiment';
+            try {
+                let audio = new Audio('/static/audio/notif.mp3');
+                audio.play();
+                document.title = '(1) Online experiment';
+            }
+            catch {
+                ;
+            }
             let panels = {{ panels }};
             let titles = {{ titles }};
             let max = Math.max(...Object.keys(panels));
