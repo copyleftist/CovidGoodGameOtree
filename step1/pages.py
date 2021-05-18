@@ -87,7 +87,8 @@ class Disclose(Page):
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        _check_for_disconnections(player)
+        players = _get_all_players(player)
+        _check_for_disconnections(players)
         other_player = player.get_others_in_group()[0]
 
         if not player.response1:
@@ -102,11 +103,12 @@ class Disclose(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            if not _everybody_played_disclose(player, player.round_number-1):
+            t = player.round_number
+            if not _everybody_played_disclose(players, t-1):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            disclose = _get_average_disclose(player)
+            disclose = _get_average_disclose(players, t-1)
             other_player.set_disclose(disclose=disclose)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -151,7 +153,8 @@ class Contribute(Page):
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        _check_for_disconnections(player)
+        players = _get_all_players(player)
+        _check_for_disconnections(players)
         other_player = player.get_others_in_group()[0]
 
         if not player.response2:
@@ -167,11 +170,12 @@ class Contribute(Page):
             return {player.id_in_group: True}
 
         if other_player.participant.is_dropout:
-            if not _everybody_played_contrib(player, player.round_number-1):
+            t = player.round_number
+            if not _everybody_played_contrib(players, t-1):
                 logger.debug('Wait for all players to play before bots response')
                 return {player.id_in_group: False}
 
-            contribution = _get_average_contrib(player)
+            contribution = _get_average_contrib(players, t-1)
             other_player.set_contribution(contribution)
             logger.debug(
                 f'Participant {other_player.participant.id_in_session} dropped out.'
@@ -227,8 +231,8 @@ def _set_as_connected(player):
     player.participant.time_at_last_response = time.time()
 
 
-def _check_for_disconnections(player):
-    players = _get_all_players(player)
+def _check_for_disconnections(players):
+    player = players[0]
     real_players = [p for p in players if not p.participant.is_dropout]
     limit = player.session.config.get('dropout_time')*SECOND
     for p in real_players:
@@ -237,20 +241,18 @@ def _check_for_disconnections(player):
             p.participant.is_dropout = True
 
 
-def _everybody_played_disclose(player, t):
-    if t == 0:
-        t = 1
-    players = _get_all_players(player)
-    real_participants = [p.in_round(t) for p in players if not p.participant.is_dropout]
+def _everybody_played_disclose(players, t):
+    t = (t==0) + t
+    real_participants = [p.in_round(t) for p in players
+                         if not p.participant.is_dropout]
     response = [p.response1 for p in real_participants]
     return all(response)
 
 
-def _everybody_played_contrib(player, t):
-    if t == 0:
-        t = 1
-    players = _get_all_players(player)
-    real_participants = [p.in_round(t) for p in players if not p.participant.is_dropout]
+def _everybody_played_contrib(players, t):
+    t = (t==0) + t
+    real_participants = [p.in_round(t) for p in players
+                         if not p.participant.is_dropout]
     response = [p.response2 for p in real_participants]
     return all(response)
 
@@ -259,41 +261,39 @@ def _get_all_players(player):
     return [player, ] + player.get_others_in_subsession()
 
 
-def _get_average_contrib(player):
-    t = player.round_number
-    if t == 1:
+def _get_average_contrib(players, t):
+    if t == 0:
         contribution = np.round(np.mean(
-            [p.contribution for p in _get_all_players(player) if not p.participant.is_dropout]
+            [p.contribution for p in players if not p.participant.is_dropout]
         ))
     else:
         contribution = []
-        for p in _get_all_players(player):
+        for p in players:
             if not p.participant.is_dropout:
-                contribution.append(p.participant.contribution[t - 2])
+                contribution.append(p.participant.contribution[t - 1])
         contribution = np.round(np.mean(contribution))
     return contribution
 
 
-def _get_average_disclose(player):
-    t = player.round_number
-    if t == 1:
+def _get_average_disclose(players, t):
+    if t == 0:
         p_disclose = np.mean(
-            [p.disclose for p in _get_all_players(player) if not p.participant.is_dropout]
+            [p.disclose for p in players if not p.participant.is_dropout]
         )
     else:
         disclose = []
-        for p in _get_all_players(player):
+        for p in players:
             if not p.participant.is_dropout:
-                disclose.append(p.participant.disclose[t - 2])
+                disclose.append(p.participant.disclose[t - 1])
         p_disclose = np.mean(disclose)
     return np.random.choice(
             [0, 1], p=[1-p_disclose, p_disclose])
 
 
-def _get_groups(player):
-    groups = []
-
-    for p in player.get_others_in_subsession():
-        if p.group not in groups:
-            groups.append(p.group)
-    return groups
+# def _get_groups(player):
+#     groups = []
+#
+#     for p in player.get_others_in_subsession():
+#         if p.group not in groups:
+#             groups.append(p.group)
+#     return groups
