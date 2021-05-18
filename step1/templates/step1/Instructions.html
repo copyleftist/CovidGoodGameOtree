@@ -3,35 +3,35 @@
 
 {% block title %}
     <!--- Timeline of the experiment ---------------------->
-<div class="md-stepper-horizontal black" id="timeline">
-    <div class="md-step active" id="instructions">
-        <div class="md-step-circle"></div>
-        <div class="md-step-title">Instructions</div>
-        <div class="md-step-bar-left"></div>
-        <div class="md-step-bar-right"></div>
+    <div class="md-stepper-horizontal black" id="timeline">
+        <div class="md-step active" id="instructions">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Instructions</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="training">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Training</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="experiment">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Experiment</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="questionnaire">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Survey</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
     </div>
-    <div class="md-step" id="training">
-        <div class="md-step-circle"></div>
-        <div class="md-step-title">Training</div>
-        <div class="md-step-bar-left"></div>
-        <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step" id="experiment">
-        <div class="md-step-circle"></div>
-        <div class="md-step-title">Experiment</div>
-        <div class="md-step-bar-left"></div>
-        <div class="md-step-bar-right"></div>
-    </div>
-    <div class="md-step" id="questionnaire">
-        <div class="md-step-circle"></div>
-        <div class="md-step-title">Survey</div>
-        <div class="md-step-bar-left"></div>
-        <div class="md-step-bar-right"></div>
-    </div>
-</div>
     <br>
     <br>
-<!-------------------------------------------------->
+    <!-------------------------------------------------->
 {% endblock %}
 
 {% block content %}
@@ -49,7 +49,20 @@
         </div>
     </div>
     <script>
+        {#window.onload = function () {#}
+        {#    var context = new AudioContext();#}
+        {#    // Setup all nodes#}
+        {#    var audio = new Audio('/static/audio/notif.mp3');#}
+        {#context.resume().then(() => {#}
+        {#    audio.play();#}
+        {#    console.log('Playback resumed successfully');#}
+
         $(document).ready(function () {
+
+            let audio = new Audio('/static/audio/notif.mp3');
+            audio.play();
+            {#audio.play();#}
+            document.title = '(1) Online experiment';
             let panels = {{ panels }};
             let titles = {{ titles }};
             let max = Math.max(...Object.keys(panels));
