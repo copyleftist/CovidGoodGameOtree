@@ -1,4 +1,6 @@
 from settings import pounds_per_point
+from step1.models import Constants
+import numpy as np
 
 
 def two_players(m1, m2, t1, t2):
@@ -38,7 +40,7 @@ panels = {
        'Your type will <b>remain</b> the same all along the game.<br>'
        'Note that different types have different multipliers (the latter is displayed on the character t-shirt).'
        '<br><br><div align="center"><img src="/static/img/2_players.png"><br><br></div>'
-       'In total there are <b>10 rounds</b> (+ 3 training rounds). In each round you will be randomly matched with another player. A round is divided into 3 steps:<br><br>'
+       f'In total there are <b>{Constants.num_rounds-3} rounds</b> (+ 3 training rounds). In each round you will be randomly matched with another player. A round is divided into 3 steps:<br><br>'
        '1) You will be asked if you want to either display or hide your multiplier, so that the other player will know your type or not.<br><br>'
        '2) You will be asked to contribute (a certain number of points) to a public pot.<br><br>'
        '3) Your contribution will be multiplied according to your type and the points put in the public pot'
@@ -83,11 +85,11 @@ panels = {
         '<br>It means that both player individual share is 10 points for this hypothetical round. <br><br>'
        '<b>Please note that the payoff you will receive is your individual share added to the points left in your private wallet. In the fictional example above, there are no points letft '
        'in your private wallet because you contributed the maximum number of points.<b><br><br>'
-       '<b>Please note that payoffs from all the 10 rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
+       f'<b>Please note that payoffs from all the {Constants.num_rounds-3} rounds are summed at the end of the experiment. This sum is used to compute your bonus compensation.</b><br><br>'
        'Regarding your bonus compensation, here is the conversion: <br>'
        f' 1 point = {pounds_per_point*100} pence <br>'
        f' 200 points =  {200*pounds_per_point} pound <br>'
-       'Note that you can win up to 5 pounds as a bonus compensation.'
+       f'Note that you can win up to {np.round(pounds_per_point*16*Constants.num_rounds)} pound(s) as a bonus compensation.'
        '</p>',
     6: '<p>'
        '<br><br><b> The training game will start in time seconds.</b>'
