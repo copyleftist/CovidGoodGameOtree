@@ -89,7 +89,7 @@ panels = {
        'Regarding your bonus compensation, here is the conversion: <br>'
        f' 1 point = {pounds_per_point*100} pence <br>'
        f' 200 points =  {200*pounds_per_point} pound <br>'
-       f'Note that you can win up to {np.round(pounds_per_point*16*Constants.num_rounds)} pound(s) as a bonus compensation.'
+       f'Note that you can win up to {np.round(pounds_per_point*16*(Constants.num_rounds-3))} pound(s) as a bonus compensation.'
        '</p>',
     6: '<p>'
        '<br><br><b> The training game will start in time seconds.</b>'

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="" />
+    <list default="true" id="5018afd0-4677-4bb4-a948-0d3ebbd83840" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/step1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/step1/templates/step1/End.html" beforeDir="false" afterPath="$PROJECT_DIR$/step1/templates/step1/End.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
