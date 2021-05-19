@@ -16,7 +16,7 @@ from settings import export_style
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 60
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
