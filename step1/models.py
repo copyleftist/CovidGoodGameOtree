@@ -126,9 +126,9 @@ class Group(BaseGroup):
         this method is called at the end of each round
         :return:
         """
-        logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
-                     f' Setting payoffs and saving data.')
         if not self.response:
+            logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
+                         f' Setting payoffs and saving data.')
             self.set_payoffs()
             self.record_round_data()
             self.response = True

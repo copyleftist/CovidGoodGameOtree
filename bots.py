@@ -42,7 +42,7 @@ class Bot:
         if self.slow:
             return np.random.choice(np.linspace(2, 20, 10))
 
-        return np.random.choice(np.linspace(2, 3, 10))
+        return np.random.choice(np.linspace(2, 5, 10))
 
     def find(self, el_id):
         while True:
