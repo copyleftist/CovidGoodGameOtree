@@ -30,7 +30,7 @@ panels = {
        '2) A short training game.<br>'
        '3) A game<br>'
        '4) A short survey<br>'
-       '<b>Please note that from now on you have 10 minutes to read these instructions. <br>'
+       '<b>Please note that from now on you have 9 minutes to read these instructions. <br>'
        'After that the game will start automatically.</b>'
        '</p>',
 

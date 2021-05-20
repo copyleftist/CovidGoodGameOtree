@@ -235,6 +235,8 @@ def _check_for_disconnections(players):
     player = players[0]
     real_players = [p for p in players if not p.participant.is_dropout]
     limit = player.session.config.get('dropout_time')*SECOND
+    if player.round_number == 1:
+        limit *= 2
     for p in real_players:
         t = (time.time() - p.participant.time_at_last_response) * SECOND
         if t > limit:
