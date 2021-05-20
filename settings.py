@@ -4,8 +4,8 @@ from os import environ
 DEBUG = 0
 SESSION_CONFIGS = [
     dict(
-        name='baseline',
-        display_name="baseline",
+        name='sorting',
+        display_name="Sorting",
         single_player=False,
         num_demo_participants=18,
         instructions_time=60*9,
