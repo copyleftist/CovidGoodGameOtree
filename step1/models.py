@@ -16,7 +16,7 @@ from settings import export_style
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 6
+    num_rounds = 14
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
@@ -181,9 +181,10 @@ class Group(BaseGroup):
         this method is called at the end of each round
         :return:
         """
-        logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
-                     f' Setting payoffs and saving data.')
+
         if not self.response:
+            logger.debug(f'Round {self.round_number}/ Group {self.id_in_subsession}:'
+                         f' Setting payoffs and saving data.')
             self.set_payoffs()
             self.record_round_data()
             self.response = True
@@ -262,6 +263,7 @@ def custom_export(players):
             'p1.rt2',
             'p1.payoff',
             'p1.total',
+            'p1.disclosure_group',
             'p2.is_bot',
             'p2.participant_code',
             'p2.prolific_id',
@@ -274,6 +276,7 @@ def custom_export(players):
             'p2.rt2',
             'p2.payoff',
             'p2.total',
+            'p2.disclosure_group',
             'round_number',
             'individual_share',
             'total_contribution',
@@ -306,6 +309,7 @@ def custom_export(players):
                 p1.rt2,
                 p1.reward,
                 p1.total,
+                p1.participant.disclosure_group,
                 p2.participant.is_dropout,
                 p2.participant.code,
                 p2.participant.label,
@@ -318,6 +322,7 @@ def custom_export(players):
                 p2.rt2,
                 p2.reward,
                 p2.total,
+                p2.participant.disclosure_group,
                 group.round_number,
                 group.individual_share,
                 group.total_contribution,
@@ -342,7 +347,8 @@ def custom_export(players):
             'round_number',
             'individual_share',
             'total_contribution',
-            'group_id'
+            'group_id',
+            'disclosure_group'
         ]
         for p in players:
             group = p.group
@@ -362,5 +368,6 @@ def custom_export(players):
                 group.round_number,
                 group.individual_share,
                 group.total_contribution,
-                group.id
+                group.id,
+                p.participant.disclosure_group
             ]

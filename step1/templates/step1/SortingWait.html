@@ -1,0 +1,84 @@
+{% extends "global/WaitPage.html" %}
+
+{% block content %}
+    <span> Now you will be matched with players that disclosed their type as much as you did. <br>
+           Please wait<span id="wait">...</span></span>
+
+    </div>
+
+    <style>
+        @font-face {
+            font-family: "FuturaHandwritten";
+            src: url(' /static/font/FuturaHandwritten.ttf');
+        }
+
+        body {
+            font-family: "FuturaHandwritten";
+            font-size: 15px;
+
+            background-color: white;
+        }
+        .card {
+            background: white;
+            border: 5px solid black;
+            {#border-radius: 5px;#}
+            {#box-shadow: 0 0 5px #999;#}
+            /*width: 940px; */
+            margin: 22px auto;
+            margin-top: 30%;
+
+            animation: fadeIn 3s;
+            -webkit-animation: fadeIn 2s;
+            -moz-animation: fadeIn 2s;
+            -o-animation: fadeIn 2s;
+            -ms-animation: fadeIn 2s;
+
+        }
+
+        .card-body {
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .card-header {
+            border-bottom: 0px !important;
+        }
+
+        .page-header {
+           {#border: 1px solid #c0c0c0;#}
+        }
+
+        .otree-wait-page {
+            max-width:970px
+        }
+
+    </style>
+
+    <script>
+        $('head').append('<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">');
+
+        var dots = window.setInterval( function() {
+
+            $('.progress').remove();
+
+        var wait = document.getElementById("wait");
+        if ( wait.innerHTML.length >= 3 )
+            wait.innerHTML = "";
+        else
+            wait.innerHTML += ".";
+
+        }, 500);
+    </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -20,7 +20,7 @@ RESULTS_TIME = 7.5 * SECOND
 # ------------------------------------------------------------------------------------------------------------------- #
 
 class Sorting(WaitPage):
-    template_name = 'step1/Wait.html'
+    template_name = 'step1/SortingWait.html'
     wait_for_all_groups = True
 
     def is_displayed(self):
