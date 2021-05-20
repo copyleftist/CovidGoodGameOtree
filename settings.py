@@ -46,6 +46,21 @@ ROOMS = [
         display_name='Prolific experiment',
         #participant_label_file='_rooms/econ101.txt',
     ),
+    dict(
+        name='prolific2',
+        display_name='Prolific experiment',
+        #participant_label_file='_rooms/econ101.txt',
+    ),
+    dict(
+        name='prolific3',
+        display_name='Prolific experiment',
+        #participant_label_file='_rooms/econ101.txt',
+    ),
+    dict(
+        name='prolific4',
+        display_name='Prolific experiment',
+        #participant_label_file='_rooms/econ101.txt',
+    ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
 ]
 
