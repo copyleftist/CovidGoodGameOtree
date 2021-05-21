@@ -16,7 +16,7 @@ from settings import export_style
 class Constants(BaseConstants):
     name_in_url = 'step1'
     players_per_group = 2
-    num_rounds = 60
+    num_rounds = 14
     multiplier_bad = .8
     multiplier_good = 1.2
     endowment = 10
@@ -42,6 +42,7 @@ class Subsession(BaseSubsession):
 
         self.session.group1 = np.ones(n_participant//2)*-1
         self.session.group2 = np.ones(n_participant//2)*-1
+        self.session.sorting = False
 
         for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)

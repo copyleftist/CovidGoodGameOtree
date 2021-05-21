@@ -40,7 +40,7 @@ class Bot:
     @property
     def time_wait(self):
         if self.slow:
-            return np.random.choice(np.linspace(2, 20, 10))
+            return np.random.choice(np.linspace(2, 26, 10))
 
         return np.random.choice(np.linspace(2, 3, 10))
 

@@ -19,16 +19,17 @@ RESULTS_TIME = 7.5 * SECOND
 # Pages
 # ------------------------------------------------------------------------------------------------------------------- #
 
-class Sorting(WaitPage):
-    template_name = 'step1/SortingWait.html'
-    wait_for_all_groups = True
-
-    def is_displayed(self):
-        return self.round_number > Constants.num_rounds//2
-
-    @staticmethod
-    def after_all_players_arrive(subsession):
-        subsession.group_by_disclosure()
+# class Sorting(WaitPage):
+#     template_name = 'step1/SortingWait.html'
+#     wait_for_all_groups = True
+#
+#     def is_displayed(self):
+#         return self.round_number == (Constants.num_rounds//2)+1
+#
+#     @staticmethod
+#     def after_all_players_arrive(subsession):
+#         for future_subsession in subsession.in_round
+#         subsession.group_by_disclosure()
 
 
 class Init(WaitPage):
@@ -204,6 +205,15 @@ class Results(Page):
         # if not dropout then execute the original method
         return super().get_template_name()
 
+    def sorting(self):
+        if not self.session.sorting:
+            begin = self.round_number + 1
+            end = Constants.num_rounds
+            subsessions = self.player.subsession.in_rounds(begin, end)
+            for ss in subsessions:
+                ss.group_by_disclosure()
+            self.session.sorting = True
+
     def vars_for_template(self):
         player_multiplier = self.player.participant.multiplier
 
@@ -213,6 +223,9 @@ class Results(Page):
         opp_contribution = opp.contribution
         opp_payoff = opp.payoff
         training_round_number = self.session.config.get('training_round_number')
+
+        if self.round_number == (Constants.num_rounds//2):
+            self.sorting()
 
         return {
             'player_character': 'img/{}.gif'.format(player_multiplier),
@@ -232,7 +245,7 @@ class Results(Page):
         }
 
 
-page_sequence = [Init, Sorting, Instructions, Disclose, Contribute, Results, End]
+page_sequence = [Init, Instructions, Disclose, Contribute, Results, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions
@@ -298,7 +311,12 @@ def _get_average_disclose(players, t):
         disclose = []
         for p in players:
             if not p.participant.is_dropout:
-                disclose.append(p.participant.disclose[t - 1])
+                if p.participant.disclose[t - 1] != -1:
+                    disclose.append(p.participant.disclose[t - 1])
+                else:
+                    logger.debug(
+                        'Problem with computing disclosure probabilities, -1 are probably there'
+                    )
         p_disclose = np.mean(disclose)
     return np.random.choice(
             [0, 1], p=[1-p_disclose, p_disclose])
