@@ -40,7 +40,7 @@ class Bot:
     @property
     def time_wait(self):
         if self.slow:
-            return np.random.choice(np.linspace(2, 26, 10))
+            return np.random.choice(np.linspace(2, 32, 10))
 
         return np.random.choice(np.linspace(2, 3, 10))
 
@@ -102,7 +102,8 @@ class Bot:
             except Exception as e:
                 print(e)
                 time.sleep(1)
-
+                modal = self.find('modalReal')
+                modal.click()
 
     def contribute(self):
         contrib = np.random.choice(range(1, 11), p=self.p_contrib)
@@ -120,7 +121,7 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = False
+    slow = idx == 0
     p_contrib = np.ones(10)
     if idx < 10:
         p_contrib[idx] = 10
