@@ -50,7 +50,7 @@
                 <div style="margin-left: 40%;color: gray;font-weight: bolder;">Other player<br> ↘</div>
                 <div class="box" style="float: right">
                     <img class="responsive" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);" src="{% static opp_character %}">
-                    <div style="left: 6%" class="text-centered">{{ opp_multiplier }}</div>
+                    <div style="left: 12%" class="text-centered">{{ opp_multiplier }}</div>
                 </div>
             </div>
         </div>
@@ -107,8 +107,7 @@
             setTimeout(function () {
                 $('#r5').show();
             }, 3900);
-            {#setTimeout(function () {#}
-            {#    $('#r6').show();#}
+
             let startTime = Date.now();
             let timeLimit = {{ resultsTime }};
             setInterval(function () {
@@ -119,15 +118,6 @@
             }, 1500);
 
         });
-
-        {#function liveRecv(data) {#}
-        {#        if (data===true) {#}
-        {#console.log('RT = ' + RT);#}
-        {#console.log('contribution = ' + contribution);#}
-        {#$('#RT').val(RT);#}
-        {#$('#disclose').val(disclose);#}
-        {#$('#main').fadeOut(140);#}
-        {#$('#form').submit();}}#}
 
     </script>
 
