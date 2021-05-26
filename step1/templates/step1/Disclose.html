@@ -76,6 +76,7 @@
             }
 
             let templateReal = `{{ modalReal }}`;
+            let templateSorting = `{{ modalSorting }}`;
 
             if ({{ real }}) {
                 $('#main').append(templateReal);
@@ -85,6 +86,11 @@
                 {#    $('#modalReal').modal('hide');#}
                 {#    $('#modalReal').remove();}, 4000); #}
 
+            }
+
+            if ({{ sorting }}) {
+                $('#main').append(templateSorting);
+                $('#modalSorting').modal('show');
             }
 
             let startTime = Date.now();
