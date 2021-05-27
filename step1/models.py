@@ -40,10 +40,6 @@ class Subsession(BaseSubsession):
                       + [Constants.multiplier_bad, ] * (n_participant // 2)
         np.random.shuffle(multipliers)
 
-        self.session.group1 = np.ones(n_participant//2)*-1
-        self.session.group2 = np.ones(n_participant//2)*-1
-        self.session.sorting = False
-
         for i, p in enumerate(self.get_players()):
             # print(p.participant.id_in_session)
             p.participant.idx = i
@@ -108,57 +104,6 @@ class Subsession(BaseSubsession):
         assert count == n_row
         self.set_group_matrix(matrix)
 
-    def group_by_disclosure(self):
-        if not self.is_grouped_by_disclosure:
-
-            if all(self.session.group1 == -1):
-                self.create_groups()
-
-            logger.debug(
-                    f'Round {self.round_number}: '
-                    'Match groups according to disclosure rate')
-
-            group1 = self.session.group1.copy()
-            group2 = self.session.group2.copy()
-
-            np.random.shuffle(group1)
-            np.random.shuffle(group2)
-
-            assert len(group1) == len(group2)
-
-            group1 = np.reshape(group1, [len(group1) // 2, 2])
-            group2 = np.reshape(group2, [len(group2) // 2, 2])
-
-            matrix = np.concatenate((group1, group2), axis=0)
-
-            self.set_group_matrix(matrix)
-
-            self.is_grouped_by_disclosure = True
-
-    def create_groups(self):
-        logger.debug(
-            f'Round {self.round_number}: '
-            'Create groups according to disclosure rate')
-
-        data = np.zeros(self.session.num_participants)
-        players = self.get_players()
-
-        for p in players:
-            cond = p.participant.disclose != -1
-            data[p.participant.id_in_session - 1] = np.mean(p.participant.disclose[cond])
-
-        idx_order = np.argsort(data) + 1
-        length = len(idx_order)
-        group1 = idx_order[0:length // 2]
-        group2 = idx_order[length // 2:]
-
-        for p in players:
-            p.participant.disclosure_group = \
-                1 if p.participant.id_in_session in group1 else 2
-
-        self.session.group1 = group1.copy()
-        self.session.group2 = group2.copy()
-
 
 class Group(BaseGroup):
     total_contribution = models.FloatField(default=-1)
@@ -216,6 +161,8 @@ class Group(BaseGroup):
             # p.participant.opp_multiplier[self.round_number-1] = opp.multiplier
             p.participant.opp_id[self.round_number - 1] = opp.participant.idx
 
+            p.is_bot = p.participant.is_dropout
+
 
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)
@@ -227,6 +174,7 @@ class Player(BasePlayer):
     reward = models.FloatField(default=-1)
     time_instructions = models.FloatField(default=-1)
     total = models.FloatField(default=0)
+    is_bot = models.BooleanField(default=False)
 
     def see_opponent_type(self):
         for p in self.get_others_in_group():
@@ -349,13 +297,12 @@ def custom_export(players):
             'individual_share',
             'total_contribution',
             'group_id',
-            'disclosure_group'
         ]
         for p in players:
             group = p.group
             yield [
                 p.session.code,
-                p.participant.is_dropout,
+                p.is_bot,
                 p.participant.label,
                 p.participant.id_in_session,
                 p.id_in_group,
@@ -370,5 +317,4 @@ def custom_export(players):
                 group.individual_share,
                 group.total_contribution,
                 group.id,
-                p.participant.disclosure_group
             ]

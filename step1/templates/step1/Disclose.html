@@ -47,13 +47,19 @@
                 </div>
             </div>
             <div class="col">
+                <div style="margin-left: 40%;color: gray;font-weight: bolder;">Experimenter<br> ↘</div>
+                <div class="box" style="float: right">
+                    <img class="responsive" style="-webkit-transform: scaleX(-1);transform: scaleX(-1);"
+                         src="{% static 'img/experimenter.gif' %}">
+                </div>
             </div>
         </div>
         <br>
         <p>
             Your total number of points is <b>{{ player.participant.total }}</b><br>
             Your multiplier is <b>{{ player.participant.multiplier }}</b> <br>
-            <b>Do you want to disclose your multiplier to the other player?</b>
+            <b>Do you want to disclose your multiplier to the experimenter?</b>
+{#            <b>If you choose to hide, the other player won't see your multiplier either.</b>#}
         </p>
         <br>
         <br>

@@ -4,8 +4,8 @@ from os import environ
 DEBUG = 0
 SESSION_CONFIGS = [
     dict(
-        name='sorting',
-        display_name="Sorting",
+        name='CA',
+        display_name="CA",
         single_player=False,
         num_demo_participants=18,
         instructions_time=60*9,
@@ -78,6 +78,5 @@ SECRET_KEY = '7f%n61qy537uzmsb3$zsxjxlpeqzb=442lk_&t&)(!-xj%fn^h'
 INSTALLED_APPS = ['otree']
 
 PARTICIPANT_FIELDS = ['opp_id', 'multiplier', 'disclose', 'contribution',
-                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total', 'disclosure_group']
+                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total']
 
-SESSION_FIELDS = ['group1', 'group2', 'sorting']
