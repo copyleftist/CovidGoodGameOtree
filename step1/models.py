@@ -155,7 +155,7 @@ class Group(BaseGroup):
         id_of_opp = {1: 2, 2: 1}
 
         for p in players:
-            p.participant.disclose[self.round_number - 1] = p.disclose
+            p.participant.disclose[self.round_number - 1] = p.disclose_experimenter
             p.participant.contribution[self.round_number - 1] = p.contribution
             opp = self.get_player_by_id(id_of_opp[p.id_in_group])
             # p.participant.opp_multiplier[self.round_number-1] = opp.multiplier
@@ -167,6 +167,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)
     disclose = models.IntegerField(default=-1)
+    disclose_experimenter = models.IntegerField(default=-1)
     rt1 = models.IntegerField(default=-1)
     rt2 = models.IntegerField(default=-1)
     response1 = models.BooleanField(default=False)
@@ -181,7 +182,10 @@ class Player(BasePlayer):
             return p.participant.multiplier if p.disclose else None
 
     def set_disclose(self, disclose: int, rt1: int = None):
-        self.disclose = int(disclose)
+        self.disclose_experimenter = int(disclose)
+        self.disclose = \
+            int(np.random.choice([0, 1], p=[.5, .5])) if disclose else 0
+
         if rt1 is not None:
             self.rt1 = rt1
         self.response1 = True

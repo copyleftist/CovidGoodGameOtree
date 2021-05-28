@@ -58,10 +58,22 @@
         </div>
         </br>
         <p>
+            {% if player.disclose == 1 and player.disclose_experimenter %}
+                Your decision  = <b> DISCLOSE</b> <br>
+                Experimenter decision = <b>DISCLOSE </b>
+            {% endif %}
+            {% if player.disclose == 0 and player.disclose_experimenter %}
+                Your decision  = <b> DISCLOSE</b> <br>
+                Experimenter decision = <b>HIDE </b>
+            {% endif %}
+            {% if player.disclose_experimenter == 0 %}
+                Your decision  = <b> HIDE</b>
+            {% endif %}
+        <br>
             {% if player.see_opponent_type %}
-                The other player multiplier is <b style="color: {{ opp_color }} ">{{ player.see_opponent_type }}</b>.
+                Other player multiplier = <b style="color: {{ opp_color }} ">{{ player.see_opponent_type }}</br></b>
             {% else %}
-                The other player did not disclose its multiplier.
+                Other player multiplier = <b > HIDDEN</b>.
             {% endif %}
             </br>
             You've been endowed with {{ Constants.endowment }} additional points.
