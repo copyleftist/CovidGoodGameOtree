@@ -23,7 +23,6 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    is_grouped_by_disclosure = models.BooleanField(default=False)
 
     def init(self):
         """

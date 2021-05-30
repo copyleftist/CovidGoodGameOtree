@@ -40,7 +40,7 @@ class Bot:
     @property
     def time_wait(self):
         if self.slow:
-            return np.random.choice(np.linspace(2, 25, 10))
+            return np.random.choice(np.linspace(2, 35, 10))
 
         return np.random.choice(np.linspace(2, 3, 10))
 
@@ -121,7 +121,7 @@ class Bot:
 
 def run(idx, url):
     time.sleep(1)
-    slow = idx in [2, 3, 4, 5, 6, 7]
+    slow = idx in [2, 7]
     p_contrib = np.ones(10)
     if idx < 10:
         p_contrib[idx] = 10
