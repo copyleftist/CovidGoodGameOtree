@@ -73,7 +73,7 @@ class Disclose(Page):
         return super().get_template_name()
 
     def vars_for_template(self):
-        from .html import wait, real, sorting
+        from .html import wait, real
         _set_as_connected(self.player)
         training_round_number = self.session.config.get('training_round_number')
         return {
@@ -82,8 +82,6 @@ class Disclose(Page):
             'modalReal': real,
             'training': int(self.player.round_number <= training_round_number),
             'real': int(self.player.round_number == (training_round_number+1)),
-            'modalSorting': sorting,
-            'sorting': int(self.player.round_number == ((Constants.num_rounds // 2)+1))
         }
 
     @staticmethod
