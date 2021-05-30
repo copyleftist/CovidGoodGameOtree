@@ -68,7 +68,7 @@ panels = {
        "<b>3) You both disclose and the experimenter reveals your type to your partner but hides your partner's type to you</b> <br><br>" + two_players(Constants.multiplier_good, None,  Constants.multiplier_good,
                                                                                   '...') +
        '<b>4) You both hide</b> <br><br>' + two_players(None, None, '...', '...') +
-       '<br><br><b> Please note that you have 30 seconds to choose to disclose or hide your multiplier, if you take more time, you will be disconnected.<br>'
+       '<br><br><b> Please note that you have 40 seconds to choose to disclose or hide your multiplier, if you take more time, you will be disconnected.<br>'
        '<p>',
 
     4: '<p>'
@@ -78,7 +78,7 @@ panels = {
        'To select a value on the slider you can either select with your mouse cursor, either using your left and right arrow keys on your keyboard.'
        ' The maximum contribution is 10, while the minimum is 0.<br>'
        '<br><div align="center"><img src="/static/img/contribute.gif"><br></div>'
-       '<br><b> Please note that you have 30 seconds to give your contribution, if you take more time, you will be disconnected.<br>'
+       '<br><b> Please note that you have 40 seconds to give your contribution, if you take more time, you will be disconnected.<br>'
        '</p>',
     5: '<p>'
        'In the third step of the round, you will see the <b>outcome</b> of the <b>contribution step</b>. '

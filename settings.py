@@ -9,7 +9,7 @@ SESSION_CONFIGS = [
         single_player=False,
         num_demo_participants=18,
         instructions_time=60*9,
-        dropout_time=30,
+        dropout_time=40,
         results_time=7.5,
         app_sequence=['step1'],
         training_round_number=3,
@@ -32,7 +32,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = True
 
 ROOMS = [
