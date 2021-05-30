@@ -45,30 +45,34 @@ panels = {
        '2) You will be asked to contribute (a certain number of points) to a public pot.<br><br>'
        '3) Your contribution will be multiplied according to your type and the points put in the public pot'
        ' will be equally distributed among the players. <br><br>'
+       'Your objective is to maximize your final number of points.<br><br>'
        'Thereafter, you will continue to the next round.<br>',
 
     3: '<p>'
        'In the beginning of each round you will be presented with your character and your multiplier. '
-       'You will be also asked whether or not you want to <b>disclose it</b>.<br> '
+       'You will be also asked whether or not you want to <b>disclose it</b>.<br><br> '
        'If you choose to disclose it, the <b>experimenter</b> will decide to reveal or hide this information to your <b>partner</b>'
-       " in the contribution step (she/he will see (or not) your character on her/his screen) depending on the experimenter's decision. "
+       " in the contribution step (she/he will see (or not) your character on her/his screen) depending on the experimenter's decision. <br><br>"
        # + two_players(Constants.multiplier_good, 'experimenter', Constants.multiplier_good, '') +
        'Conversely, if you choose to hide it, the <b>other player</b> will see your character hiding her/his multiplier'
-       ' by means of a sign in the <b>contribution step</b>.<br>'
+       ' by means of a sign in the <b>contribution step</b>.<br><br>'
+       'To sum up, either you decide to disclose your multiplier to the experimenter (and potentially he will transmit this information to the other player),'
+       'either you choose to hide your multiplier to both the experimenter and the other player.<br><br>'
        '<br>Suppose you were attributed the <b style="color: #5893f6">blue</b> type and the other player the <b style="color: #d4c84d">yellow</b>'
        '. There are some possible scenarios below:<br><br>'
        '<b>1) You both disclose and the experimenter further reveals each of your multipliers</b> <br><br>' + two_players(Constants.multiplier_good, Constants.multiplier_bad,
                                                             Constants.multiplier_good, Constants.multiplier_bad) +
-       '<b>2) You both hide</b> <br><br>' + two_players(None, None, '...', '...') +
-       "<b>3) You both disclose and the experimenter reveals your partner's type to you but hides your type to your partner</b> <br><br>" + two_players(Constants.multiplier_good, None,
-                                                                                  Constants.multiplier_good, '...') +
-       "<b>4) You both disclose and the experimenter reveals your type to your partner but hides your partner's type to you</b> <br><br>" + two_players(None, Constants.multiplier_bad, '...',
-                                                                                  Constants.multiplier_bad) +
+
+       "<b>2) You both disclose and the experimenter reveals your partner's type to you but hides your type to your partner</b> <br><br>" + two_players(None, Constants.multiplier_bad,
+                                                                                  '...', Constants.multiplier_bad) +
+       "<b>3) You both disclose and the experimenter reveals your type to your partner but hides your partner's type to you</b> <br><br>" + two_players(Constants.multiplier_good, None,  Constants.multiplier_good,
+                                                                                  '...') +
+       '<b>4) You both hide</b> <br><br>' + two_players(None, None, '...', '...') +
        '<br><br><b> Please note that you have 30 seconds to choose to disclose or hide your multiplier, if you take more time, you will be disconnected.<br>'
        '<p>',
 
     4: '<p>'
-       'In the second step of the round, you will see the outcome of the previous decision, such as the <b>scenarios</b> above.'
+       'In the second step of the round, you will see the outcome of the previous decision, that is the <b> 4 scenarios</b> previously mentioned.'
        '<br><br>Also, in each round, your private wallet  will be <b>endowed with 10 points</b>, and you will be asked to contribute to the public pot. You will be able to do so '
        'using a slider, which value corresponds to the number of points you want to put in the public pot. <br>'
        'To select a value on the slider you can either select with your mouse cursor, either using your left and right arrow keys on your keyboard.'
