@@ -1,7 +1,27 @@
 <p>Player status </p>
 
-<ul>
-    {%  for p in subsession.get_players %}
-        <li>id = {{ p.participant.id_in_session }}, {{ p.participant.label }}, isbot = {{ p.participant.is_dropout }} </li>
-    {%  endfor %}
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prolific id</th>
+      <th scope="col">is real</th>
+    </tr>
+  </thead>
+  <tbody>
+
+        {%  for p in subsession.get_players %}
+            <tr>
+            <th scope="row">{{ p.participant.id_in_session }}</th>
+            <td>{{ p.participant.label }}</td>
+            {%  if  p.participant.is_dropout  %}
+                <td>❌ </td>
+            {% else %}
+                <td>✅</td>
+
+            {% endif %}
+            </tr>
+        {%  endfor %}
+
+  </tbody>
+</table>
